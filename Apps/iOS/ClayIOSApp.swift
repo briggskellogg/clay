@@ -16,6 +16,7 @@ struct ClayIOSApp: App {
     var body: some Scene {
         WindowGroup {
             ClayIOSLibraryView(store: store)
+                .clayAppearance()
                 .tint(ClayTheme.blue)
                 .onChange(of: scenePhase) { _, phase in
                     lifecycle.scenePhaseChanged(to: phase, store: store)

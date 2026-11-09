@@ -2,11 +2,15 @@
 
 ## Current status
 
+**0.1.0 (2)** adds the saved System/Light/Dark appearance preference. Source validation, both Debug builds, and both Release archive builds passed. Build 2 is installed at `/Applications/Developer/Clay.app` with its signature verified. Mac Light/Dark switching, Dark → System restoration to OS light, and Dark persistence across quit/relaunch passed; the final preference is System. The iOS simulator showed the new gear and followed an OS dark-mode change in System mode. Opposing Light/Dark overrides passed using temporary launch arguments, which were cleared afterward; live Settings-sheet selection/reset remains pending. Both build 2 uploads succeeded at **5:36 PM America/Phoenix on 2026-11-08**, with Apple package processing confirmed. TestFlight group assignment and physical-iPhone installation of build 2 remain pending.
+
+## Initial release history — 0.1.0 (1)
+
 Validated on the owner's Mac on **2026-11-08**: all 25 XCTest methods passed; macOS Debug/Release, iOS simulator Debug, and iOS device Release compilation passed. Icon generation now handles RGB row stride correctly; the original Clay artwork and Bard typography remain unchanged.
 
 A signed Mac archive is valid and the exported Mac `.pkg` is verified. With no registered development devices, an unsigned iOS archive was exported using `app-store-connect` and an explicit `teamID`; the resulting signed `.ipa` is verified.
 
-Clay is installed at `/Applications/Developer/Clay.app`, with its signature verified and successful reopening confirmed. The Mac smoke check passed: empty library, new Scratchpad with Unicode title/text, move to Pieces and back, and quit/reopen with the full text intact and Saved status. The temporary verification document was moved to recoverable Trash, leaving the active library empty. The iPhone 17 Pro simulator on iOS 26.2 booted, installed, and launched Clay; visual inspection confirmed the empty library, creation/import controls, and Scratchpads/Pieces tabs. The owner confirmed physical-iPhone installation and launch through TestFlight on **2026-11-08**. iOS editing/persistence and the other acceptance scenarios in `TEST_REPORT.md` remain pending.
+The initial Mac installation at `/Applications/Developer/Clay.app` passed signature verification and reopening. The Mac smoke check passed: empty library, new Scratchpad with Unicode title/text, move to Pieces and back, and quit/reopen with the full text intact and Saved status. The temporary verification document was moved to recoverable Trash, leaving the active library empty. The iPhone 17 Pro simulator on iOS 26.2 booted, installed, and launched Clay; visual inspection confirmed the empty library, creation/import controls, and Scratchpads/Pieces tabs. The owner confirmed physical-iPhone installation and launch of **build 1** through TestFlight on **2026-11-08**. iOS editing/persistence and the other acceptance scenarios in `TEST_REPORT.md` remain pending.
 
 Both iOS and macOS **0.1.0 (1)** uploaded successfully at **5:09 PM America/Phoenix on 2026-11-08** and completed Apple processing with a 90-day TestFlight expiry. Both builds were assigned to the internal **Briggs** group using manual distribution. The verified November 8 snapshot showed **1 Tester / 2 Builds**, with `briggs@kellogg.co` as **Invited**. The owner subsequently confirmed successful installation and launch on a physical iPhone.
 
@@ -20,14 +24,14 @@ The feedback email and beta description were saved; the description identifies t
 | App Store Connect name | Clay — Scratchpads & Pieces; the installed app name remains Clay |
 | App Store Connect app ID | [`6832381528`](https://appstoreconnect.apple.com/apps/6832381528/distribution) |
 | Primary language / SKU | English (U.S.) / `clay-01` |
-| Initial marketing version | 0.1.0 |
-| Initial build number | 1; increment for subsequent uploaded builds |
+| Marketing version | 0.1.0 |
+| Current build number | 2 — appearance preference update; build 1 is the previous delivered beta |
 | Bundle ID | `com.briggskellogg.clay`, used for the verified signed exports |
 | Platforms | iOS and macOS in one App Store Connect app record |
 | Deployment targets | iOS 17+, macOS 14+ |
 | iOS upload toolchain | Xcode 26+ with iOS 26 SDK+ under Apple's current requirement |
 | Signing | Verified with the configured Apple Developer team; keep team selection and signing credentials local |
-| TestFlight group | Briggs, internal testing, manual distribution; both iOS and macOS 0.1.0 (1) assigned |
+| TestFlight group | Briggs, internal testing, manual distribution; both iOS and macOS 0.1.0 (1) assigned, build 2 uploaded but group assignment pending |
 | TestFlight recipient | `briggs@kellogg.co` — Invited on November 8, 2026 |
 | Feedback contact and beta description | Saved in App Store Connect; description states local-only writing |
 
@@ -102,7 +106,7 @@ The privacy manifest declares no collected data or tracking and declares app-pri
 
 ## 5. Internal testing and invitation
 
-Internal testing is configured in the **Briggs** group with manual build distribution. Both processed **0.1.0 (1)** builds were assigned; the verified November 8 snapshot showed **1 Tester / 2 Builds** and `briggs@kellogg.co` as **Invited**. In response to the TestFlight installation instruction, the owner reported **“Installed and opened”** on November 8, 2026, confirming physical-iPhone installation and launch. Editor, persistence, background-save, and accessibility checks remain pending.
+Internal testing is configured in the **Briggs** group with manual build distribution. Both processed **0.1.0 (1)** builds were assigned; the verified November 8 snapshot showed **1 Tester / 2 Builds** and `briggs@kellogg.co` as **Invited**. In response to the TestFlight installation instruction, the owner reported **“Installed and opened”** on November 8, 2026, confirming physical-iPhone installation and launch of build 1. Build 2 uploads succeeded; group assignment is pending. Editor, persistence, background-save, and accessibility checks remain pending.
 
 For later builds, wait for processing and assign the new iOS/macOS builds to Briggs manually. Internal testers need the appropriate App Store Connect account and app access. [Apple: Add internal testers](https://developer.apple.com/help/app-store-connect/test-a-beta-version/add-internal-testers)
 
@@ -112,6 +116,6 @@ No external beta review or public App Store release was requested or performed. 
 
 **Description:** Clay is a quiet writing app with separate spaces for scratchpads and finished pieces. Write in a native editor, move a document between those spaces without duplicating it, and import or export Markdown.
 
-**What to test:** Create a scratchpad; edit, pin and organize it; move it to Pieces and back; export and reimport Markdown; quit/relaunch on Mac; background/reopen on iPhone; verify that the last edit persists and save failures are visible. Check the editor with the keyboard open, larger text, light/dark appearance, and VoiceOver.
+**What to test:** In build 2, open Clay → Settings on Mac or the library gear on iPhone; switch System, Light, and Dark; verify the choice persists after reopening and System follows device appearance changes. Create a scratchpad; edit, pin and organize it; move it to Pieces and back; export and reimport Markdown; quit/relaunch on Mac; background/reopen on iPhone; verify that the last edit persists and save failures are visible. Check the editor with the keyboard open, larger text, and VoiceOver.
 
 **Known limitation:** Libraries are local to each installation. Cross-device sync and an iPhone Trash recovery screen are not included in this beta. The Markdown reading view implements a basic subset.

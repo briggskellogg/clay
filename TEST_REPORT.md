@@ -2,6 +2,23 @@
 
 Updated 2026-11-08 after native Mac and simulator testing and the owner's physical-iPhone installation/launch confirmation. This report distinguishes independently observed checks, owner-reported results, and remaining acceptance work.
 
+## Appearance update — 0.1.0 (2)
+
+The update adds a persistent System/Light/Dark setting in Mac Settings and the iPhone library's gear sheet. The choice is local to each device.
+
+| Check | Result |
+| --- | --- |
+| Source validation, both Debug builds, both Release archive builds | Passed |
+| Mac installation | Build 2 installed at `/Applications/Developer/Clay.app`; signature verified |
+| Mac default and switching | Settings defaulted to System; Light and Dark switching passed |
+| Mac return to System | Dark → System restored the OS light appearance |
+| Mac preference persistence | Saved Dark survived quit/relaunch; dark main library confirmed. Final preference restored to System. |
+| iOS simulator System appearance | New Settings gear observed; System followed a live simulator OS change to dark |
+| iOS simulator manual overrides | Visually passed: Dark with a light OS and Light with a dark OS, set through temporary UserDefaults launch arguments. Arguments were cleared afterward; System and the simulator's original light appearance were restored. |
+| Live iOS Settings sheet selection/reset | Pending: UI automation coordinate control failed, so the live sheet interaction was not tested |
+| TestFlight delivery | Both iOS and macOS build 2 uploads succeeded at 5:36 PM America/Phoenix on 2026-11-08, with Apple package processing confirmed. TestFlight group assignment remains pending. |
+| Physical iPhone build 2 | Not verified; owner's prior installation/launch confirmation applies to build 1 |
+
 ## Source and package checks
 
 | Check | Result |
@@ -39,7 +56,7 @@ xcrun swift test
 
 The build and archive scripts run this gate automatically. A failing test stops those scripts. Core XCTest coverage does not replace testing the app's editor, store lifecycle, or platform UI.
 
-## Native build and distribution results
+## Initial release — 0.1.0 (1) results
 
 | Check | Current result |
 | --- | --- |
@@ -50,10 +67,10 @@ The build and archive scripts run this gate automatically. A failing test stops 
 | App icon generation/asset compilation | Passed after correcting RGB row-stride handling; original artwork unchanged |
 | Mac archive and distribution package | Signed archive valid; exported `.pkg` verified |
 | iOS archive and distribution package | Unsigned archive exported with `app-store-connect` and explicit team ID; resulting signed `.ipa` verified, without registered development devices |
-| Mac installation | Installed at `/Applications/Developer/Clay.app`, signature verified, and reopened successfully |
+| Initial Mac installation | Build 1 installed at `/Applications/Developer/Clay.app`, signature verified, and reopened successfully; subsequently replaced by build 2 as recorded above |
 | Mac UI smoke check | Passed: empty library, create/edit Unicode title and text, move Scratchpad to Pieces and back, quit/reopen with complete text and Saved status; temporary verification document moved to recoverable Trash, leaving the active library empty |
 | iOS simulator launch/UI smoke | Passed on iPhone 17 Pro simulator, iOS 26.2: boot, install, and launch; screenshot showed healthy empty Scratchpads, New scratchpad, import/+ controls, and Scratchpads/Pieces tabs |
-| Physical iPhone installation and launch | Owner-confirmed on November 8, 2026: “Installed and opened” after following the TestFlight installation instructions |
+| Physical iPhone installation and launch | Build 1 owner-confirmed on November 8, 2026: “Installed and opened” after following the TestFlight installation instructions |
 | iOS editing/persistence and accessibility inspection | Pending |
 | App Store Connect record | Created: [Clay — Scratchpads & Pieces](https://appstoreconnect.apple.com/apps/6832381528/distribution), app ID `6832381528`, bundle `com.briggskellogg.clay`, iOS/macOS |
 | TestFlight upload | Both iOS and macOS 0.1.0 (1) uploaded successfully at 5:09 PM America/Phoenix on 2026-11-08 |
@@ -69,7 +86,7 @@ The completed Mac smoke check used throwaway writing. Complete the pending check
 | Scenario | Expected result | Status |
 | --- | --- | --- |
 | Fresh install | Empty library with useful creation controls; no example writing inserted | Passed on Mac and iOS simulator |
-| Install and open through TestFlight on a physical iPhone | App installs and launches | Owner-confirmed November 8, 2026 |
+| Install and open through TestFlight on a physical iPhone | App installs and launches | Build 1 owner-confirmed November 8, 2026; build 2 pending |
 | Create and edit Unicode writing | Title and full body remain intact | Passed on Mac |
 | Create immediately after launch | Initial loading does not replace the newly created document or typed text | Pending timing/race check |
 | Edit, quit immediately, reopen on Mac | Last edit persists; quit waits for saving | Basic quit/reopen passed; immediate-quit stress check pending |
@@ -87,7 +104,8 @@ The completed Mac smoke check used throwaway writing. Complete the pending check
 | Recover on Mac | Reimporting a previous/trashed file creates an independent recovered copy | Pending |
 | Phone editor with keyboard and larger text | Writing remains reachable, controls have usable targets, Done dismisses the keyboard | Pending |
 | Focus mode and document switching on Mac | Text/selection stays stable; navigation can be restored | Pending |
-| Light/dark appearance and VoiceOver | Labels remain legible and destinations understandable without relying only on color | Pending |
+| Appearance preference | System follows OS; manual choices persist and can return to System | Build 2 Mac checks passed; iOS System and opposing manual overrides passed in simulator. Live iOS sheet selection/reset and persistence through that UI remain pending. |
+| VoiceOver and complete light/dark contrast inspection | Labels remain legible and destinations understandable without relying only on color | Pending |
 | First signed device build | Native fonts, app icon, file pickers and sandbox storage behave correctly | Runtime pending; signed IPA verified |
 
 There is no cross-device sync in 0.1, so editing on the Mac is not expected to change the phone's library. No network-service test is required for this implementation.

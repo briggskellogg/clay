@@ -9,6 +9,7 @@ struct ClayIOSLibraryView: View {
     @ObservedObject var store: ClayStore
     @State private var path: [UUID] = []
     @State private var isImporting = false
+    @State private var isShowingSettings = false
     @State private var pendingTrash: WritingDocument?
 
     var body: some View {
@@ -18,6 +19,15 @@ struct ClayIOSLibraryView: View {
                 .navigationBarTitleDisplayMode(.large)
                 .toolbarBackground(ClayTheme.paper, for: .navigationBar)
                 .toolbar {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button {
+                            isShowingSettings = true
+                        } label: {
+                            Image(systemName: "gearshape")
+                        }
+                        .foregroundStyle(ClayTheme.secondary)
+                        .accessibilityLabel("Settings")
+                    }
                     ToolbarItemGroup(placement: .topBarTrailing) {
                         Button {
                             isImporting = true
@@ -52,6 +62,10 @@ struct ClayIOSLibraryView: View {
                 }
         }
         .background(ClayTheme.paper)
+        .sheet(isPresented: $isShowingSettings) {
+            ClaySettingsView()
+                .clayAppearance()
+        }
         .fileImporter(
             isPresented: $isImporting,
             allowedContentTypes: Self.importTypes,

@@ -6,6 +6,18 @@
 	};
 	"objectVersion" = 56;
 	"objects" = {
+		"52D92A434D0AC9754D05E143" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"path" = "Apps/Shared/ClayAppearance.swift";
+			"sourceTree" = "SOURCE_ROOT";
+		};
+		"37ECD9F9DFDA81A68383CCF0" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"path" = "Apps/Shared/ClaySettingsView.swift";
+			"sourceTree" = "SOURCE_ROOT";
+		};
 		"A3C6F5DD80468C14486B8187" = {
 			"isa" = "PBXFileReference";
 			"lastKnownFileType" = "sourcecode.swift";
@@ -152,6 +164,14 @@
 			"isa" = "PBXBuildFile";
 			"productRef" = "074A0A30130C390BDCE0EF89";
 		};
+		"CF084D457CBE747A811352F6" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "52D92A434D0AC9754D05E143";
+		};
+		"DC87A0627A97C81662CF830E" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "37ECD9F9DFDA81A68383CCF0";
+		};
 		"076607818F9D45C8C55E4758" = {
 			"isa" = "PBXBuildFile";
 			"fileRef" = "A3C6F5DD80468C14486B8187";
@@ -236,6 +256,8 @@
 			"isa" = "PBXSourcesBuildPhase";
 			"buildActionMask" = 2147483647;
 			"files" = (
+				"CF084D457CBE747A811352F6",
+				"DC87A0627A97C81662CF830E",
 				"076607818F9D45C8C55E4758",
 				"0E9857DD1FF3F7DCE063EC49",
 				"802DE90534439D4ABF9F5B15",
@@ -369,6 +391,14 @@
 			"isa" = "PBXBuildFile";
 			"productRef" = "2B12FAFD60A1DDE3A84783C0";
 		};
+		"C59F2A03A97CBFC84C852E2F" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "52D92A434D0AC9754D05E143";
+		};
+		"0DDD18C995987A007449B905" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "37ECD9F9DFDA81A68383CCF0";
+		};
 		"C7CE2831AC8D083375F6BA75" = {
 			"isa" = "PBXBuildFile";
 			"fileRef" = "A3C6F5DD80468C14486B8187";
@@ -445,6 +475,8 @@
 			"isa" = "PBXSourcesBuildPhase";
 			"buildActionMask" = 2147483647;
 			"files" = (
+				"C59F2A03A97CBFC84C852E2F",
+				"0DDD18C995987A007449B905",
 				"C7CE2831AC8D083375F6BA75",
 				"9AF7F88D86C346A1EB9659B4",
 				"A5FA1CA11F0E339EA408C46D",
@@ -572,6 +604,8 @@
 		"AC019E2923F944A838FB0A8F" = {
 			"isa" = "PBXGroup";
 			"children" = (
+				"52D92A434D0AC9754D05E143",
+				"37ECD9F9DFDA81A68383CCF0",
 				"A3C6F5DD80468C14486B8187",
 				"E60984357126E955F813B618",
 				"48E75E02339F31719356134E",

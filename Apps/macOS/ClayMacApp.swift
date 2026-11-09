@@ -15,6 +15,7 @@ struct ClayMacApp: App {
     var body: some Scene {
         Window("Clay", id: "library") {
             ClayMacLibraryView(store: store, actions: actions)
+                .clayAppearance()
                 .frame(minWidth: 900, minHeight: 600)
                 .onAppear {
                     appDelegate.configure(store: store, actions: actions)
@@ -25,6 +26,11 @@ struct ClayMacApp: App {
         .windowToolbarStyle(.unified)
         .commands {
             ClayMacCommands(store: store, actions: actions)
+        }
+
+        Settings {
+            ClaySettingsView()
+                .clayAppearance()
         }
     }
 }
