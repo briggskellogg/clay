@@ -2,15 +2,17 @@
 
 Updated 2026-11-08 after native Mac and simulator testing and the owner's physical-iPhone installation/launch confirmation. This report distinguishes independently observed checks, owner-reported results, and remaining acceptance work.
 
-## Quieter Settings activity — 0.1.0 (6) candidate
+## Quieter Settings activity — 0.1.0 (6)
 
 The implementation keeps the last sync result visible while a small activity dot pulses. Reduce Motion uses a static dot. Error details remain visible during retries and after a failed initial connection. Routine background activity no longer disables and re-enables the controls; folder changes and disconnection wait for the active sync pass before proceeding.
 
-Both native Release archives passed, and all 52 captured input hashes remained unchanged. Source validation, the focused actual Store activity/folder-transition suite, and the existing full Store integration suite passed.
+Both native Release archives passed. The 40 tracked inputs match source `f80acaabf98a44af34e0cb5e44ae88fea3a06f71`, and the 12 generated inputs match their captured hashes. Source validation, the focused actual Store activity/folder-transition suite, and the existing full Store integration suite passed.
 
 The exact development-signed Mac archive was installed at `/Applications/Developer/Clay.app`; strict signature verification passed, and the prior app and private data were preserved. Settings version 6 restored the same private-folder bookmark and the existing phone-edited synthetic note with Saved status. Light appearance and return to System visually passed; the final setting is System. Sync Now completed with the same Shared folder updated label and enabled button states. The activity-dot view compiled and rendered, but pulse timing was not captured frame by frame. Reduce Motion and error presentation still need direct runtime UI checks. The local screenshot `clay-build-6-settings.png` is kept outside the source repository.
 
-Both uploads succeeded on November 8, 2026 at 22:26:48.728 iOS and 22:26:54.657 macOS, America/Phoenix. Apple processing, Briggs assignment, and physical-phone build 6 installation remain pending. The verified build 5 two-way Mac–iPhone sync result below remains valid; Windows verification is postponed by the owner.
+Both uploads succeeded on November 8, 2026 at 22:26:48.728 iOS and 22:26:54.657 macOS, America/Phoenix. Both completed processing and are Testing in Briggs (1 Tester / 12 Builds). The name remains Clay by Briggs Kellogg, the build 6 beta description is saved, and no new invitation was sent. Physical-phone build 6 installation is unconfirmed. The verified build 5 two-way Mac–iPhone sync result below remains valid; Windows verification is postponed by the owner.
+
+Build 6 iOS ID: `ba5b8ccf-cc22-4a7e-b940-92797065ef97`; macOS ID: `73e768d3-a295-42e7-a807-b1f7dc757c56`. Source `f80acaabf98a44af34e0cb5e44ae88fea3a06f71` is pushed to GitHub; all 67 local Proton source-file hashes were verified and its web manifest was observed at the same commit. The cloud check inspected the manifest rather than every remote file byte. Subsequent delivery-documentation commits follow the same source-sync workflow; the source mirror manifest records the latest mirrored commit.
 
 ## Original artwork and folder-path fix — 0.1.0 (5)
 
@@ -134,7 +136,7 @@ The completed Mac smoke check used throwaway writing. Complete the pending check
 | Scenario | Expected result | Status |
 | --- | --- | --- |
 | Fresh install | Empty library with useful creation controls; no example writing inserted | Passed on Mac and iOS simulator |
-| Install and open through TestFlight on a physical iPhone | App installs and launches | Builds 1, 4, and 5 owner-confirmed November 8, 2026 |
+| Install and open through TestFlight on a physical iPhone | App installs and launches | Builds 1, 4, and 5 owner-confirmed November 8, 2026; build 6 installation unconfirmed |
 | Create and edit Unicode writing | Title and full body remain intact | Passed on Mac |
 | Create immediately after launch | Initial loading does not replace the newly created document or typed text | Pending timing/race check |
 | Edit, quit immediately, reopen on Mac | Last edit persists; quit waits for saving | Basic quit/reopen passed; immediate-quit stress check pending |

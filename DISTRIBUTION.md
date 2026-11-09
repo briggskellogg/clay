@@ -1,12 +1,12 @@
 # Installing and distributing Clay 0.1
 
-## Current candidate — 0.1.0 (6)
+## Delivered beta — 0.1.0 (6)
 
 Build 6 keeps the last sync result steady in Settings and uses a small pulsing dot only while activity is running. Reduce Motion uses a static indicator. Errors stay visible during retries, including connection failures before a folder is connected. Background passes no longer flash the controls between enabled and disabled; changing or disconnecting the folder waits for the active pass to finish.
 
-Both native Release archives passed, with all 52 captured input hashes unchanged. Source validation, the focused Store activity/folder-transition checks, and the existing full Store integration suite passed. The development-signed Mac build 6 is installed at `/Applications/Developer/Clay.app` with its strict signature verified and the previous app preserved. Settings version 6, saved private-folder access, the existing phone-edited note with Saved status, Light appearance, and return to System were verified. Sync Now completed without changing the settled Shared folder updated label or the enabled button states. The dot compiled and rendered; pulse timing was not captured frame by frame, and Reduce Motion still needs a direct runtime check. Both uploads succeeded on November 8, 2026 at 22:26:48.728 (iOS) and 22:26:54.657 (macOS), America/Phoenix. Apple processing, Briggs assignment, and phone build 6 installation remain pending. Build 5 remains the latest verified TestFlight release, including the successful two-way Mac–iPhone synthetic sync check. Windows reception is postponed by the owner.
+Both native Release archives passed. The 40 tracked archive inputs match source `f80acaabf98a44af34e0cb5e44ae88fea3a06f71`, and all 12 generated inputs match their captured hashes. Source validation, the focused Store activity/folder-transition checks, and the existing full Store integration suite passed. The development-signed Mac build 6 is installed at `/Applications/Developer/Clay.app` with its strict signature verified and the previous app preserved. Settings version 6, saved private-folder access, the existing phone-edited note with Saved status, Light appearance, and return to System were verified. Sync Now completed without changing the settled Shared folder updated label or the enabled button states. The dot compiled and rendered; pulse timing was not captured frame by frame, and Reduce Motion still needs a direct runtime check. Both uploads succeeded on November 8, 2026 at 22:26:48.728 (iOS) and 22:26:54.657 (macOS), America/Phoenix. Both completed processing and are **Testing in Briggs (1 Tester / 12 Builds)**. The name remains **Clay by Briggs Kellogg**, the build 6 beta description is saved, and no new invitation was sent. Phone build 6 installation is unconfirmed. Build 5’s successful two-way Mac–iPhone synthetic sync check remains recorded separately; Windows reception is postponed by the owner.
 
-## Delivered beta — 0.1.0 (5)
+## Previous beta — 0.1.0 (5)
 
 Build 5 updates the app-family signature and icons with an exact crop of the original Clay symbol and the byte-preserved gold maker's mark. It also fixes private-folder validation for file-provider paths containing an ancestor alias. The 19 focused path cases and actual transport/Store regression checks passed. Both native Release archives passed. The 40 tracked native inputs match source `d106286c96bba138055b8c9a6c1582fe8c623fe1`, and all 12 generated inputs retained their captured hashes. The iOS upload succeeded at **10:05:53 PM** and macOS at **10:06:32 PM America/Phoenix on November 8, 2026**. Both completed processing and show **Testing** in **Briggs (1 Tester / 10 Builds)**. The TestFlight name is **Clay by Briggs Kellogg**; no new invitation was sent.
 
@@ -40,7 +40,7 @@ The initial Mac installation at `/Applications/Developer/Clay.app` passed signat
 
 Both iOS and macOS **0.1.0 (1)** uploaded successfully at **5:09 PM America/Phoenix on 2026-11-08** and completed Apple processing with a 90-day TestFlight expiry. Both builds were assigned to the internal **Briggs** group using manual distribution. The verified November 8 snapshot showed **1 Tester / 2 Builds**, with `briggs@kellogg.co` as **Invited**. The owner subsequently confirmed successful installation and launch on a physical iPhone.
 
-For the initial release, the feedback email and beta description were saved; that original description identified local-only writing. The build 5 beta description is saved and explains optional private sync and Windows reading copies. No external beta review or public App Store release was requested or performed.
+For the initial release, the feedback email and beta description were saved; that original description identified local-only writing. The current build 6 beta description is saved; the beta includes optional private sync and Windows reading copies. No external beta review or public App Store release was requested or performed.
 
 ## Build and distribution configuration
 
@@ -51,13 +51,13 @@ For the initial release, the feedback email and beta description were saved; tha
 | App Store Connect app ID | [`6832381528`](https://appstoreconnect.apple.com/apps/6832381528/distribution) |
 | Primary language / SKU | English (U.S.) / `clay-01` |
 | Marketing version | 0.1.0 |
-| Current build number | 6 — quieter Settings activity candidate; build 5 remains Testing on both platforms |
+| Current build number | 6 — quieter Settings activity; Testing on both platforms |
 | Bundle ID | `com.briggskellogg.clay`, used for the verified signed exports |
 | Platforms | iOS and macOS in one App Store Connect app record |
 | Deployment targets | iOS 17+, macOS 14+ |
 | iOS upload toolchain | Xcode 26+ with iOS 26 SDK+ under Apple's current requirement |
 | Signing | Verified with the configured Apple Developer team; keep team selection and signing credentials local |
-| TestFlight group | Briggs, internal testing, manual distribution; iOS and macOS 0.1.0 builds 1, 2, 3, 4 and 5 assigned; 1 Tester / 10 Builds |
+| TestFlight group | Briggs, internal testing, manual distribution; iOS and macOS 0.1.0 builds 1 through 6 assigned; 1 Tester / 12 Builds |
 | TestFlight recipient | `briggs@kellogg.co` — Invited on November 8, 2026 |
 | Feedback contact and beta description | Saved in App Store Connect; current description explains optional private sync and Windows reading copies |
 

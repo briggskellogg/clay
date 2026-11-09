@@ -29,7 +29,7 @@
     "installed_display_name": "Clay",
     "marketing_version": "0.1.0",
     "build": "6",
-    "status": "candidate_uploaded_apple_processing_and_assignment_pending"
+    "status": "delivered_internal_beta"
   },
   "proton_drive": {
     "project_folder": "[projects]/clay",
@@ -64,7 +64,7 @@
       "native_windows_app_included": false,
       "mac_connection_verified": true,
       "connection_issue": null,
-      "mac_connection_evidence": "build5_saved_folder_bookmark_restored_storage_clay_shared_folder_updated",
+      "mac_connection_evidence": "build6_saved_folder_bookmark_restored_existing_phone_edit_retained_with_saved_status",
       "private_folder_initialization_verified": true,
       "initialized_entries": [
         "ClaySync/format.json",
@@ -85,7 +85,8 @@
       "bidirectional_synthetic_check": "passed_mac_to_phone_owner_confirmed_phone_to_mac_independently_observed",
       "initial_mac_publication_record_count": 3,
       "initial_mac_publication_matching_markdown_export_count": 1,
-      "phone_to_mac_owner_confirmation": true
+      "phone_to_mac_owner_confirmation": true,
+      "bidirectional_synthetic_check_build": "5"
     },
     "cloudkit": null,
     "proton_drive": null
@@ -97,64 +98,17 @@
     "external_pipeline_verification": "not_inspected"
   },
   "verified_release": {
-    "source_commit": "d106286c96bba138055b8c9a6c1582fe8c623fe1",
-    "version": "0.1.0",
-    "build": "5",
-    "status": "delivered_internal_beta",
-    "uploaded_at": {
-      "ios": "2026-11-08 22:05:53.707 America/Phoenix",
-      "macos": "2026-11-08 22:06:32.644 America/Phoenix"
-    },
-    "ios_build_id": "adc93656-f7d1-4c0e-9e91-a1f09c8ef484",
-    "macos_build_id": "87ae7c2c-abe8-4bf4-846b-a27847c4329d",
-    "testflight_status": "Testing on both platforms in Briggs",
-    "mac_local_install": "development_signed_archive_strict_signature_launch_settings5_branding_light_and_system_verified",
-    "mac_saved_folder_access_restore": "verified_after_update",
-    "physical_iphone_install": "owner_confirmed",
-    "phone_private_folder_connection": "owner_confirmed_same_icloud_clay_folder",
-    "source_changes": [
-      "original_symbol_crop_and_gold_maker_branding",
-      "private_folder_ancestor_alias_validation"
-    ],
-    "validation": {
-      "focused_path_cases": "19_passed",
-      "actual_transport_and_store_regressions": "passed",
-      "ios_release_archive": "passed",
-      "macos_release_archive": "passed",
-      "archive_input_hashes": {
-        "tracked_inputs_matching_source_commit": 40,
-        "generated_inputs_matching_captured_hashes": 12,
-        "total": 52
-      }
-    },
-    "artwork": {
-      "clay_symbol": "exact_pixel_crop_of_original_no_generated_replacement",
-      "maker_mark": "original_gold_416x512_png_byte_preserved",
-      "macos_icon_background": "transparent",
-      "ios_dark_icon_background": "transparent",
-      "ios_any_icon_background": "opaque_fallback"
-    },
-    "group_testers": 1,
-    "group_builds": 10,
-    "mac_private_folder_publication": "synthetic_three_records_and_one_matching_markdown_export_verified",
-    "new_invitation_sent": false,
-    "beta_description": "saved_for_build5_optional_private_sync_and_windows_reading_copies",
-    "mac_to_phone_note_receipt": "owner_confirmed",
-    "phone_to_mac_edit_delivery": "independently_observed_in_mac_app_with_saved_status",
-    "bidirectional_synthetic_sync": "passed"
-  },
-  "pending_release": {
-    "source_commit": null,
+    "source_commit": "f80acaabf98a44af34e0cb5e44ae88fea3a06f71",
     "version": "0.1.0",
     "build": "6",
-    "status": "uploaded_apple_processing_and_assignment_pending",
+    "status": "delivered_internal_beta",
     "uploaded_at": {
       "ios": "2026-11-08 22:26:48.728 America/Phoenix",
       "macos": "2026-11-08 22:26:54.657 America/Phoenix"
     },
-    "ios_build_id": null,
-    "macos_build_id": null,
-    "testflight_status": "processing_and_briggs_assignment_pending",
+    "ios_build_id": "ba5b8ccf-cc22-4a7e-b940-92797065ef97",
+    "macos_build_id": "73e768d3-a295-42e7-a807-b1f7dc757c56",
+    "testflight_status": "Testing on both platforms in Briggs",
     "mac_local_install": "strict_signature_version6_saved_bookmark_existing_phone_edit_and_light_system_verified",
     "physical_iphone_install": "not_confirmed",
     "source_changes": [
@@ -167,7 +121,6 @@
     "validation": {
       "ios_release_archive": "passed",
       "macos_release_archive": "passed",
-      "unchanged_captured_native_input_hashes": 52,
       "source_validation": "passed",
       "focused_actual_store_activity_and_folder_transition_suite": "passed",
       "existing_full_store_integration_suite": "passed",
@@ -175,12 +128,74 @@
       "mac_light_and_return_to_system": "visually_passed",
       "activity_dot": "compiled_and_rendered",
       "pulse_motion_timing": "not_frame_captured",
-      "reduce_motion_and_error_runtime_ui": "not_verified"
+      "reduce_motion_and_error_runtime_ui": "not_verified",
+      "archive_input_hashes": {
+        "tracked_inputs_matching_source_commit": 40,
+        "generated_inputs_matching_captured_hashes": 12,
+        "total": 52
+      }
     },
     "previous_mac_app_preserved": true,
-    "final_mac_appearance": "System"
+    "final_mac_appearance": "System",
+    "group_testers": 1,
+    "group_builds": 12,
+    "new_invitation_sent": false,
+    "beta_description": "saved_for_build6",
+    "mac_saved_folder_access_restore": "verified_after_update",
+    "existing_phone_edited_note_preserved": "observed_with_saved_status",
+    "prior_bidirectional_synthetic_sync": {
+      "build": "5",
+      "result": "passed"
+    }
   },
   "release_history": [
+    {
+      "source_commit": "d106286c96bba138055b8c9a6c1582fe8c623fe1",
+      "version": "0.1.0",
+      "build": "5",
+      "status": "delivered_internal_beta",
+      "uploaded_at": {
+        "ios": "2026-11-08 22:05:53.707 America/Phoenix",
+        "macos": "2026-11-08 22:06:32.644 America/Phoenix"
+      },
+      "ios_build_id": "adc93656-f7d1-4c0e-9e91-a1f09c8ef484",
+      "macos_build_id": "87ae7c2c-abe8-4bf4-846b-a27847c4329d",
+      "testflight_status": "Testing on both platforms in Briggs",
+      "mac_local_install": "development_signed_archive_strict_signature_launch_settings5_branding_light_and_system_verified",
+      "mac_saved_folder_access_restore": "verified_after_update",
+      "physical_iphone_install": "owner_confirmed",
+      "phone_private_folder_connection": "owner_confirmed_same_icloud_clay_folder",
+      "source_changes": [
+        "original_symbol_crop_and_gold_maker_branding",
+        "private_folder_ancestor_alias_validation"
+      ],
+      "validation": {
+        "focused_path_cases": "19_passed",
+        "actual_transport_and_store_regressions": "passed",
+        "ios_release_archive": "passed",
+        "macos_release_archive": "passed",
+        "archive_input_hashes": {
+          "tracked_inputs_matching_source_commit": 40,
+          "generated_inputs_matching_captured_hashes": 12,
+          "total": 52
+        }
+      },
+      "artwork": {
+        "clay_symbol": "exact_pixel_crop_of_original_no_generated_replacement",
+        "maker_mark": "original_gold_416x512_png_byte_preserved",
+        "macos_icon_background": "transparent",
+        "ios_dark_icon_background": "transparent",
+        "ios_any_icon_background": "opaque_fallback"
+      },
+      "group_testers": 1,
+      "group_builds": 10,
+      "mac_private_folder_publication": "synthetic_three_records_and_one_matching_markdown_export_verified",
+      "new_invitation_sent": false,
+      "beta_description": "saved_for_build5_optional_private_sync_and_windows_reading_copies",
+      "mac_to_phone_note_receipt": "owner_confirmed",
+      "phone_to_mac_edit_delivery": "independently_observed_in_mac_app_with_saved_status",
+      "bidirectional_synthetic_sync": "passed"
+    },
     {
       "source_commit": "2cc916f3989956c75d73d08cdff42b7cd9979092",
       "version": "0.1.0",
@@ -213,22 +228,25 @@
     }
   ],
   "source_delivery": {
-    "verified_implementation_commit": "d106286c96bba138055b8c9a6c1582fe8c623fe1",
+    "verified_implementation_commit": "f80acaabf98a44af34e0cb5e44ae88fea3a06f71",
     "implementation_github_push_verified": true,
-    "implementation_proton_manifest_commit": "d106286c96bba138055b8c9a6c1582fe8c623fe1",
+    "implementation_proton_manifest_commit": "f80acaabf98a44af34e0cb5e44ae88fea3a06f71",
     "implementation_proton_local_verified_file_count": 67,
     "implementation_proton_local_hashes_verified": true,
     "implementation_proton_web_manifest_verified": true,
     "every_remote_file_byte_compared": false,
     "following_documentation_commits": "same_source_sync_workflow_source_mirror_manifest_records_latest_mirrored_commit",
-    "verified_documentation_commit": "4846ef8cd98331e413460dcdc2b7039a951653d7",
+    "verified_documentation_commit": "f80acaabf98a44af34e0cb5e44ae88fea3a06f71",
     "documentation_github_push_verified": true,
     "documentation_proton_local_verified_file_count": 67,
     "documentation_proton_local_hashes_verified": true,
-    "documentation_proton_web_manifest_commit": "4846ef8cd98331e413460dcdc2b7039a951653d7"
+    "documentation_proton_web_manifest_commit": "f80acaabf98a44af34e0cb5e44ae88fea3a06f71"
   },
   "pending_verification": {
     "windows_private_data_reception": "owner_deferred",
-    "pc_to_proton_private_data_backup": "not_inspected"
+    "pc_to_proton_private_data_backup": "not_inspected",
+    "phone_build6_install": "not_confirmed",
+    "build6_pulse_motion_timing": "not_frame_captured",
+    "build6_reduce_motion_and_error_runtime_ui": "not_verified"
   }
 }
