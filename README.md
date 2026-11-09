@@ -8,9 +8,9 @@ This package contains the first native SwiftUI source implementation, a shared p
 
 Native validation completed on the owner's Mac on **2026-11-08**: all 25 XCTest methods passed; macOS Debug/Release, iOS simulator Debug, and iOS device Release builds compiled successfully. Icon generation was corrected for RGB row stride without changing the supplied artwork. A signed Mac archive, verified Mac distribution package, and verified signed iOS IPA were produced locally. Generated apps and distribution files are not committed to the source repository.
 
-Clay is installed at `/Applications/Developer/Clay.app`; its signature was verified and it reopened successfully. The Mac smoke check passed: an empty library, a new Scratchpad with Unicode title/text, moving it to Pieces and back, and quitting/reopening with the full text intact and a **Saved** status. The temporary verification document was then moved to recoverable Trash, leaving the active library empty. Actual iPhone runtime testing and the remaining acceptance checks are pending.
+Clay is installed at `/Applications/Developer/Clay.app`; its signature was verified and it reopened successfully. The Mac smoke check passed: an empty library, a new Scratchpad with Unicode title/text, moving it to Pieces and back, and quitting/reopening with the full text intact and a **Saved** status. The temporary verification document was then moved to recoverable Trash, leaving the active library empty. An iPhone 17 Pro simulator running iOS 26.2 also booted, installed, and launched Clay successfully; its empty library and Scratchpads/Pieces navigation were visually checked. iOS editing/persistence tests, physical iPhone installation, and the remaining acceptance checks are pending.
 
-Signed distribution files are exported and ready, and the owner approved upload. The iOS upload attempt failed because the App Store Connect app record for `com.briggskellogg.clay` is missing. Mac upload was not attempted because it requires the same record. App Store Connect browser sign-in is pending before that record can be created. No build has been accepted or uploaded, and no TestFlight invitation has been sent.
+Both iOS and macOS **0.1.0 (1)** uploaded successfully at **5:09 PM America/Phoenix on 2026-11-08** and completed Apple processing with a 90-day TestFlight expiry. Both builds are assigned to the internal **Briggs** group, which shows **1 Tester / 2 Builds** and `briggs@kellogg.co` as **Invited** on November 8. Physical-device installation is not yet verified. No external beta review or public App Store release was requested.
 
 ## First version
 
@@ -45,9 +45,9 @@ To work in Xcode, open **Clay.xcodeproj**. Select scheme **Clay-macOS** and My M
 
 ## TestFlight
 
-See **DISTRIBUTION.md** for the signing, archive, upload, and tester steps. The verified builds use `com.briggskellogg.clay`. Signing and local distribution export succeeded with the configured Apple Developer team. Upload is blocked by the missing App Store Connect app record; processing and tester availability are pending.
+The [App Store Connect record](https://appstoreconnect.apple.com/apps/6832381528/distribution) is **Clay — Scratchpads & Pieces** (app ID `6832381528`), with bundle ID `com.briggskellogg.clay` and iOS/macOS platforms. The installed app is still named **Clay**. Both processed 0.1.0 (1) builds are available to the internal Briggs testing group through manual distribution. See **DISTRIBUTION.md** for the release configuration and future upload steps.
 
-The upload scripts use an Apple account already configured in Xcode. No password, API key, team identity, or provisioning profile is bundled here. The owner confirmed `briggs@kellogg.co` as the intended TestFlight recipient; the invitation remains unsent. The scripts upload an existing archive; they do not create an App Store Connect app record or send invitations.
+The upload scripts use an Apple account already configured in Xcode. No password, API key, team identity, or provisioning profile is bundled here. The owner's TestFlight invitation is confirmed in App Store Connect; accepting it and installing on a physical iPhone remain unverified. The scripts upload an existing archive; app-record setup and the invitation were completed separately in App Store Connect.
 
 ## Useful commands
 
@@ -108,4 +108,4 @@ Markdown export removes Clay's metadata and includes the document title as a `#`
 
 Complete the remaining native checks in **TEST_REPORT.md**. The basic Mac quit/relaunch check passed, but immediate-quit stress cases, save failures, and iPhone background saving still need acceptance testing before relying on this first build for irreplaceable work. The reading view supports basic headings, paragraphs, bullets, block quotes, inline emphasis/links, rules and fenced code; advanced Markdown features such as tables and nested lists are not fully rendered. The original text remains editable and exportable.
 
-The app is intended for initial private testing. Local signing and distribution exports are verified; App Store submission, notarization, TestFlight processing, beta review, and tester access are not established by those results.
+The app is available for internal TestFlight testing. No external beta review or public App Store release was requested, and no notarization result is recorded. The remaining runtime checks in `TEST_REPORT.md` still apply.

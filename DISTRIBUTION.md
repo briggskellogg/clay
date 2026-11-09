@@ -4,19 +4,22 @@
 
 Validated on the owner's Mac on **2026-11-08**: all 25 XCTest methods passed; macOS Debug/Release, iOS simulator Debug, and iOS device Release compilation passed. Icon generation now handles RGB row stride correctly; the original Clay artwork and Bard typography remain unchanged.
 
-A signed Mac archive is valid and the exported Mac `.pkg` is verified. With no registered development devices, an unsigned iOS archive was exported using `app-store-connect` and an explicit `teamID`; the resulting signed `.ipa` is verified. These are local distribution artifacts, not evidence of TestFlight availability.
+A signed Mac archive is valid and the exported Mac `.pkg` is verified. With no registered development devices, an unsigned iOS archive was exported using `app-store-connect` and an explicit `teamID`; the resulting signed `.ipa` is verified.
 
-Clay is installed at `/Applications/Developer/Clay.app`, with its signature verified and successful reopening confirmed. The Mac smoke check passed: empty library, new Scratchpad with Unicode title/text, move to Pieces and back, and quit/reopen with the full text intact and Saved status. The temporary verification document was moved to recoverable Trash, leaving the active library empty. Actual iPhone runtime testing and the other acceptance scenarios in `TEST_REPORT.md` remain pending.
+Clay is installed at `/Applications/Developer/Clay.app`, with its signature verified and successful reopening confirmed. The Mac smoke check passed: empty library, new Scratchpad with Unicode title/text, move to Pieces and back, and quit/reopen with the full text intact and Saved status. The temporary verification document was moved to recoverable Trash, leaving the active library empty. The iPhone 17 Pro simulator on iOS 26.2 booted, installed, and launched Clay; visual inspection confirmed the empty library, creation/import controls, and Scratchpads/Pieces tabs. iOS editing/persistence, physical-phone installation, and the other acceptance scenarios in `TEST_REPORT.md` remain pending.
 
-Signed distribution files are exported and ready, and the owner explicitly approved upload. The iOS upload attempt failed because the App Store Connect app record for `com.briggskellogg.clay` is missing. Mac upload was not attempted because it requires the same record. No build has been accepted or uploaded; TestFlight processing, beta review, tester access, and invitation remain pending.
+Both iOS and macOS **0.1.0 (1)** uploaded successfully at **5:09 PM America/Phoenix on 2026-11-08** and completed Apple processing with a 90-day TestFlight expiry. Both builds are assigned to the internal **Briggs** group using manual distribution. The group shows **1 Tester / 2 Builds**, with `briggs@kellogg.co` confirmed as **Invited** on November 8, 2026. Invitation acceptance and physical-phone installation remain unverified.
 
-The App Store Connect browser session is not signed in. Owner sign-in is pending so the missing app record can be created and the authorized upload retried.
+The feedback email and beta description were saved; the description identifies the app's local-only writing libraries. No external beta review or public App Store release was requested or performed.
 
 ## Build and distribution configuration
 
 | Item | Current value / action |
 | --- | --- |
 | Product | Clay |
+| App Store Connect name | Clay — Scratchpads & Pieces; the installed app name remains Clay |
+| App Store Connect app ID | [`6832381528`](https://appstoreconnect.apple.com/apps/6832381528/distribution) |
+| Primary language / SKU | English (U.S.) / `clay-01` |
 | Initial marketing version | 0.1.0 |
 | Initial build number | 1; increment for subsequent uploaded builds |
 | Bundle ID | `com.briggskellogg.clay`, used for the verified signed exports |
@@ -24,8 +27,9 @@ The App Store Connect browser session is not signed in. Owner sign-in is pending
 | Deployment targets | iOS 17+, macOS 14+ |
 | iOS upload toolchain | Xcode 26+ with iOS 26 SDK+ under Apple's current requirement |
 | Signing | Verified with the configured Apple Developer team; keep team selection and signing credentials local |
-| TestFlight recipient | `briggs@kellogg.co` — explicitly confirmed by the owner on 2026-11-08; invitation not sent |
-| Feedback contact | Set to an address the owner controls |
+| TestFlight group | Briggs, internal testing, manual distribution; both iOS and macOS 0.1.0 (1) assigned |
+| TestFlight recipient | `briggs@kellogg.co` — Invited on November 8, 2026 |
+| Feedback contact and beta description | Saved in App Store Connect; description states local-only writing |
 
 Both targets currently share the bundle identifier so they can use a multiplatform App Store Connect record. Apple documents that multiple platforms can be added under one record with the same identifier. [Apple: Add platforms](https://developer.apple.com/help/app-store-connect/create-an-app-record/add-platforms)
 
@@ -40,7 +44,7 @@ bash scripts/build.sh macos
 bash scripts/build.sh ios
 ```
 
-Each script first prepares app icons from the supplied original logo, runs the core tests, then builds the relevant application without distribution signing. These build checks passed on 2026-11-08. The iOS command builds for a simulator; runtime checks in the simulator and on an actual iPhone still need to be completed as listed in `TEST_REPORT.md`.
+Each script first prepares app icons from the supplied original logo, runs the core tests, then builds the relevant application without distribution signing. These build checks passed on 2026-11-08. The iOS command builds for a simulator; simulator launch and initial UI inspection passed, while iOS editing/persistence and physical-iPhone checks remain as listed in `TEST_REPORT.md`.
 
 Install the Mac build using `Install Clay.command` or `bash scripts/install-mac.sh`. The installer uses ad-hoc signing for the local app, preserves an older installation, and opens the installed result. It creates and uses `/Applications/Developer`, or `~/Applications/Developer` when `/Applications` is not writable. This is a local development build, not a notarized download for general distribution.
 
@@ -58,11 +62,9 @@ This is an identifier, not a signing key. Use Xcode and the Mac's Keychain for c
 
 If the bundle identifier needs to change, edit `CLAY_BUNDLE_IDENTIFIER` in `Config/Shared.xcconfig` and reconcile the Apple app record and provisioning before uploading. Both targets inherit it.
 
-## 3. Create the App Store Connect record
+## 3. Use the existing App Store Connect record
 
-With an authorized App Store Connect role, create the Clay app record using the final bundle ID, primary language and a unique SKU. Add the second platform to the same record. Resolve any agreement the Account Holder is required to accept. The app record must exist before an upload. [Apple: Add a new app](https://developer.apple.com/help/app-store-connect/create-an-app-record/add-a-new-app)
-
-This record is the current release blocker: the iOS upload attempt reported it missing for `com.briggskellogg.clay`. Complete owner sign-in and create the record before retrying iOS or attempting Mac upload.
+Use [Clay — Scratchpads & Pieces, app ID 6832381528](https://appstoreconnect.apple.com/apps/6832381528/distribution) for subsequent releases. The record contains both iOS and macOS, bundle ID `com.briggskellogg.clay`, primary language English (U.S.), and SKU `clay-01`. Keep these identities consistent with the Xcode configuration. The installed app's display name remains Clay.
 
 ## 4. Archive and upload
 
@@ -73,7 +75,7 @@ bash scripts/archive.sh ios
 bash scripts/upload-testflight.sh ios
 ```
 
-For Mac TestFlight, if desired in addition to the Applications installation:
+For Mac TestFlight:
 
 ```bash
 bash scripts/archive.sh macos
@@ -98,15 +100,13 @@ In Xcode's Organizer, the equivalent path is Archive → Distribute App → App 
 
 The privacy manifest declares no collected data or tracking and declares app-private UserDefaults use for editor preferences with reason `CA92.1`. This matches the included code; re-evaluate the manifest if analytics, synchronization or third-party SDKs are added. [Apple: Required-reason API types](https://developer.apple.com/documentation/bundleresources/app-privacy-configuration/nsprivacyaccessedapitypes/nsprivacyaccessedapitype)
 
-## 5. Invite the owner
+## 5. Internal testing and invitation
 
-The owner explicitly supplied `briggs@kellogg.co` for the TestFlight invitation on 2026-11-08. Use that address for the already-requested invitation once a signed build is processed and available. Mac/Xcode access and distribution signing are now verified; the recipient's tester role, processed build availability, and invitation remain to be completed and confirmed.
+Internal testing is configured in the **Briggs** group with manual build distribution. Both processed **0.1.0 (1)** builds are assigned; the group shows **1 Tester / 2 Builds**. App Store Connect confirms `briggs@kellogg.co` as **Invited** on November 8, 2026. The owner can accept the invitation through the email or TestFlight; acceptance and a physical-iPhone install have not yet been verified.
 
-For an eligible App Store Connect account, add the owner to an internal testing group, make the processed build available to that group, and send the invitation. Internal testers must be App Store Connect users with appropriate app access. [Apple: Add internal testers](https://developer.apple.com/help/app-store-connect/test-a-beta-version/add-internal-testers)
+For later builds, wait for processing and assign the new iOS/macOS builds to Briggs manually. Internal testers need the appropriate App Store Connect account and app access. [Apple: Add internal testers](https://developer.apple.com/help/app-store-connect/test-a-beta-version/add-internal-testers)
 
-If the chosen recipient is an external tester instead, supply the required beta information and submit the first external build for TestFlight review. Invite the tester after the build is available for that group. [Apple: TestFlight overview](https://developer.apple.com/help/app-store-connect/test-a-beta-version/testflight-overview/)
-
-No invitation is sent by the supplied scripts. Record the actual build number and invitation result after completing the action; do not treat an upload as an invitation.
+No external beta review or public App Store release was requested or performed. The upload scripts do not send invitations; this invitation and group assignment were completed separately in App Store Connect.
 
 ## Suggested beta information
 

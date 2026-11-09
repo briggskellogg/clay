@@ -52,9 +52,14 @@ The build and archive scripts run this gate automatically. A failing test stops 
 | iOS archive and distribution package | Unsigned archive exported with `app-store-connect` and explicit team ID; resulting signed `.ipa` verified, without registered development devices |
 | Mac installation | Installed at `/Applications/Developer/Clay.app`, signature verified, and reopened successfully |
 | Mac UI smoke check | Passed: empty library, create/edit Unicode title and text, move Scratchpad to Pieces and back, quit/reopen with complete text and Saved status; temporary verification document moved to recoverable Trash, leaving the active library empty |
-| iPhone/simulator runtime and accessibility inspection | Pending |
-| TestFlight upload | Owner approved. iOS attempt failed because the App Store Connect app record for `com.briggskellogg.clay` is missing; Mac upload not attempted because it requires the same record. Browser sign-in is pending before creating the record. No build accepted or uploaded. |
-| TestFlight processing, review and invitation | Pending; no tester availability or invitation confirmed |
+| iOS simulator launch/UI smoke | Passed on iPhone 17 Pro simulator, iOS 26.2: boot, install, and launch; screenshot showed healthy empty Scratchpads, New scratchpad, import/+ controls, and Scratchpads/Pieces tabs |
+| iOS editing/persistence, physical phone installation, and accessibility inspection | Pending; simulator launch/UI smoke does not establish these results |
+| App Store Connect record | Created: [Clay — Scratchpads & Pieces](https://appstoreconnect.apple.com/apps/6832381528/distribution), app ID `6832381528`, bundle `com.briggskellogg.clay`, iOS/macOS |
+| TestFlight upload | Both iOS and macOS 0.1.0 (1) uploaded successfully at 5:09 PM America/Phoenix on 2026-11-08 |
+| TestFlight processing and internal distribution | Both builds processed with a 90-day expiry and assigned to internal group Briggs using manual distribution; group shows 1 Tester / 2 Builds |
+| TestFlight invitation | `briggs@kellogg.co` confirmed as Invited on November 8, 2026; invitation acceptance and physical-device installation not yet verified |
+| Beta information | Feedback email and description saved; description identifies local-only writing libraries |
+| External beta review and public App Store release | Neither requested nor performed |
 
 ## Native acceptance pass
 
@@ -62,7 +67,7 @@ The completed Mac smoke check used throwaway writing. Complete the pending check
 
 | Scenario | Expected result | Status |
 | --- | --- | --- |
-| Fresh install | Empty library with useful creation controls; no example writing inserted | Passed on Mac |
+| Fresh install | Empty library with useful creation controls; no example writing inserted | Passed on Mac and iOS simulator |
 | Create and edit Unicode writing | Title and full body remain intact | Passed on Mac |
 | Create immediately after launch | Initial loading does not replace the newly created document or typed text | Pending timing/race check |
 | Edit, quit immediately, reopen on Mac | Last edit persists; quit waits for saving | Basic quit/reopen passed; immediate-quit stress check pending |
