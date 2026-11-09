@@ -2,11 +2,11 @@
 
 Clay has two separate storage workflows. The canonical Git repository, GitHub, and Proton Drive `[projects]/clay` contain code and release documentation. Private writing and synchronization history belong in the app's local storage and its dedicated personal iCloud Drive folder, outside source repositories and `[projects]`.
 
-The owner confirmed the same personal iCloud Drive account on the iPhone, Mac, and Windows PC. Build 4 implements the selected-folder private library; validation, connection, and an end-to-end cloud check remain pending. Build 3's verified TestFlight delivery does not establish those results. `Release/project-destinations.json` records both workflows and their separate verification states without account-specific home paths or credentials.
+The owner confirmed the same personal iCloud Drive account on the iPhone, Mac, and Windows PC. Build 4's local validation and TestFlight delivery passed, and the owner confirmed its phone installation. The Mac connected to **iCloud Drive/Clay** through foreground user interaction; Settings showed **Storage: Clay** and **Shared folder updated**. The folder contains `ClaySync/format.json`, `Records`, and `Exports`, with zero records, so no private writing was transferred. The earlier disabled Mac Connect button came from background automation rather than an app defect. The phone's regular-folder connection failed; build 5 includes a path-alias validation fix, with delivery still in progress. Phone connection, Windows receipt, and an end-to-end cloud check remain pending. `Release/project-destinations.json` records both workflows and their separate verification states without account-specific home paths or credentials.
 
 ## Source workflow
 
-GitHub's existing public visibility is preserved. Proton's exact source subfolder remains `[projects]/clay`; the sync script discovers the configured account root locally.
+GitHub's existing public visibility is preserved. Proton's exact source subfolder remains `[projects]/clay`; the sync script discovers the configured account root locally. Build 4 source `2cc916f3989956c75d73d08cdff42b7cd9979092` is pushed, its 63-file local mirror was verified, and the Proton web manifest was observed at that commit. This cloud check inspected the manifest rather than every remote file byte. Build 5 source and updated delivery documentation still await publication and mirroring.
 
 After every completed Clay edit:
 
@@ -41,7 +41,7 @@ A failure during copying can leave some files at the new version while retaining
 
 Avoid editing source directly inside the Proton mirror or running multiple syncs concurrently. Bring intentional mirror edits back into the canonical repository, review and commit them, then reconcile the mirror. The script does not perform bidirectional merges, Git pushes, or background monitoring.
 
-## Private writing workflow — build 4
+## Private writing workflow — builds 4 and later
 
 Use the same dedicated **Clay** folder in personal iCloud Drive on each device. On Mac choose it in **Clay → Settings → Private library**; on iPhone use the library's **gear → Private library**. The picker grants access only to the selected folder. Connecting retains the local library and exchanges its history with that folder. Disconnecting retains both local and shared files.
 
@@ -54,6 +54,6 @@ The app saves an immutable local history in `Clay/SyncJournal` before updating i
 
 Windows can receive the private folder through iCloud Drive and read the Markdown exports. The manifest identifies the current snapshot; older unlisted exports may remain. These are derived reading copies: editing them does not update Clay. No Windows native application is included. Do not hand-edit synchronization records or place private folders in GitHub/source mirrors.
 
-“Shared folder updated” means local provider access succeeded. It does not prove upload completion or arrival on another device. Record the actual folder connection, a cross-device edit/relaunch, Windows reception, and any restore check separately. These checks remain pending for build 4 until evidence is added to the release report.
+“Shared folder updated” means local provider access succeeded. It does not prove upload completion or arrival on another device. The build 4 Mac connection and empty private-folder initialization are verified. Record phone connection, a cross-device edit/relaunch, Windows reception, and any restore check separately; these remain pending. Build 5 also needs verification that the installed Mac app restores its saved folder access.
 
 Proton personal-data backups are a separate workflow from this source mirror. This release creates no PC backup jobs, destination, retention policy, or schedule. Only a confirmed personal iCloud/PC folder scope may feed an independently verified PC → Proton backup; never include work-Mac folders, whole drives, or all of iCloud Drive. Existing external backup setup has not been verified by this release.

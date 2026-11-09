@@ -244,6 +244,7 @@
 			"inputPaths" = (
 				"$(SRCROOT)/scripts/prepare_assets.swift",
 				"$(SRCROOT)/Resources/Assets.xcassets/ClayMark.imageset/clay.png",
+				"$(SRCROOT)/Resources/Assets.xcassets/MakerMark.imageset/maker-mark.png",
 			);
 			"outputPaths" = (
 				"$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/mac-16@1x.png",
@@ -257,6 +258,9 @@
 				"$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/mac-512@1x.png",
 				"$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/mac-512@2x.png",
 				"$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/ios-1024.png",
+				"$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/ios-dark-1024.png",
+				"$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/Contents.json",
+				"$(SRCROOT)/build/IconPreviews/Clay-icon-transparent-1024.png",
 			);
 			"runOnlyForDeploymentPostprocessing" = 0;
 			"shellPath" = "/bin/bash";
@@ -468,6 +472,7 @@
 			"inputPaths" = (
 				"$(SRCROOT)/scripts/prepare_assets.swift",
 				"$(SRCROOT)/Resources/Assets.xcassets/ClayMark.imageset/clay.png",
+				"$(SRCROOT)/Resources/Assets.xcassets/MakerMark.imageset/maker-mark.png",
 			);
 			"outputPaths" = (
 				"$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/mac-16@1x.png",
@@ -481,6 +486,9 @@
 				"$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/mac-512@1x.png",
 				"$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/mac-512@2x.png",
 				"$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/ios-1024.png",
+				"$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/ios-dark-1024.png",
+				"$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/Contents.json",
+				"$(SRCROOT)/build/IconPreviews/Clay-icon-transparent-1024.png",
 			);
 			"runOnlyForDeploymentPostprocessing" = 0;
 			"shellPath" = "/bin/bash";

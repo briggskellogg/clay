@@ -1,8 +1,18 @@
 # Installing and distributing Clay 0.1
 
-## Release candidate — 0.1.0 (4)
+## Current candidate — 0.1.0 (5)
 
-Build 4 adds a private selected iCloud Drive folder, offline revision history, conflict copies, durable deletion records, and readable per-device Windows exports. The 38-test core suite, synthetic Store/transport integration, privacy checks, and both Debug builds passed. Final signed archives and TestFlight delivery are pending. A build 4 Mac app is installed, but its actual folder connection and the development-signed relaunch are still being checked. See TEST_REPORT.md for the outstanding live-device verification.
+Build 5 updates the app-family signature and icons with an exact crop of the original Clay symbol and the byte-preserved gold maker's mark. It also fixes private-folder validation for file-provider paths containing an ancestor alias. The 19 focused path cases and actual transport/Store regression checks passed. Both native Release archives passed; uploads are pending, and build IDs, processing, Briggs assignment, Mac installation/bookmark restoration, and physical-phone build 5 installation/connection remain pending. The candidate's source commit is not yet recorded.
+
+The Mac icon is transparent. iOS has a transparent Dark appearance icon with an opaque Any appearance fallback. No generated replacement artwork is used. The App Store Connect name remains **Clay by Briggs Kellogg**.
+
+## Delivered beta — 0.1.0 (4)
+
+Build 4 adds a private selected iCloud Drive folder, offline revision history, conflict copies, durable deletion records, and readable per-device Windows exports. The 38-test core suite, synthetic Store/transport integration, privacy checks, both Debug builds, and Release archives passed. Source `2cc916f3989956c75d73d08cdff42b7cd9979092` produced the uploaded builds. Both uploads succeeded at **9:28 PM America/Phoenix on November 8, 2026**, completed processing, and are **Testing** in Briggs (**1 Tester / 8 Builds**). No duplicate invitation was sent.
+
+The development-signed Mac app is installed at `/Applications/Developer/Clay.app`; launch and Settings version 0.1.0 (4) were verified after the owner accepted the updated-version prompt. Foreground user interaction connected the Mac to personal **iCloud Drive/Clay**, with **Storage: Clay** and **Shared folder updated** shown in Settings. The private folder was initialized with `format.json`, `Records`, and `Exports`; zero records were present, so no private writing was transferred. The previously disabled Mac Connect button was caused by background automation, not app code.
+
+The owner confirmed physical-phone build 4 installation, but its regular-folder connection failed. Build 5 includes the corresponding path-alias validation fix. Phone connection, Windows receipt, and an end-to-end cloud check remain pending. Windows exports are derived reading copies; editing them does not update Clay. See TEST_REPORT.md for precise evidence.
 
 ## Delivered release — 0.1.0 (3)
 
@@ -22,7 +32,7 @@ The initial Mac installation at `/Applications/Developer/Clay.app` passed signat
 
 Both iOS and macOS **0.1.0 (1)** uploaded successfully at **5:09 PM America/Phoenix on 2026-11-08** and completed Apple processing with a 90-day TestFlight expiry. Both builds were assigned to the internal **Briggs** group using manual distribution. The verified November 8 snapshot showed **1 Tester / 2 Builds**, with `briggs@kellogg.co` as **Invited**. The owner subsequently confirmed successful installation and launch on a physical iPhone.
 
-The feedback email and beta description were saved; the description identifies the app's local-only writing libraries. No external beta review or public App Store release was requested or performed.
+For the initial release, the feedback email and beta description were saved; that original description identified local-only writing. The build 4 beta description has since been updated and saved to explain optional private sync and Windows reading copies. No external beta review or public App Store release was requested or performed.
 
 ## Build and distribution configuration
 
@@ -33,15 +43,15 @@ The feedback email and beta description were saved; the description identifies t
 | App Store Connect app ID | [`6832381528`](https://appstoreconnect.apple.com/apps/6832381528/distribution) |
 | Primary language / SKU | English (U.S.) / `clay-01` |
 | Marketing version | 0.1.0 |
-| Current build number | 4 — private-library sync; builds 1–3 are previous betas |
+| Current build number | 5 — branding and private-folder path fix candidate; build 4 is the latest verified Testing release |
 | Bundle ID | `com.briggskellogg.clay`, used for the verified signed exports |
 | Platforms | iOS and macOS in one App Store Connect app record |
 | Deployment targets | iOS 17+, macOS 14+ |
 | iOS upload toolchain | Xcode 26+ with iOS 26 SDK+ under Apple's current requirement |
 | Signing | Verified with the configured Apple Developer team; keep team selection and signing credentials local |
-| TestFlight group | Briggs, internal testing, manual distribution; iOS and macOS 0.1.0 builds 1, 2 and 3 assigned |
+| TestFlight group | Briggs, internal testing, manual distribution; iOS and macOS 0.1.0 builds 1, 2, 3 and 4 assigned |
 | TestFlight recipient | `briggs@kellogg.co` — Invited on November 8, 2026 |
-| Feedback contact and beta description | Saved in App Store Connect; description states local-only writing |
+| Feedback contact and beta description | Saved in App Store Connect; current description explains optional private sync and Windows reading copies |
 
 Both targets currently share the bundle identifier so they can use a multiplatform App Store Connect record. Apple documents that multiple platforms can be added under one record with the same identifier. [Apple: Add platforms](https://developer.apple.com/help/app-store-connect/create-an-app-record/add-platforms)
 
@@ -110,7 +120,7 @@ Omit `CLAY_ARCHIVE_PATH` to use `build/Clay-iOS.xcarchive` or `build/Clay-macOS.
 
 In Xcode's Organizer, the equivalent path is Archive → Distribute App → App Store Connect → Upload. After the upload succeeds, wait for Apple's processing and inspect any validation messages. A successful command is not evidence that a build is already available to testers. [Apple: Upload builds](https://developer.apple.com/help/app-store-connect/manage-builds/upload-builds)
 
-The privacy manifest declares no collected data or tracking and declares app-private UserDefaults use for editor preferences with reason `CA92.1`. This matches the included code; re-evaluate the manifest if analytics, synchronization or third-party SDKs are added. [Apple: Required-reason API types](https://developer.apple.com/documentation/bundleresources/app-privacy-configuration/nsprivacyaccessedapitypes/nsprivacyaccessedapitype)
+The privacy manifest declares no collected data or tracking and declares app-private UserDefaults use for editor preferences with reason `CA92.1`. The optional selected-folder workflow stores writing in the owner's private cloud folder. Re-evaluate the manifest if data collection, analytics, or third-party SDK behavior changes. [Apple: Required-reason API types](https://developer.apple.com/documentation/bundleresources/app-privacy-configuration/nsprivacyaccessedapitypes/nsprivacyaccessedapitype)
 
 ## 5. Internal testing and invitation
 
@@ -122,8 +132,8 @@ No external beta review or public App Store release was requested or performed. 
 
 ## Suggested beta information
 
-**Description:** Clay is a quiet writing app with separate spaces for scratchpads and finished pieces. Write in a native editor, move a document between those spaces without duplicating it, and import or export Markdown.
+**Description:** Clay is a quiet writing app with separate spaces for scratchpads and finished pieces. Write in a native editor, move a document between those spaces without duplicating it, and import or export Markdown. Optionally connect the same private iCloud Drive folder on Mac and iPhone; Windows can read the exported snapshots through iCloud Drive.
 
-**What to test:** In build 2, open Clay → Settings on Mac or the library gear on iPhone; switch System, Light, and Dark; verify the choice persists after reopening and System follows device appearance changes. Create a scratchpad; edit, pin and organize it; move it to Pieces and back; export and reimport Markdown; quit/relaunch on Mac; background/reopen on iPhone; verify that the last edit persists and save failures are visible. Check the editor with the keyboard open, larger text, and VoiceOver.
+**What to test:** Open Clay → Settings on Mac or the library gear on iPhone; switch System, Light, and Dark; verify the choice persists after reopening and System follows device appearance changes. Check the new symbol, name, and maker placement in both appearances. Connect the same dedicated private iCloud Drive/Clay folder on Mac and iPhone, then verify a new scratchpad arrives on the other device, survives reopening, and appears in Windows' readable exports. Test offline edits and concurrent changes. Edit, pin and organize a document; move it to Pieces and back; export and reimport Markdown; quit/relaunch on Mac; background/reopen on iPhone; verify that the last edit persists and save failures are visible. Check the editor with the keyboard open, larger text, and VoiceOver.
 
-**Known limitation:** Libraries are local to each installation. Cross-device sync and an iPhone Trash recovery screen are not included in this beta. The Markdown reading view implements a basic subset.
+**Known limitations:** Writing stays local until a private folder is connected. Phone connection and end-to-end cloud propagation still need verification. Windows exports are reading copies; editing them does not import changes into Clay, and there is no Windows native app. An iPhone Trash recovery screen is not included. The Markdown reading view implements a basic subset.

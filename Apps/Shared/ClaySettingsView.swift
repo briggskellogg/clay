@@ -14,12 +14,12 @@ struct ClaySettingsView: View {
 
     var body: some View {
         #if os(macOS)
-        settingsForm
+        settingsContent
             .formStyle(.grouped)
             .frame(width: 460, height: 620)
         #else
         NavigationStack {
-            settingsForm
+            settingsContent
                 .navigationTitle("Settings")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
@@ -30,6 +30,19 @@ struct ClaySettingsView: View {
         }
         .tint(ClayTheme.blue)
         #endif
+    }
+
+    private var settingsContent: some View {
+        settingsForm
+            .safeAreaInset(edge: .bottom, spacing: 0) {
+                HStack {
+                    Spacer(minLength: 0)
+                    ClayMakerMark()
+                }
+                .padding(.horizontal, 24)
+                .padding(.vertical, 16)
+                .background(ClayTheme.sidebar)
+            }
     }
 
     private var settingsForm: some View {
@@ -116,23 +129,11 @@ struct ClaySettingsView: View {
     }
 
     private var brandHeader: some View {
-        HStack(spacing: 12) {
-            Image("ClayMark")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 36, height: 36)
-                .accessibilityHidden(true)
-            VStack(alignment: .leading, spacing: 4) {
-                Text("Clay")
-                    .font(ClayTheme.uiFont(size: 22, weight: .bold))
-                    .foregroundStyle(ClayTheme.ink)
-                Text("by Briggs Kellogg")
-                    .font(ClayTheme.uiFont(size: 13))
-                    .foregroundStyle(ClayTheme.secondary)
-                Text(versionLabel)
-                    .font(ClayTheme.uiFont(size: 11))
-                    .foregroundStyle(ClayTheme.secondary)
-            }
+        VStack(alignment: .leading, spacing: 6) {
+            ClayBrandSignature()
+            Text(versionLabel)
+                .font(ClayTheme.uiFont(size: 11))
+                .foregroundStyle(ClayTheme.secondary)
         }
         .padding(.vertical, 6)
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -145,5 +146,48 @@ struct ClaySettingsView: View {
             return "Version \(version) (\(build))"
         }
         return "Version \(version)"
+    }
+}
+
+/// The app symbol and typeset name share the same compact family treatment.
+@MainActor
+struct ClayBrandSignature: View {
+    var symbolSize: CGFloat = 26
+    var nameSize: CGFloat = 20
+
+    var body: some View {
+        HStack(spacing: 8) {
+            Image("ClayMark")
+                .resizable()
+                .renderingMode(.original)
+                .interpolation(.high)
+                .scaledToFit()
+                .frame(width: symbolSize, height: symbolSize)
+                .accessibilityHidden(true)
+            Text("Clay")
+                .font(ClayTheme.uiFont(size: nameSize, weight: .bold))
+                .foregroundStyle(ClayTheme.ink)
+                .fixedSize()
+        }
+        .fixedSize()
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("Clay")
+    }
+}
+
+/// Exact supplied gold artwork, kept separate from Clay's own symbol.
+@MainActor
+struct ClayMakerMark: View {
+    var body: some View {
+        Image("MakerMark")
+            .resizable()
+            .renderingMode(.original)
+            .interpolation(.high)
+            .scaledToFit()
+            .frame(width: 14, height: 18)
+            .accessibilityLabel("Made by Briggs Kellogg")
+            #if os(macOS)
+            .help("Made by Briggs Kellogg")
+            #endif
     }
 }

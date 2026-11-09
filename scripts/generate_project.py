@@ -168,8 +168,11 @@ def make_project() -> None:
         resource_members = [add(f"resource:{name}:{path}", "PBXBuildFile", fileRef=files[path])
                             for path in ["Resources/Fonts", "Resources/Assets.xcassets", "Resources/PrivacyInfo.xcprivacy"]]
         output_icons = [f"$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/mac-{size}@{scale}x.png" for size in [16, 32, 128, 256, 512] for scale in [1, 2]]
-        output_icons += ["$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/ios-1024.png"]
-        assets = add("assets:" + name, "PBXShellScriptBuildPhase", buildActionMask=2147483647, files=[], name="Prepare Clay app icons", inputPaths=["$(SRCROOT)/scripts/prepare_assets.swift", "$(SRCROOT)/Resources/Assets.xcassets/ClayMark.imageset/clay.png"], outputPaths=output_icons, runOnlyForDeploymentPostprocessing=0, shellPath="/bin/bash", shellScript='set -euo pipefail\nunset SDKROOT\n/usr/bin/xcrun --sdk macosx swift "$SRCROOT/scripts/prepare_assets.swift" "$SRCROOT"\n')
+        output_icons += ["$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/ios-1024.png",
+                         "$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/ios-dark-1024.png",
+                         "$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/Contents.json",
+                         "$(SRCROOT)/build/IconPreviews/Clay-icon-transparent-1024.png"]
+        assets = add("assets:" + name, "PBXShellScriptBuildPhase", buildActionMask=2147483647, files=[], name="Prepare Clay app icons", inputPaths=["$(SRCROOT)/scripts/prepare_assets.swift", "$(SRCROOT)/Resources/Assets.xcassets/ClayMark.imageset/clay.png", "$(SRCROOT)/Resources/Assets.xcassets/MakerMark.imageset/maker-mark.png"], outputPaths=output_icons, runOnlyForDeploymentPostprocessing=0, shellPath="/bin/bash", shellScript='set -euo pipefail\nunset SDKROOT\n/usr/bin/xcrun --sdk macosx swift "$SRCROOT/scripts/prepare_assets.swift" "$SRCROOT"\n')
         sources = add("sources:" + name, "PBXSourcesBuildPhase", buildActionMask=2147483647, files=source_members, runOnlyForDeploymentPostprocessing=0)
         frameworks = add("frameworks:" + name, "PBXFrameworksBuildPhase", buildActionMask=2147483647, files=[framework], runOnlyForDeploymentPostprocessing=0)
         resources = add("resources:" + name, "PBXResourcesBuildPhase", buildActionMask=2147483647, files=resource_members, runOnlyForDeploymentPostprocessing=0)

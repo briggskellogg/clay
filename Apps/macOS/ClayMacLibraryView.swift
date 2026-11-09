@@ -142,15 +142,7 @@ struct ClayMacLibraryView: View {
 
     private var sidebar: some View {
         VStack(alignment: .leading, spacing: 0) {
-            HStack(spacing: 8) {
-                Image("ClayMark")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 26, height: 26)
-                    .accessibilityHidden(true)
-                Text("Clay")
-                    .font(ClayTheme.uiFont(size: 20, weight: .bold))
-            }
+            ClayBrandSignature()
             .padding(.horizontal, 20)
             .padding(.top, 16)
             .padding(.bottom, 18)
@@ -194,13 +186,18 @@ struct ClayMacLibraryView: View {
 
             Spacer(minLength: 16)
 
-            HStack(spacing: 7) {
-                Image(systemName: store.isLibraryConnected ? "icloud" : "internaldrive")
-                    .font(.system(size: 12))
-                Text(store.isLibraryConnected ? "Private library connected" : "Stored on this Mac")
-                    .font(ClayTheme.uiFont(size: 11, weight: .regular))
+            HStack(alignment: .bottom, spacing: 8) {
+                HStack(spacing: 7) {
+                    Image(systemName: store.isLibraryConnected ? "icloud" : "internaldrive")
+                        .font(.system(size: 12))
+                    Text(store.isLibraryConnected ? "Private library connected" : "Stored on this Mac")
+                        .font(ClayTheme.uiFont(size: 11, weight: .regular))
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+                .foregroundStyle(ClayTheme.secondary)
+                Spacer(minLength: 4)
+                ClayMakerMark()
             }
-            .foregroundStyle(ClayTheme.secondary)
             .padding(.horizontal, 20)
             .padding(.bottom, 19)
         }

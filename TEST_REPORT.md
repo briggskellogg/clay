@@ -2,6 +2,14 @@
 
 Updated 2026-11-08 after native Mac and simulator testing and the owner's physical-iPhone installation/launch confirmation. This report distinguishes independently observed checks, owner-reported results, and remaining acceptance work.
 
+## Original artwork and folder-path fix — 0.1.0 (5)
+
+Build 5 uses an exact crop of the original Clay symbol, the exact Bard gold maker's mark, and the shared PP Neue Montreal name treatment. The handwritten wordmark is absent. The Mac library and Settings show the symbol/name at the top and maker's mark at the bottom. The ten Mac icon sizes and iOS Dark icon have alpha and transparent corners; iOS Any has no alpha for distribution. Both Release archives passed, and all 52 captured native inputs remained unchanged during compilation.
+
+The exact development-signed universal Mac archive was installed at `/Applications/Developer/Clay.app` after the owner quit normally; the prior app and all private data were preserved. Launch, library branding, Settings version 5, Light appearance, and returning to System were visually checked. The previously selected private-folder bookmark restored automatically, and Settings reported Storage “Clay” and “Shared folder updated.” A synthetic “Clay sync check” note saved successfully; its three immutable revisions and one matching Markdown export were verified in the selected personal iCloud folder. This proves local private-folder publication, not remote receipt. Phone build 5 connection and Windows receipt still require device verification. TestFlight uploads are underway; final availability is recorded separately after Apple processing.
+
+The path fix passed 19 targeted checks and the existing real transport and Store integration harnesses. It accepts equivalent ancestor-alias paths returned by coordination while still rejecting selected-leaf/internal symlinks, sibling escapes, and source destinations. The owner's exact phone failure can be considered resolved only after a successful reconnect on the updated phone app.
+
 ## Private-library update — 0.1.0 (4)
 
 The owner confirmed the same personal iCloud Drive account on iPhone, Mac, and Windows. The app now offers a selected private folder, separate from GitHub and the Proton source mirror. Ordinary Windows Markdown exports are derived reading copies; editing them does not update Clay.
@@ -11,12 +19,14 @@ The owner confirmed the same personal iCloud Drive account on iPhone, Mac, and W
 | Core suite | All 38 XCTest methods passed, including 13 immutable-journal cases |
 | Source privacy guard | Seven synthetic checks passed; detects known runtime paths/formats in Git index and tracked working files without logging contents |
 | Actual Store + transport integration | Synthetic two-device checks passed: Unicode and metadata transfer; offline conflict convergence without duplicate growth; deletion across restart; export manifest/content; unavailable provider/outbox recovery; local journal failure blocks publication until retry |
-| Native builds | Both Mac and iOS Simulator Debug passed; final release archives pending |
+| Folder-path regression for build 5 | All 19 synthetic checks passed. The unchanged validator reproduced three failures when a coordinator resolves an alias in an ancestor outside the selected folder; the fix accepts those equivalent paths. Checks also cover both `/tmp` and `/private/tmp` spellings, uncreated descendants, trailing slashes, sibling-prefix escapes, selected-folder/internal/dangling symlinks, and Git/Proton source-folder rejection. The existing transport and full Store integration harnesses passed again after the fix. This reproduces a path-validation defect; confirmation of the phone's exact failing path and its resolution still requires a phone retest. |
+| Native builds | Both Mac and iOS Simulator Debug and both Release archives passed; both App Store Connect uploads succeeded |
 | Folder transport | Synthetic bookmark restore/disconnect, coordinated immutable exchange, collision/symlink/source-folder rejection, and stable per-device exports passed |
-| Mac UI | Settings rendered in System/dark with version 0.1.0 (4). A native directory picker is implemented. The actual system dialog left Connect disabled in local and iCloud folders despite correct configuration; the development-signed launch/connection check is pending |
-| Actual private cloud connection | Not yet verified; a dedicated iCloud Drive/Clay folder was created, but no writing was copied through the app |
-| iPhone and Windows receipt | Pending actual device connection/receipt; same-account confirmation is not proof of a transferred edit |
-| TestFlight build 4 | Pending; build 3 remains Testing on both platforms |
+| Mac installation and UI | Build 4 is installed at `/Applications/Developer/Clay.app`; launch and Settings version 0.1.0 (4) were verified. The owner completed Connect while the app was in the foreground. Settings was then independently observed showing Storage “Clay” and “Shared folder updated.” The earlier disabled-picker observation was a limitation of background UI control. |
+| Actual private cloud connection | Mac connection to the selected Clay folder is verified in the app. Delivery of writing to another device remains unverified; the local provider's updated status is not a remote receipt. |
+| iPhone and Windows receipt | The owner confirmed build 4 installed and opened on the physical iPhone, selected iCloud Drive/Clay, and received the regular-folder/symbolic-link connection error. Phone reconnection after the path fix and actual phone/Mac/Windows receipt remain pending. |
+| TestFlight build 4 | Both uploads succeeded at 9:28 PM America/Phoenix on November 8, 2026, completed processing, and show Testing in Briggs: 1 Tester / 8 Builds. No new invitation was sent. Physical-phone installation and launch are now owner-confirmed; its private-folder connection failed as recorded above. |
+| Source delivery | GitHub source `2cc916f3989956c75d73d08cdff42b7cd9979092`; 63 local Proton mirror files verified and the Proton web manifest observed at the same commit. The cloud manifest was inspected, not every remote file byte. Final delivery-documentation changes still await publication/mirroring |
 
 The production application does not print document bodies into release logs. Private journals, connection bookmarks, outboxes, and derived exports are excluded from source control and source mirroring. The immutable journal is durable before local projection writes, so recovery can rebuild a local Markdown copy after interruption. Local saving and cloud transfer status are separate.
 
@@ -93,7 +103,7 @@ The build and archive scripts run this gate automatically. A failing test stops 
 | App icon generation/asset compilation | Passed after correcting RGB row-stride handling; original artwork unchanged |
 | Mac archive and distribution package | Signed archive valid; exported `.pkg` verified |
 | iOS archive and distribution package | Unsigned archive exported with `app-store-connect` and explicit team ID; resulting signed `.ipa` verified, without registered development devices |
-| Initial Mac installation | Build 1 installed at `/Applications/Developer/Clay.app`, signature verified, and reopened successfully; subsequently replaced by build 2 as recorded above |
+| Initial Mac installation | Build 1 installed at `/Applications/Developer/Clay.app`, signature verified, and reopened successfully; later updates are recorded above |
 | Mac UI smoke check | Passed: empty library, create/edit Unicode title and text, move Scratchpad to Pieces and back, quit/reopen with complete text and Saved status; temporary verification document moved to recoverable Trash, leaving the active library empty |
 | iOS simulator launch/UI smoke | Passed on iPhone 17 Pro simulator, iOS 26.2: boot, install, and launch; screenshot showed healthy empty Scratchpads, New scratchpad, import/+ controls, and Scratchpads/Pieces tabs |
 | Physical iPhone installation and launch | Build 1 owner-confirmed on November 8, 2026: “Installed and opened” after following the TestFlight installation instructions |
@@ -102,7 +112,7 @@ The build and archive scripts run this gate automatically. A failing test stops 
 | TestFlight upload | Both iOS and macOS 0.1.0 (1) uploaded successfully at 5:09 PM America/Phoenix on 2026-11-08 |
 | TestFlight processing and internal distribution | Both builds processed with a 90-day expiry and assigned to internal group Briggs using manual distribution; verified November 8 snapshot showed 1 Tester / 2 Builds |
 | TestFlight invitation | App Store Connect showed `briggs@kellogg.co` as Invited on November 8, 2026; owner subsequently confirmed physical-iPhone installation/launch. App Store Connect status was not refreshed after that report. |
-| Beta information | Feedback email and description saved; description identifies local-only writing libraries |
+| Initial beta information | Feedback email and original local-only description saved for build 1; build 4’s saved description now explains optional private sync and Windows reading copies |
 | External beta review and public App Store release | Neither requested nor performed |
 
 ## Native acceptance pass

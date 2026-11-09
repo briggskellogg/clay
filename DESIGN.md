@@ -8,7 +8,7 @@ Both destinations use the same editor, preserving a consistent writing experienc
 
 ## Visual language
 
-The design follows the supplied Bard/Wisp/Notes/Tasks references: quiet gray navigation, white writing space, restrained separators, broad margins, clear headings, and few controls near the text. The supplied Clay artwork provides the red brand signature. PP Neue Montreal supplies navigation and headings; PP Neue York supplies the default writing face. System monospace and sans serif alternatives are available.
+The design follows the supplied Bard/Wisp/Notes/Tasks references: quiet gray navigation, white writing space, restrained separators, broad margins, clear headings, and few controls near the text. The supplied Clay symbol provides the red brand signature, with its handwritten wordmark removed. The symbol and the app name in PP Neue Montreal appear at the top; the owner's gold maker's signature appears near a bottom corner. PP Neue Montreal supplies navigation and headings; PP Neue York supplies the default writing face. System monospace and sans serif alternatives are available. Appearance can follow the system or remain Light or Dark.
 
 | Element | Treatment | Meaning |
 | --- | --- | --- |
@@ -30,4 +30,4 @@ The phone uses a library list with bottom Scratchpads/Pieces navigation. Opening
 
 ## Scope boundaries for 0.1
 
-Local writing, saving, navigation and Markdown portability form the first version. Cloud sync, collaboration, publishing, rich document attachments, advanced Markdown rendering, full revision history, and iA Writer feature parity are outside this implementation. These features should be chosen after testing the core distinction and native editing experience.
+Local writing, saving, navigation and Markdown portability form the first version. The owner's later request adds optional private folder synchronization through personal iCloud Drive, with offline revision history, recoverable conflict copies, and Windows-readable Markdown exports. Private writing stays outside GitHub and the Proton source mirror. Exports are reading copies; editing them does not import into Clay. Collaboration, publishing, rich document attachments, advanced Markdown rendering, and iA Writer feature parity remain outside this implementation. See TEST_REPORT.md and Release/project-destinations.json for live-device verification limits.

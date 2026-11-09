@@ -128,12 +128,13 @@ private struct ClaySyncFolderConnectionInfo: Sendable {
 }
 
 private enum ClaySyncFolderError: Error, LocalizedError {
-    case disconnected, unsafeFolder, sourceFolder, unknownFormat, invalidRecords, recordCollision, unavailable
+    case disconnected, unsafeFolder, outsideFolder, sourceFolder, unknownFormat, invalidRecords, recordCollision, unavailable
 
     var errorDescription: String? {
         switch self {
         case .disconnected: return "Connect a private folder before syncing."
         case .unsafeFolder: return "Choose a regular private folder. Clay does not follow symbolic links inside its sync folder."
+        case .outsideFolder: return "The file provider returned a location outside the selected private folder. Choose the folder again."
         case .sourceFolder: return "Choose a private writing folder outside Git repositories and [projects]."
         case .unknownFormat: return "This folder contains an unknown or incomplete Clay sync format. Its files were left untouched."
         case .invalidRecords: return "The private folder contains an unrecognized record. Its files were left untouched."
@@ -444,15 +445,29 @@ private final class ClaySyncFolderWorker: @unchecked Sendable {
     }
 
     private func validateAncestors(_ url: URL, root: URL) throws {
-        let rootPath = root.standardizedFileURL.path
-        let path = url.standardizedFileURL.path
-        guard path == rootPath || path.hasPrefix(rootPath + "/") else { throw ClaySyncFolderError.unsafeFolder }
+        guard url.isFileURL, root.isFileURL else { throw ClaySyncFolderError.unsafeFolder }
+        // A coordinator may return the same folder through a resolved ancestor
+        // path, while the picker/bookmark retains the original spelling. Resolve
+        // only for identity/containment comparisons; keep the scoped URLs for I/O.
+        // Check the selected leaf first so canonicalization cannot hide a link.
+        guard try itemType(root) != .typeSymbolicLink else { throw ClaySyncFolderError.unsafeFolder }
+        let rootComponents = root.resolvingSymlinksInPath().standardizedFileURL.pathComponents
+        // Inspect the original path, not its resolved replacement: even a link
+        // targeting another directory *inside* the root must remain forbidden.
+        // Finding the selected root in this ancestor chain proves containment.
+        // Resolve existing ancestors only: Foundation can normalize /private
+        // differently when the final file has not been created yet.
         var current = url
-        while true {
-            if try itemType(current) == .typeSymbolicLink { throw ClaySyncFolderError.unsafeFolder }
-            if current.standardizedFileURL.path == rootPath { break }
-            current.deleteLastPathComponent()
+        for _ in 0...url.pathComponents.count {
+            let type = try itemType(current)
+            if type == .typeSymbolicLink { throw ClaySyncFolderError.unsafeFolder }
+            if type != nil,
+               current.resolvingSymlinksInPath().standardizedFileURL.pathComponents == rootComponents { return }
+            let parent = current.deletingLastPathComponent()
+            guard parent.path != current.path else { break }
+            current = parent
         }
+        throw ClaySyncFolderError.outsideFolder
     }
 
     private func requireDirectory(_ url: URL, root: URL) throws {

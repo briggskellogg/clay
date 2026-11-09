@@ -20,6 +20,9 @@ struct ClayIOSLibraryView: View {
                 .toolbarBackground(ClayTheme.paper, for: .navigationBar)
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
+                        ClayBrandSignature(symbolSize: 22, nameSize: 20)
+                    }
+                    ToolbarItemGroup(placement: .topBarTrailing) {
                         Button {
                             isShowingSettings = true
                         } label: {
@@ -27,8 +30,7 @@ struct ClayIOSLibraryView: View {
                         }
                         .foregroundStyle(ClayTheme.secondary)
                         .accessibilityLabel("Settings")
-                    }
-                    ToolbarItemGroup(placement: .topBarTrailing) {
+
                         Button {
                             isImporting = true
                         } label: {
@@ -175,10 +177,14 @@ struct ClayIOSLibraryView: View {
     }
 
     private var sectionPicker: some View {
-        ClayIOSSectionPicker(
-            selection: store.selectedSection,
-            select: selectSection
-        )
+        HStack(alignment: .bottom, spacing: 12) {
+            ClayIOSSectionPicker(
+                selection: store.selectedSection,
+                select: selectSection
+            )
+            ClayMakerMark()
+                .padding(.bottom, 4)
+        }
         .frame(maxWidth: 560)
         .padding(.horizontal, 16)
         .padding(.vertical, 8)

@@ -2,15 +2,23 @@
 
 A native writing app for macOS and iPhone, with a deliberate distinction between **Scratchpads** and **Pieces**. Both use the same editor. Moving a document changes its section while keeping its identity and writing intact.
 
-## In progress — 0.1.0 (4)
+## Current candidate — 0.1.0 (5)
 
-Build 4 implements an optional private writing library shared through a folder selected in personal iCloud Drive. **Validation, installation, TestFlight delivery, and the actual cloud connection are pending. Build 3 remains the last verified release.** The owner confirmed that the same personal iCloud Drive account is enabled on the iPhone, Mac, and Windows PC; a complete cross-device edit has not yet been verified.
+Build 5 separates the original red Clay symbol from the lettering using an exact pixel crop of the supplied artwork. The app shows the symbol and **Clay** in the shared interface font at the top, with the original gold maker's mark in the lower corner. The 416 × 512 maker asset is preserved byte for byte. The Mac icon has a transparent background; iOS includes a transparent Dark icon and an opaque Any appearance fallback. See `ASSETS.md` and `DESIGN.md` for the artwork and layout details.
+
+This candidate also fixes private-folder validation when the file provider returns a path through an ancestor alias. All 19 focused path cases and the actual transport/Store regression checks passed. Both native Release archives passed; uploads are pending, and build 5 TestFlight availability, Mac installation/bookmark restoration, and phone connection are not yet verified. Its release source commit is pending. Build 4 remains the latest verified TestFlight release below.
+
+## Delivered beta — 0.1.0 (4)
+
+Build 4 implements an optional private writing library shared through a folder selected in personal iCloud Drive. The 38-test core suite, synthetic Store/transport integration, privacy checks, both Debug builds, and Release archives passed. Both uploads completed at **9:28 PM America/Phoenix on November 8, 2026** and are **Testing** in the internal **Briggs** group (**1 Tester / 8 Builds**). The development-signed Mac app is installed at `/Applications/Developer/Clay.app`; launch and Settings version 0.1.0 (4) were verified. The TestFlight name remains **Clay by Briggs Kellogg**.
+
+The owner confirmed build 4 is installed on the physical iPhone. The Mac connected to the dedicated personal **iCloud Drive/Clay** folder after foreground user interaction; Settings showed **Storage: Clay** and **Shared folder updated**, and the private `ClaySync` folder contains `format.json`, `Records`, and `Exports`. Its record count was zero, so no private writing was transferred. The earlier disabled Mac Connect button resulted from background automation rather than an app defect. The phone rejected a regular selected folder; build 5 addresses the path-alias validation involved. Phone connection, Windows reception, and a cross-device edit remain unverified.
 
 GitHub and Proton Drive `[projects]/clay` hold source code and release documentation only. Private writing stays outside both destinations. Clay keeps an offline local library and an immutable `SyncJournal`, then exchanges writing revisions through the selected private folder. Concurrent versions become conflict copies; deletion records preserve history and prevent an old device from silently recreating a deleted original.
 
 The shared folder contains `ClaySync/Records` for synchronization and `ClaySync/Exports/<deviceID>` for readable Markdown snapshots. Windows can find those files through iCloud Drive. **Editing an export does not import the change into Clay, and this release does not build a Windows application.** Each export manifest identifies that device's current snapshot; older unlisted export files may remain for recovery.
 
-### Connect the private library in build 4
+### Connect the private library
 
 1. Use a dedicated **Clay** folder in personal iCloud Drive, outside Git repositories and Proton's `[projects]` source area.
 2. On Mac, open **Clay → Settings → Private library** and choose that folder. On iPhone, open the library's **gear → Private library** and choose the same folder in iCloud Drive.
@@ -19,7 +27,7 @@ The shared folder contains `ClaySync/Records` for synchronization and `ClaySync/
 
 Selecting the folder connects the device's existing Clay writing without deleting its local copy. Disconnecting retains both copies. A status saying the shared folder was updated describes local provider access, not proof that another device has downloaded it. Phone connection, Windows reception, and an end-to-end cloud check remain pending. This release creates no PC backup jobs or Proton personal-data backup schedule; any existing external backup setup still needs its own evidence.
 
-Release destinations and verification states are recorded in `Release/project-destinations.json`. See `SYNC.md` for the separate source and private-data workflows.
+Release destinations and verification states are recorded in `Release/project-destinations.json`. Build 4 source commit `2cc916f3989956c75d73d08cdff42b7cd9979092` is on GitHub. The local Proton mirror contains 63 verified source files, and its cloud manifest was observed at that commit; individual remote file bytes were not all compared. Build 5 source and the updated delivery notes still await publication and mirroring. See `SYNC.md` for the separate source and private-data workflows.
 
 ## Delivered release — 0.1.0 (3)
 
@@ -27,7 +35,7 @@ Clay shares the app family's neutral light/dark surfaces, PP Neue Montreal inter
 
 The App Store Connect/TestFlight name is **Clay by Briggs Kellogg**. The bundle ID, installed Clay.app name, and writing location remain unchanged. Both native Debug builds and Release archives passed. Build 3 is installed and visually checked on the Mac, with System appearance selected. Both iOS and macOS build 3 uploads succeeded at **8:41 PM America/Phoenix on November 8, 2026**. Both completed Apple processing and are assigned to the internal **Briggs** group, with **Testing** status and 90-day expiry. The group shows **1 Tester / 6 Builds**; no duplicate invitation was sent. Physical-iPhone installation of build 3 has not yet been confirmed.
 
-Build 3 did not implement runtime writing sync, Windows archives, or scheduled personal-data backups. The later private-library request is implemented separately in the pending build 4 above.
+Build 3 did not implement runtime writing sync, Windows archives, or scheduled personal-data backups. The later private-library request is implemented separately in build 4 above.
 
 ## Previous delivery history
 
@@ -54,7 +62,7 @@ Both iOS and macOS **0.1.0 (1)** uploaded successfully at **5:09 PM America/Phoe
 - Build 2: System, Light, and Dark appearance choices, saved per device. Open **Clay → Settings → Appearance** on Mac or the library's **gear → Appearance** on iPhone. System follows the device's appearance.
 - Main destinations use colored filled symbols. Folders and utilities use neutral outlines. Pins fill amber when enabled. Selection also changes background and text weight, so color does not carry the meaning alone.
 
-The initial library is empty, with no seeded sample writing, telemetry, app account, collaboration service, or app server. Builds 1–3 have separate Mac and phone libraries and use Markdown export/import for transfer. Pending build 4 adds the optional selected-folder synchronization described above; without a connected folder, writing remains on that device.
+The initial library is empty, with no seeded sample writing, telemetry, app account, collaboration service, or app server. Builds 1–3 have separate Mac and phone libraries and use Markdown export/import for transfer. Build 4 adds the optional selected-folder synchronization described above; without a connected folder, writing remains on that device.
 
 ## Run and install on a Mac
 
@@ -75,7 +83,7 @@ To work in Xcode, open **Clay.xcodeproj**. Select scheme **Clay-macOS** and My M
 
 ## TestFlight
 
-The [App Store Connect record](https://appstoreconnect.apple.com/apps/6832381528/distribution) is **Clay by Briggs Kellogg** (app ID `6832381528`), with bundle ID `com.briggskellogg.clay` and iOS/macOS platforms. The installed app is still named **Clay**. Both processed 0.1.0 (1) builds were assigned to the internal Briggs testing group through manual distribution. The appearance update, 0.1.0 (2), also completed processing and is assigned to Briggs on both platforms. Build 3 is also processed and Testing in Briggs on both platforms. See **DISTRIBUTION.md** for the release configuration and future upload steps.
+The [App Store Connect record](https://appstoreconnect.apple.com/apps/6832381528/distribution) is **Clay by Briggs Kellogg** (app ID `6832381528`), with bundle ID `com.briggskellogg.clay` and iOS/macOS platforms. The installed app is still named **Clay**. Both processed 0.1.0 (1) builds were assigned to the internal Briggs testing group through manual distribution. The appearance update, 0.1.0 (2), also completed processing and is assigned to Briggs on both platforms. Builds 3 and 4 are also processed and Testing in Briggs on both platforms. Build 4 adds optional private selected-folder sync; its Mac connection is verified, while phone and cross-device checks remain pending. Build 5 delivery is in progress. See **DISTRIBUTION.md** for the release configuration and future upload steps.
 
 The upload scripts use an Apple account already configured in Xcode. No password, API key, signing key, or provisioning profile is bundled here. The non-secret developer team identifier is recorded in the release destination manifest. App Store Connect confirmed the invitation, and the owner subsequently reported successful physical-iPhone installation and launch. The scripts upload an existing archive; app-record setup and the invitation were completed separately in App Store Connect.
 
@@ -112,7 +120,7 @@ Regenerate the project after adding or removing Swift app files. The generator o
 
 ## Writing and recovery
 
-The active local library is the app's Application Support directory plus `Clay/Library`. On sandboxed macOS builds, this is inside the app's container; **Writing → Show Library in Finder** opens the actual location. On iOS it is inside the application container. Pending build 4 adds `Clay/SyncJournal` beside the local library. That private journal is written before the visible Markdown copy, so local recovery does not depend on the cloud folder being available. It is not part of the source repository or Proton source mirror.
+The active local library is the app's Application Support directory plus `Clay/Library`. On sandboxed macOS builds, this is inside the app's container; **Writing → Show Library in Finder** opens the actual location. On iOS it is inside the application container. Build 4 adds `Clay/SyncJournal` beside the local library. That private journal is written before the visible Markdown copy, so local recovery does not depend on the cloud folder being available. It is not part of the source repository or Proton source mirror.
 
 Each active document is a UUID-named `.md` file. Its first HTML comment stores versioned, base64-encoded metadata; the body follows unchanged. Titles, section, pin state, collections and dates live in that comment. The encoding prevents titles containing `-->` from breaking the header. Dates use Foundation's reference-date representation to retain precision.
 
