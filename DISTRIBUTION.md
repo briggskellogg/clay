@@ -1,10 +1,16 @@
 # Installing and distributing Clay 0.1
 
+## Current candidate — 0.1.0 (6)
+
+Build 6 keeps the last sync result steady in Settings and uses a small pulsing dot only while activity is running. Reduce Motion uses a static indicator. Errors stay visible during retries, including connection failures before a folder is connected. Background passes no longer flash the controls between enabled and disabled; changing or disconnecting the folder waits for the active pass to finish.
+
+Both native Release archives passed, with all 52 captured input hashes unchanged. Source validation, the focused Store activity/folder-transition checks, and the existing full Store integration suite passed. The development-signed Mac build 6 is installed at `/Applications/Developer/Clay.app` with its strict signature verified and the previous app preserved. Settings version 6, saved private-folder access, the existing phone-edited note with Saved status, Light appearance, and return to System were verified. Sync Now completed without changing the settled Shared folder updated label or the enabled button states. The dot compiled and rendered; pulse timing was not captured frame by frame, and Reduce Motion still needs a direct runtime check. Both uploads succeeded on November 8, 2026 at 22:26:48.728 (iOS) and 22:26:54.657 (macOS), America/Phoenix. Apple processing, Briggs assignment, and phone build 6 installation remain pending. Build 5 remains the latest verified TestFlight release, including the successful two-way Mac–iPhone synthetic sync check. Windows reception is postponed by the owner.
+
 ## Delivered beta — 0.1.0 (5)
 
 Build 5 updates the app-family signature and icons with an exact crop of the original Clay symbol and the byte-preserved gold maker's mark. It also fixes private-folder validation for file-provider paths containing an ancestor alias. The 19 focused path cases and actual transport/Store regression checks passed. Both native Release archives passed. The 40 tracked native inputs match source `d106286c96bba138055b8c9a6c1582fe8c623fe1`, and all 12 generated inputs retained their captured hashes. The iOS upload succeeded at **10:05:53 PM** and macOS at **10:06:32 PM America/Phoenix on November 8, 2026**. Both completed processing and show **Testing** in **Briggs (1 Tester / 10 Builds)**. The TestFlight name is **Clay by Briggs Kellogg**; no new invitation was sent.
 
-The development-signed Mac archive is installed at `/Applications/Developer/Clay.app` with its strict code signature verified. Launch, Settings version 0.1.0 (5), the new branding, Light appearance, and returning to System passed visual checks. The existing private-folder bookmark restored after the update. A synthetic note saved successfully, with three immutable records and one matching Markdown export verified in personal iCloud Drive/Clay. This verifies local private-folder publication, not arrival on another device. Physical-phone build 5 installation, phone connection, Windows reception, and a cross-device edit remain unverified.
+The development-signed Mac build 5 archive was installed at `/Applications/Developer/Clay.app` with its strict code signature verified before the build 6 update. Launch, Settings version 0.1.0 (5), the new branding, Light appearance, and returning to System passed visual checks. The existing private-folder bookmark restored after the update. A synthetic note saved successfully, with three immutable records and one matching Markdown export verified in personal iCloud Drive/Clay. The owner then confirmed physical-iPhone build 5 installation, connection to the same iCloud Drive/Clay folder, and receipt of the Mac-created synthetic note. The earlier phone connection error is resolved after the update. The phone edit subsequently appeared in the Mac app with Saved status, independently verifying the return direction. The synthetic Mac–iPhone sync check passed in both directions; the owner deferred the Windows receipt check.
 
 The Mac icon is transparent. iOS has a transparent Dark appearance icon with an opaque Any appearance fallback. No generated replacement artwork is used. The App Store Connect name remains **Clay by Briggs Kellogg**.
 
@@ -14,7 +20,7 @@ Build 4 adds a private selected iCloud Drive folder, offline revision history, c
 
 The development-signed build 4 Mac app was installed at `/Applications/Developer/Clay.app`; launch and Settings version 0.1.0 (4) were verified after the owner accepted the updated-version prompt. Build 5 has since replaced it. Foreground user interaction connected the Mac to personal **iCloud Drive/Clay**, with **Storage: Clay** and **Shared folder updated** shown in Settings. The private folder was initialized with `format.json`, `Records`, and `Exports`; zero records were present, so no private writing was transferred. The previously disabled Mac Connect button was caused by background automation, not app code.
 
-The owner confirmed physical-phone build 4 installation, but its regular-folder connection failed. Build 5 includes a tested path-alias validation fix; resolution of the phone failure still requires a reconnect test. Phone connection, Windows receipt, and an end-to-end cloud check remain pending. Windows exports are derived reading copies; editing them does not update Clay. See TEST_REPORT.md for precise evidence.
+The owner confirmed physical-phone build 4 installation, but its regular-folder connection failed. After updating to build 5, the owner confirmed successful connection and receipt of the Mac-created test note. The return phone edit was independently observed in the Mac app with Saved status, completing the synthetic two-way check. Windows receipt remains postponed. Windows exports are derived reading copies; editing them does not update Clay. See TEST_REPORT.md for precise evidence.
 
 ## Delivered release — 0.1.0 (3)
 
@@ -45,7 +51,7 @@ For the initial release, the feedback email and beta description were saved; tha
 | App Store Connect app ID | [`6832381528`](https://appstoreconnect.apple.com/apps/6832381528/distribution) |
 | Primary language / SKU | English (U.S.) / `clay-01` |
 | Marketing version | 0.1.0 |
-| Current build number | 5 — branding and private-folder path fix; Testing on both platforms |
+| Current build number | 6 — quieter Settings activity candidate; build 5 remains Testing on both platforms |
 | Bundle ID | `com.briggskellogg.clay`, used for the verified signed exports |
 | Platforms | iOS and macOS in one App Store Connect app record |
 | Deployment targets | iOS 17+, macOS 14+ |
@@ -138,4 +144,4 @@ No external beta review or public App Store release was requested or performed. 
 
 **What to test:** Open Clay → Settings on Mac or the library gear on iPhone; switch System, Light, and Dark; verify the choice persists after reopening and System follows device appearance changes. Check the new symbol, name, and maker placement in both appearances. Connect the same dedicated private iCloud Drive/Clay folder on Mac and iPhone, then verify a new scratchpad arrives on the other device, survives reopening, and appears in Windows' readable exports. Test offline edits and concurrent changes. Edit, pin and organize a document; move it to Pieces and back; export and reimport Markdown; quit/relaunch on Mac; background/reopen on iPhone; verify that the last edit persists and save failures are visible. Check the editor with the keyboard open, larger text, and VoiceOver.
 
-**Known limitations:** Writing stays local until a private folder is connected. Phone connection and end-to-end cloud propagation still need verification. Windows exports are reading copies; editing them does not import changes into Clay, and there is no Windows native app. An iPhone Trash recovery screen is not included. The Markdown reading view implements a basic subset.
+**Known limitations:** Writing stays local until a private folder is connected. The synthetic Mac–iPhone sync check passed in both directions. Windows receipt is postponed. Windows exports are reading copies; editing them does not import changes into Clay, and there is no Windows native app. An iPhone Trash recovery screen is not included. The Markdown reading view implements a basic subset.

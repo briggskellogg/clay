@@ -2,7 +2,7 @@
 CLAY_BUNDLE_IDENTIFIER = com.briggskellogg.clay
 PRODUCT_BUNDLE_IDENTIFIER = $(CLAY_BUNDLE_IDENTIFIER)
 MARKETING_VERSION = 0.1.0
-CURRENT_PROJECT_VERSION = 5
+CURRENT_PROJECT_VERSION = 6
 SWIFT_VERSION = 5.0
 CODE_SIGN_STYLE = Automatic
 // Select your team in Xcode, or create this ignored local file from the example.

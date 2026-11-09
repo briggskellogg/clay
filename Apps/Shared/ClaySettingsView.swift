@@ -7,6 +7,7 @@ import AppKit
 struct ClaySettingsView: View {
     @ObservedObject var store: ClayStore
     @State private var choosingLibrary = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @AppStorage(ClayAppearance.storageKey) private var appearance: ClayAppearance = .system
     #if os(iOS)
     @Environment(\.dismiss) private var dismiss
@@ -68,26 +69,35 @@ struct ClaySettingsView: View {
             }
             Section {
                 LabeledContent("Storage", value: store.syncFolderName ?? "This device")
-                Text(store.syncStatus)
-                    .font(.footnote)
-                    .foregroundStyle(ClayTheme.secondary)
-                    .accessibilityLabel("Library sync: " + store.syncStatus)
-                if store.isLibraryConnected {
-                    Text(store.syncDetail)
-                        .font(.caption)
+                HStack(spacing: 8) {
+                    Image(systemName: "circle.fill")
+                        .font(.system(size: 7))
+                        .foregroundStyle(store.isLibraryConnected ? ClayTheme.blue : ClayTheme.secondary)
+                        .symbolEffect(.pulse, options: .repeating,
+                                      isActive: syncIsActive && !reduceMotion)
+                        .frame(width: 10, height: 10)
+                        .accessibilityHidden(true)
+                    Text(store.syncStatus)
+                        .font(.footnote)
                         .foregroundStyle(ClayTheme.secondary)
                 }
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel("Library sync: " + store.syncStatus)
+                .accessibilityValue(syncIsActive ? "Checking for changes" : "Idle")
+                Text(store.syncDetail)
+                    .font(.caption)
+                    .foregroundStyle(ClayTheme.secondary)
                 Button(store.isLibraryConnected ? "Change iCloud Drive folder…" : "Choose iCloud Drive folder…") {
                     choosePrivateFolder()
                 }
-                .disabled(store.isSyncing || store.isConnectingLibrary)
+                .disabled(store.isConnectingLibrary)
                 if store.isLibraryConnected {
                     HStack {
                         Button("Sync Now") { store.requestSync() }
                         Spacer()
                         Button("Disconnect") { Task { await store.disconnectLibraryFolder() } }
                     }
-                    .disabled(store.isSyncing || store.isConnectingLibrary)
+                    .disabled(store.isConnectingLibrary)
                 }
             } header: {
                 Text("Private library")
@@ -105,6 +115,10 @@ struct ClaySettingsView: View {
             }
         }
         #endif
+    }
+
+    private var syncIsActive: Bool {
+        store.isSyncing || store.isConnectingLibrary
     }
 
     private func choosePrivateFolder() {

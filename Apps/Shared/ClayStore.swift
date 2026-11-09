@@ -398,10 +398,11 @@ final class ClayStore: ObservableObject {
     var isLibraryConnected: Bool { syncFolder.isConnected }
 
     func connectLibraryFolder(_ url: URL) async {
-        guard !isSyncing, !isConnectingLibrary else { return }
+        guard !isConnectingLibrary else { return }
         isConnectingLibrary = true
-        // Finish or cancel the old connection's scheduled pass before switching.
-        syncTask?.cancel()
+        // Cancel a scheduled pass, or let an active coordinated exchange finish
+        // before switching. Background activity must not swallow a user action.
+        if !isSyncing { syncTask?.cancel() }
         if let task = syncTask { await task.value }
         syncTask = nil
         defer {
@@ -427,14 +428,15 @@ final class ClayStore: ObservableObject {
     }
 
     func disconnectLibraryFolder() async {
-        guard !isSyncing, !isConnectingLibrary else { return }
+        guard !isConnectingLibrary else { return }
         isConnectingLibrary = true
-        syncTask?.cancel()
+        if !isSyncing { syncTask?.cancel() }
         if let task = syncTask { await task.value }
         syncTask = nil
         syncFolder.disconnect()
         syncFolderName = nil
         syncStatus = "Not connected"
+        syncDetail = "Cloud delivery is managed by iCloud Drive."
         isConnectingLibrary = false
     }
 
@@ -470,6 +472,7 @@ final class ClayStore: ObservableObject {
                 self.syncAgain = false
                 await self.runSyncPass()
             } while self.syncAgain && self.syncFolder.isConnected
+                && !self.isConnectingLibrary && !Task.isCancelled
             self.syncTask = nil
         }
     }
@@ -478,7 +481,8 @@ final class ClayStore: ObservableObject {
         guard syncFolder.isConnected, journalReady else { return }
         isSyncing = true
         syncFolderName = syncFolder.folderName
-        syncStatus = "Updating private library…"
+        // Keep the last result (including errors) visible while the activity
+        // indicator animates. Routine checks should not make Settings flash.
         defer { isSyncing = false }
         do {
             await flush()
