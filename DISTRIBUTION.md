@@ -1,18 +1,20 @@
 # Installing and distributing Clay 0.1
 
-## Current candidate — 0.1.0 (5)
+## Delivered beta — 0.1.0 (5)
 
-Build 5 updates the app-family signature and icons with an exact crop of the original Clay symbol and the byte-preserved gold maker's mark. It also fixes private-folder validation for file-provider paths containing an ancestor alias. The 19 focused path cases and actual transport/Store regression checks passed. Both native Release archives passed; uploads are pending, and build IDs, processing, Briggs assignment, Mac installation/bookmark restoration, and physical-phone build 5 installation/connection remain pending. The candidate's source commit is not yet recorded.
+Build 5 updates the app-family signature and icons with an exact crop of the original Clay symbol and the byte-preserved gold maker's mark. It also fixes private-folder validation for file-provider paths containing an ancestor alias. The 19 focused path cases and actual transport/Store regression checks passed. Both native Release archives passed. The 40 tracked native inputs match source `d106286c96bba138055b8c9a6c1582fe8c623fe1`, and all 12 generated inputs retained their captured hashes. The iOS upload succeeded at **10:05:53 PM** and macOS at **10:06:32 PM America/Phoenix on November 8, 2026**. Both completed processing and show **Testing** in **Briggs (1 Tester / 10 Builds)**. The TestFlight name is **Clay by Briggs Kellogg**; no new invitation was sent.
+
+The development-signed Mac archive is installed at `/Applications/Developer/Clay.app` with its strict code signature verified. Launch, Settings version 0.1.0 (5), the new branding, Light appearance, and returning to System passed visual checks. The existing private-folder bookmark restored after the update. A synthetic note saved successfully, with three immutable records and one matching Markdown export verified in personal iCloud Drive/Clay. This verifies local private-folder publication, not arrival on another device. Physical-phone build 5 installation, phone connection, Windows reception, and a cross-device edit remain unverified.
 
 The Mac icon is transparent. iOS has a transparent Dark appearance icon with an opaque Any appearance fallback. No generated replacement artwork is used. The App Store Connect name remains **Clay by Briggs Kellogg**.
 
-## Delivered beta — 0.1.0 (4)
+## Previous beta — 0.1.0 (4)
 
 Build 4 adds a private selected iCloud Drive folder, offline revision history, conflict copies, durable deletion records, and readable per-device Windows exports. The 38-test core suite, synthetic Store/transport integration, privacy checks, both Debug builds, and Release archives passed. Source `2cc916f3989956c75d73d08cdff42b7cd9979092` produced the uploaded builds. Both uploads succeeded at **9:28 PM America/Phoenix on November 8, 2026**, completed processing, and are **Testing** in Briggs (**1 Tester / 8 Builds**). No duplicate invitation was sent.
 
-The development-signed Mac app is installed at `/Applications/Developer/Clay.app`; launch and Settings version 0.1.0 (4) were verified after the owner accepted the updated-version prompt. Foreground user interaction connected the Mac to personal **iCloud Drive/Clay**, with **Storage: Clay** and **Shared folder updated** shown in Settings. The private folder was initialized with `format.json`, `Records`, and `Exports`; zero records were present, so no private writing was transferred. The previously disabled Mac Connect button was caused by background automation, not app code.
+The development-signed build 4 Mac app was installed at `/Applications/Developer/Clay.app`; launch and Settings version 0.1.0 (4) were verified after the owner accepted the updated-version prompt. Build 5 has since replaced it. Foreground user interaction connected the Mac to personal **iCloud Drive/Clay**, with **Storage: Clay** and **Shared folder updated** shown in Settings. The private folder was initialized with `format.json`, `Records`, and `Exports`; zero records were present, so no private writing was transferred. The previously disabled Mac Connect button was caused by background automation, not app code.
 
-The owner confirmed physical-phone build 4 installation, but its regular-folder connection failed. Build 5 includes the corresponding path-alias validation fix. Phone connection, Windows receipt, and an end-to-end cloud check remain pending. Windows exports are derived reading copies; editing them does not update Clay. See TEST_REPORT.md for precise evidence.
+The owner confirmed physical-phone build 4 installation, but its regular-folder connection failed. Build 5 includes a tested path-alias validation fix; resolution of the phone failure still requires a reconnect test. Phone connection, Windows receipt, and an end-to-end cloud check remain pending. Windows exports are derived reading copies; editing them does not update Clay. See TEST_REPORT.md for precise evidence.
 
 ## Delivered release — 0.1.0 (3)
 
@@ -20,7 +22,7 @@ The shared App Store Connect/TestFlight record was renamed to **Clay by Briggs K
 
 ## Appearance release — 0.1.0 (2)
 
-**0.1.0 (2)** adds the saved System/Light/Dark appearance preference. Source validation, both Debug builds, and both Release archive builds passed. Build 2 is installed at `/Applications/Developer/Clay.app` with its signature verified. Mac Light/Dark switching, Dark → System restoration to OS light, and Dark persistence across quit/relaunch passed; the final preference is System. The iOS simulator showed the new gear and followed an OS dark-mode change in System mode. Opposing Light/Dark overrides passed using temporary launch arguments, which were cleared afterward; live Settings-sheet selection/reset remains pending. Both build 2 uploads succeeded at **5:36 PM America/Phoenix on 2026-11-08**; both completed Apple processing and were assigned to the internal Briggs group. Physical-iPhone installation of build 2 has not yet been confirmed.
+**0.1.0 (2)** adds the saved System/Light/Dark appearance preference. Source validation, both Debug builds, and both Release archive builds passed. Build 2 was installed at `/Applications/Developer/Clay.app` with its signature verified. Mac Light/Dark switching, Dark → System restoration to OS light, and Dark persistence across quit/relaunch passed; the final preference is System. The iOS simulator showed the new gear and followed an OS dark-mode change in System mode. Opposing Light/Dark overrides passed using temporary launch arguments, which were cleared afterward; live Settings-sheet selection/reset remains pending. Both build 2 uploads succeeded at **5:36 PM America/Phoenix on 2026-11-08**; both completed Apple processing and were assigned to the internal Briggs group. Physical-iPhone installation of build 2 has not yet been confirmed.
 
 ## Initial release history — 0.1.0 (1)
 
@@ -32,7 +34,7 @@ The initial Mac installation at `/Applications/Developer/Clay.app` passed signat
 
 Both iOS and macOS **0.1.0 (1)** uploaded successfully at **5:09 PM America/Phoenix on 2026-11-08** and completed Apple processing with a 90-day TestFlight expiry. Both builds were assigned to the internal **Briggs** group using manual distribution. The verified November 8 snapshot showed **1 Tester / 2 Builds**, with `briggs@kellogg.co` as **Invited**. The owner subsequently confirmed successful installation and launch on a physical iPhone.
 
-For the initial release, the feedback email and beta description were saved; that original description identified local-only writing. The build 4 beta description has since been updated and saved to explain optional private sync and Windows reading copies. No external beta review or public App Store release was requested or performed.
+For the initial release, the feedback email and beta description were saved; that original description identified local-only writing. The build 5 beta description is saved and explains optional private sync and Windows reading copies. No external beta review or public App Store release was requested or performed.
 
 ## Build and distribution configuration
 
@@ -43,13 +45,13 @@ For the initial release, the feedback email and beta description were saved; tha
 | App Store Connect app ID | [`6832381528`](https://appstoreconnect.apple.com/apps/6832381528/distribution) |
 | Primary language / SKU | English (U.S.) / `clay-01` |
 | Marketing version | 0.1.0 |
-| Current build number | 5 — branding and private-folder path fix candidate; build 4 is the latest verified Testing release |
+| Current build number | 5 — branding and private-folder path fix; Testing on both platforms |
 | Bundle ID | `com.briggskellogg.clay`, used for the verified signed exports |
 | Platforms | iOS and macOS in one App Store Connect app record |
 | Deployment targets | iOS 17+, macOS 14+ |
 | iOS upload toolchain | Xcode 26+ with iOS 26 SDK+ under Apple's current requirement |
 | Signing | Verified with the configured Apple Developer team; keep team selection and signing credentials local |
-| TestFlight group | Briggs, internal testing, manual distribution; iOS and macOS 0.1.0 builds 1, 2, 3 and 4 assigned |
+| TestFlight group | Briggs, internal testing, manual distribution; iOS and macOS 0.1.0 builds 1, 2, 3, 4 and 5 assigned; 1 Tester / 10 Builds |
 | TestFlight recipient | `briggs@kellogg.co` — Invited on November 8, 2026 |
 | Feedback contact and beta description | Saved in App Store Connect; current description explains optional private sync and Windows reading copies |
 

@@ -29,7 +29,7 @@
     "installed_display_name": "Clay",
     "marketing_version": "0.1.0",
     "build": "5",
-    "status": "candidate_archives_passed_uploads_pending"
+    "status": "delivered_internal_beta"
   },
   "proton_drive": {
     "project_folder": "[projects]/clay",
@@ -42,7 +42,7 @@
   "personal_data_sync": {
     "icloud": {
       "mode": "user_selected_personal_icloud_drive_folder",
-      "status": "mac_connected_phone_retest_pending",
+      "status": "mac_local_publication_verified_phone_windows_pending",
       "recommended_folder": "iCloud Drive/Clay",
       "verified_destination": "iCloud Drive/Clay",
       "account_identifier": null,
@@ -63,18 +63,20 @@
       "cross_device_edit_verified": false,
       "native_windows_app_included": false,
       "mac_connection_verified": true,
-      "connection_issue": "Phone build 4 rejected the selected folder; build 5 includes a tested ancestor-alias fix awaiting phone retest",
-      "writing_transferred_through_app": true,
-      "mac_connection_evidence": "build4_foreground_user_connection_storage_clay_shared_folder_updated",
+      "connection_issue": "Phone build 4 rejected the selected folder; build 5 contains a tested ancestor-alias fix, but resolution of the phone failure requires a reconnect test",
+      "mac_connection_evidence": "build5_saved_folder_bookmark_restored_storage_clay_shared_folder_updated",
       "private_folder_initialization_verified": true,
       "initialized_entries": [
         "ClaySync/format.json",
         "ClaySync/Records",
         "ClaySync/Exports"
       ],
-      "verified_record_count": 0,
+      "verified_record_count": 3,
       "mac_picker_observation": "Earlier disabled Connect button resulted from background automation, not app code",
-      "local_publication_verification": "synthetic_note_saved_with_three_records_and_matching_markdown_export_in_selected_folder"
+      "local_publication_verification": "synthetic_note_saved_with_three_records_and_matching_markdown_export_in_selected_folder",
+      "verified_matching_markdown_export_count": 1,
+      "local_publication_verified": true,
+      "remote_receipt_verified": false
     },
     "cloudkit": null,
     "proton_drive": null
@@ -86,32 +88,18 @@
     "external_pipeline_verification": "not_inspected"
   },
   "verified_release": {
-    "source_commit": "2cc916f3989956c75d73d08cdff42b7cd9979092",
-    "version": "0.1.0",
-    "build": "4",
-    "uploaded_at": "2026-11-08 21:28 America/Phoenix",
-    "ios_build_id": "eb0a10b0-d28d-477e-b651-7176263f0122",
-    "macos_build_id": "ca781985-05c1-4c1d-b5d4-f5223b66189c",
-    "testflight_status": "Testing on both platforms in Briggs",
-    "group_testers": 1,
-    "group_builds": 8,
-    "mac_local_install": "development_signed_install_launch_and_settings_verified",
-    "physical_iphone_build4_install": "owner_confirmed",
-    "new_invitation_sent": false,
-    "beta_description": "saved_optional_private_sync_and_windows_reading_copies",
-    "mac_private_folder_connection": "verified_empty_folder_initialized",
-    "phone_private_folder_connection": "failed_regular_folder_selection"
-  },
-  "pending_release": {
-    "source_commit": null,
+    "source_commit": "d106286c96bba138055b8c9a6c1582fe8c623fe1",
     "version": "0.1.0",
     "build": "5",
-    "status": "archives_passed_mac_installed_uploads_in_progress",
-    "uploaded_at": null,
-    "ios_build_id": null,
-    "macos_build_id": null,
-    "testflight_status": "not_verified",
-    "mac_local_install": "strict_signature_launch_and_branding_verified",
+    "status": "delivered_internal_beta",
+    "uploaded_at": {
+      "ios": "2026-11-08 22:05:53.707 America/Phoenix",
+      "macos": "2026-11-08 22:06:32.644 America/Phoenix"
+    },
+    "ios_build_id": "adc93656-f7d1-4c0e-9e91-a1f09c8ef484",
+    "macos_build_id": "87ae7c2c-abe8-4bf4-846b-a27847c4329d",
+    "testflight_status": "Testing on both platforms in Briggs",
+    "mac_local_install": "development_signed_archive_strict_signature_launch_settings5_branding_light_and_system_verified",
     "mac_saved_folder_access_restore": "verified_after_update",
     "physical_iphone_install": "not_confirmed",
     "phone_private_folder_connection": "not_verified",
@@ -123,7 +111,12 @@
       "focused_path_cases": "19_passed",
       "actual_transport_and_store_regressions": "passed",
       "ios_release_archive": "passed",
-      "macos_release_archive": "passed"
+      "macos_release_archive": "passed",
+      "archive_input_hashes": {
+        "tracked_inputs_matching_source_commit": 40,
+        "generated_inputs_matching_captured_hashes": 12,
+        "total": 52
+      }
     },
     "artwork": {
       "clay_symbol": "exact_pixel_crop_of_original_no_generated_replacement",
@@ -131,9 +124,31 @@
       "macos_icon_background": "transparent",
       "ios_dark_icon_background": "transparent",
       "ios_any_icon_background": "opaque_fallback"
-    }
+    },
+    "group_testers": 1,
+    "group_builds": 10,
+    "mac_private_folder_publication": "synthetic_three_records_and_one_matching_markdown_export_verified",
+    "new_invitation_sent": false,
+    "beta_description": "saved_for_build5_optional_private_sync_and_windows_reading_copies"
   },
   "release_history": [
+    {
+      "source_commit": "2cc916f3989956c75d73d08cdff42b7cd9979092",
+      "version": "0.1.0",
+      "build": "4",
+      "uploaded_at": "2026-11-08 21:28 America/Phoenix",
+      "ios_build_id": "eb0a10b0-d28d-477e-b651-7176263f0122",
+      "macos_build_id": "ca781985-05c1-4c1d-b5d4-f5223b66189c",
+      "testflight_status": "Testing on both platforms in Briggs",
+      "group_testers": 1,
+      "group_builds": 8,
+      "mac_local_install": "development_signed_install_launch_and_settings_verified",
+      "physical_iphone_build4_install": "owner_confirmed",
+      "new_invitation_sent": false,
+      "beta_description": "saved_optional_private_sync_and_windows_reading_copies",
+      "mac_private_folder_connection": "verified_empty_folder_initialized",
+      "phone_private_folder_connection": "failed_regular_folder_selection"
+    },
     {
       "source_commit": "f96326364c1907ef181c361f47a5189d9904e674",
       "version": "0.1.0",
@@ -149,22 +164,20 @@
     }
   ],
   "source_delivery": {
-    "last_pushed_commit": "2cc916f3989956c75d73d08cdff42b7cd9979092",
-    "proton_local_manifest_commit": "2cc916f3989956c75d73d08cdff42b7cd9979092",
-    "proton_local_verified_file_count": 63,
-    "proton_web_manifest_verified": true,
+    "verified_implementation_commit": "d106286c96bba138055b8c9a6c1582fe8c623fe1",
+    "implementation_github_push_verified": true,
+    "implementation_proton_manifest_commit": "d106286c96bba138055b8c9a6c1582fe8c623fe1",
+    "implementation_proton_local_verified_file_count": 67,
+    "implementation_proton_local_hashes_verified": true,
+    "implementation_proton_web_manifest_verified": true,
     "every_remote_file_byte_compared": false,
-    "final_delivery_documentation_publication": "pending",
-    "candidate_source_publication": "pending"
+    "following_documentation_commits": "same_source_sync_workflow_source_mirror_manifest_records_latest_mirrored_commit"
   },
   "pending_verification": {
-    "build5_upload_processing_and_group_assignment": "pending",
-    "mac_build5_install_and_saved_folder_access_restore": "pending",
     "phone_build5_install": "not_confirmed",
     "phone_private_folder_connection": "not_verified",
     "windows_private_data_reception": "not_verified",
     "cross_device_edit": "not_verified",
-    "pc_to_proton_private_data_backup": "not_inspected",
-    "mac_private_folder_connection": "verified_with_build5_bookmark_restore_and_synthetic_publication"
+    "pc_to_proton_private_data_backup": "not_inspected"
   }
 }
