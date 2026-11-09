@@ -6,9 +6,9 @@ Validated on the owner's Mac on **2026-11-08**: all 25 XCTest methods passed; ma
 
 A signed Mac archive is valid and the exported Mac `.pkg` is verified. With no registered development devices, an unsigned iOS archive was exported using `app-store-connect` and an explicit `teamID`; the resulting signed `.ipa` is verified.
 
-Clay is installed at `/Applications/Developer/Clay.app`, with its signature verified and successful reopening confirmed. The Mac smoke check passed: empty library, new Scratchpad with Unicode title/text, move to Pieces and back, and quit/reopen with the full text intact and Saved status. The temporary verification document was moved to recoverable Trash, leaving the active library empty. The iPhone 17 Pro simulator on iOS 26.2 booted, installed, and launched Clay; visual inspection confirmed the empty library, creation/import controls, and Scratchpads/Pieces tabs. iOS editing/persistence, physical-phone installation, and the other acceptance scenarios in `TEST_REPORT.md` remain pending.
+Clay is installed at `/Applications/Developer/Clay.app`, with its signature verified and successful reopening confirmed. The Mac smoke check passed: empty library, new Scratchpad with Unicode title/text, move to Pieces and back, and quit/reopen with the full text intact and Saved status. The temporary verification document was moved to recoverable Trash, leaving the active library empty. The iPhone 17 Pro simulator on iOS 26.2 booted, installed, and launched Clay; visual inspection confirmed the empty library, creation/import controls, and Scratchpads/Pieces tabs. The owner confirmed physical-iPhone installation and launch through TestFlight on **2026-11-08**. iOS editing/persistence and the other acceptance scenarios in `TEST_REPORT.md` remain pending.
 
-Both iOS and macOS **0.1.0 (1)** uploaded successfully at **5:09 PM America/Phoenix on 2026-11-08** and completed Apple processing with a 90-day TestFlight expiry. Both builds are assigned to the internal **Briggs** group using manual distribution. The group shows **1 Tester / 2 Builds**, with `briggs@kellogg.co` confirmed as **Invited** on November 8, 2026. Invitation acceptance and physical-phone installation remain unverified.
+Both iOS and macOS **0.1.0 (1)** uploaded successfully at **5:09 PM America/Phoenix on 2026-11-08** and completed Apple processing with a 90-day TestFlight expiry. Both builds were assigned to the internal **Briggs** group using manual distribution. The verified November 8 snapshot showed **1 Tester / 2 Builds**, with `briggs@kellogg.co` as **Invited**. The owner subsequently confirmed successful installation and launch on a physical iPhone.
 
 The feedback email and beta description were saved; the description identifies the app's local-only writing libraries. No external beta review or public App Store release was requested or performed.
 
@@ -44,7 +44,7 @@ bash scripts/build.sh macos
 bash scripts/build.sh ios
 ```
 
-Each script first prepares app icons from the supplied original logo, runs the core tests, then builds the relevant application without distribution signing. These build checks passed on 2026-11-08. The iOS command builds for a simulator; simulator launch and initial UI inspection passed, while iOS editing/persistence and physical-iPhone checks remain as listed in `TEST_REPORT.md`.
+Each script first prepares app icons from the supplied original logo, runs the core tests, then builds the relevant application without distribution signing. These build checks passed on 2026-11-08. The iOS command builds for a simulator; simulator launch and initial UI inspection passed, and the owner confirmed physical-iPhone installation and launch. iOS editing, persistence, accessibility, and other behavior checks remain as listed in `TEST_REPORT.md`.
 
 Install the Mac build using `Install Clay.command` or `bash scripts/install-mac.sh`. The installer uses ad-hoc signing for the local app, preserves an older installation, and opens the installed result. It creates and uses `/Applications/Developer`, or `~/Applications/Developer` when `/Applications` is not writable. This is a local development build, not a notarized download for general distribution.
 
@@ -102,7 +102,7 @@ The privacy manifest declares no collected data or tracking and declares app-pri
 
 ## 5. Internal testing and invitation
 
-Internal testing is configured in the **Briggs** group with manual build distribution. Both processed **0.1.0 (1)** builds are assigned; the group shows **1 Tester / 2 Builds**. App Store Connect confirms `briggs@kellogg.co` as **Invited** on November 8, 2026. The owner can accept the invitation through the email or TestFlight; acceptance and a physical-iPhone install have not yet been verified.
+Internal testing is configured in the **Briggs** group with manual build distribution. Both processed **0.1.0 (1)** builds were assigned; the verified November 8 snapshot showed **1 Tester / 2 Builds** and `briggs@kellogg.co` as **Invited**. In response to the TestFlight installation instruction, the owner reported **“Installed and opened”** on November 8, 2026, confirming physical-iPhone installation and launch. Editor, persistence, background-save, and accessibility checks remain pending.
 
 For later builds, wait for processing and assign the new iOS/macOS builds to Briggs manually. Internal testers need the appropriate App Store Connect account and app access. [Apple: Add internal testers](https://developer.apple.com/help/app-store-connect/test-a-beta-version/add-internal-testers)
 

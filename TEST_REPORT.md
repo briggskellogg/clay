@@ -1,6 +1,6 @@
 # Clay 0.1 validation
 
-Updated 2026-11-08 after native testing on the owner's Mac. This report distinguishes completed source, build, signing, and Mac smoke checks from the remaining acceptance work.
+Updated 2026-11-08 after native Mac and simulator testing and the owner's physical-iPhone installation/launch confirmation. This report distinguishes independently observed checks, owner-reported results, and remaining acceptance work.
 
 ## Source and package checks
 
@@ -53,11 +53,12 @@ The build and archive scripts run this gate automatically. A failing test stops 
 | Mac installation | Installed at `/Applications/Developer/Clay.app`, signature verified, and reopened successfully |
 | Mac UI smoke check | Passed: empty library, create/edit Unicode title and text, move Scratchpad to Pieces and back, quit/reopen with complete text and Saved status; temporary verification document moved to recoverable Trash, leaving the active library empty |
 | iOS simulator launch/UI smoke | Passed on iPhone 17 Pro simulator, iOS 26.2: boot, install, and launch; screenshot showed healthy empty Scratchpads, New scratchpad, import/+ controls, and Scratchpads/Pieces tabs |
-| iOS editing/persistence, physical phone installation, and accessibility inspection | Pending; simulator launch/UI smoke does not establish these results |
+| Physical iPhone installation and launch | Owner-confirmed on November 8, 2026: “Installed and opened” after following the TestFlight installation instructions |
+| iOS editing/persistence and accessibility inspection | Pending |
 | App Store Connect record | Created: [Clay — Scratchpads & Pieces](https://appstoreconnect.apple.com/apps/6832381528/distribution), app ID `6832381528`, bundle `com.briggskellogg.clay`, iOS/macOS |
 | TestFlight upload | Both iOS and macOS 0.1.0 (1) uploaded successfully at 5:09 PM America/Phoenix on 2026-11-08 |
-| TestFlight processing and internal distribution | Both builds processed with a 90-day expiry and assigned to internal group Briggs using manual distribution; group shows 1 Tester / 2 Builds |
-| TestFlight invitation | `briggs@kellogg.co` confirmed as Invited on November 8, 2026; invitation acceptance and physical-device installation not yet verified |
+| TestFlight processing and internal distribution | Both builds processed with a 90-day expiry and assigned to internal group Briggs using manual distribution; verified November 8 snapshot showed 1 Tester / 2 Builds |
+| TestFlight invitation | App Store Connect showed `briggs@kellogg.co` as Invited on November 8, 2026; owner subsequently confirmed physical-iPhone installation/launch. App Store Connect status was not refreshed after that report. |
 | Beta information | Feedback email and description saved; description identifies local-only writing libraries |
 | External beta review and public App Store release | Neither requested nor performed |
 
@@ -68,6 +69,7 @@ The completed Mac smoke check used throwaway writing. Complete the pending check
 | Scenario | Expected result | Status |
 | --- | --- | --- |
 | Fresh install | Empty library with useful creation controls; no example writing inserted | Passed on Mac and iOS simulator |
+| Install and open through TestFlight on a physical iPhone | App installs and launches | Owner-confirmed November 8, 2026 |
 | Create and edit Unicode writing | Title and full body remain intact | Passed on Mac |
 | Create immediately after launch | Initial loading does not replace the newly created document or typed text | Pending timing/race check |
 | Edit, quit immediately, reopen on Mac | Last edit persists; quit waits for saving | Basic quit/reopen passed; immediate-quit stress check pending |
