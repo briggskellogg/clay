@@ -16,7 +16,7 @@ The update adds a persistent System/Light/Dark setting in Mac Settings and the i
 | iOS simulator System appearance | New Settings gear observed; System followed a live simulator OS change to dark |
 | iOS simulator manual overrides | Visually passed: Dark with a light OS and Light with a dark OS, set through temporary UserDefaults launch arguments. Arguments were cleared afterward; System and the simulator's original light appearance were restored. |
 | Live iOS Settings sheet selection/reset | Pending: UI automation coordinate control failed, so the live sheet interaction was not tested |
-| TestFlight delivery | Both iOS and macOS build 2 uploads succeeded at 5:36 PM America/Phoenix on 2026-11-08, with Apple package processing confirmed. TestFlight group assignment remains pending. |
+| TestFlight delivery | Both iOS and macOS build 2 uploads succeeded at 5:36 PM America/Phoenix on 2026-11-08; both completed Apple processing and were assigned to the internal Briggs group. Both show Testing; the group shows 1 Tester / 4 Builds. No duplicate invitation was sent. |
 | Physical iPhone build 2 | Not verified; owner's prior installation/launch confirmation applies to build 1 |
 
 ## Source and package checks

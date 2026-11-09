@@ -2,7 +2,7 @@
 
 ## Current status
 
-**0.1.0 (2)** adds the saved System/Light/Dark appearance preference. Source validation, both Debug builds, and both Release archive builds passed. Build 2 is installed at `/Applications/Developer/Clay.app` with its signature verified. Mac Light/Dark switching, Dark → System restoration to OS light, and Dark persistence across quit/relaunch passed; the final preference is System. The iOS simulator showed the new gear and followed an OS dark-mode change in System mode. Opposing Light/Dark overrides passed using temporary launch arguments, which were cleared afterward; live Settings-sheet selection/reset remains pending. Both build 2 uploads succeeded at **5:36 PM America/Phoenix on 2026-11-08**, with Apple package processing confirmed. TestFlight group assignment and physical-iPhone installation of build 2 remain pending.
+**0.1.0 (2)** adds the saved System/Light/Dark appearance preference. Source validation, both Debug builds, and both Release archive builds passed. Build 2 is installed at `/Applications/Developer/Clay.app` with its signature verified. Mac Light/Dark switching, Dark → System restoration to OS light, and Dark persistence across quit/relaunch passed; the final preference is System. The iOS simulator showed the new gear and followed an OS dark-mode change in System mode. Opposing Light/Dark overrides passed using temporary launch arguments, which were cleared afterward; live Settings-sheet selection/reset remains pending. Both build 2 uploads succeeded at **5:36 PM America/Phoenix on 2026-11-08**; both completed Apple processing and were assigned to the internal Briggs group. Physical-iPhone installation of build 2 has not yet been confirmed.
 
 ## Initial release history — 0.1.0 (1)
 
@@ -31,7 +31,7 @@ The feedback email and beta description were saved; the description identifies t
 | Deployment targets | iOS 17+, macOS 14+ |
 | iOS upload toolchain | Xcode 26+ with iOS 26 SDK+ under Apple's current requirement |
 | Signing | Verified with the configured Apple Developer team; keep team selection and signing credentials local |
-| TestFlight group | Briggs, internal testing, manual distribution; both iOS and macOS 0.1.0 (1) assigned, build 2 uploaded but group assignment pending |
+| TestFlight group | Briggs, internal testing, manual distribution; iOS and macOS 0.1.0 builds 1 and 2 assigned |
 | TestFlight recipient | `briggs@kellogg.co` — Invited on November 8, 2026 |
 | Feedback contact and beta description | Saved in App Store Connect; description states local-only writing |
 
@@ -106,7 +106,7 @@ The privacy manifest declares no collected data or tracking and declares app-pri
 
 ## 5. Internal testing and invitation
 
-Internal testing is configured in the **Briggs** group with manual build distribution. Both processed **0.1.0 (1)** builds were assigned; the verified November 8 snapshot showed **1 Tester / 2 Builds** and `briggs@kellogg.co` as **Invited**. In response to the TestFlight installation instruction, the owner reported **“Installed and opened”** on November 8, 2026, confirming physical-iPhone installation and launch of build 1. Build 2 uploads succeeded; group assignment is pending. Editor, persistence, background-save, and accessibility checks remain pending.
+Internal testing is configured in the **Briggs** group with manual build distribution. Both processed **0.1.0 (1)** builds were assigned; the verified November 8 snapshot showed **1 Tester / 2 Builds** and `briggs@kellogg.co` as **Invited**. In response to the TestFlight installation instruction, the owner reported **“Installed and opened”** on November 8, 2026, confirming physical-iPhone installation and launch of build 1. Both build 2 uploads completed processing and are also assigned to Briggs; no duplicate invitation was sent. Editor, persistence, background-save, and accessibility checks remain pending.
 
 For later builds, wait for processing and assign the new iOS/macOS builds to Briggs manually. Internal testers need the appropriate App Store Connect account and app access. [Apple: Add internal testers](https://developer.apple.com/help/app-store-connect/test-a-beta-version/add-internal-testers)
 
