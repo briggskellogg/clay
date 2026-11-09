@@ -1,0 +1,12 @@
+.DS_Store
+.build/
+build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+Config/Signing.local.xcconfig
+Resources/Assets.xcassets/AppIcon.appiconset/*.png
+*.p12
+*.mobileprovision
+*.provisionprofile
+AuthKey_*.p8

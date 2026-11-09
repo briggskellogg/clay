@@ -1,0 +1,3 @@
+// Copy to Signing.local.xcconfig and enter the team ID shown in your Apple account.
+// Never commit private signing credentials or API keys.
+DEVELOPMENT_TEAM = YOURTEAMID

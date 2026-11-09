@@ -1,0 +1,714 @@
+// !$*UTF8*$!
+{
+	"archiveVersion" = 1;
+	"classes" = {
+
+	};
+	"objectVersion" = 56;
+	"objects" = {
+		"A3C6F5DD80468C14486B8187" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"path" = "Apps/Shared/ClayStore.swift";
+			"sourceTree" = "SOURCE_ROOT";
+		};
+		"E60984357126E955F813B618" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"path" = "Apps/Shared/ClayTheme.swift";
+			"sourceTree" = "SOURCE_ROOT";
+		};
+		"48E75E02339F31719356134E" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"path" = "Apps/Shared/DocumentEditor.swift";
+			"sourceTree" = "SOURCE_ROOT";
+		};
+		"ED41E70F87778E8616731301" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"path" = "Apps/Shared/MarkdownFile.swift";
+			"sourceTree" = "SOURCE_ROOT";
+		};
+		"0257FDB22679E510DF61516D" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"path" = "Apps/Shared/MarkdownReadingView.swift";
+			"sourceTree" = "SOURCE_ROOT";
+		};
+		"73181EA81B543D44BB797502" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"path" = "Apps/iOS/ClayIOSApp.swift";
+			"sourceTree" = "SOURCE_ROOT";
+		};
+		"5F93680B43F1CEE53B630CD7" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"path" = "Apps/iOS/ClayIOSLibraryView.swift";
+			"sourceTree" = "SOURCE_ROOT";
+		};
+		"3E0F52CDD6FA217B2C86F70D" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"path" = "Apps/iOS/ClayIOSLifecycle.swift";
+			"sourceTree" = "SOURCE_ROOT";
+		};
+		"9F1A68B9A711F104B87640AA" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"path" = "Apps/macOS/ClayMacActions.swift";
+			"sourceTree" = "SOURCE_ROOT";
+		};
+		"F1C45B58B0498A26FC50C1E9" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"path" = "Apps/macOS/ClayMacApp.swift";
+			"sourceTree" = "SOURCE_ROOT";
+		};
+		"4A494323009BC43D497EC3C4" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"path" = "Apps/macOS/ClayMacAppDelegate.swift";
+			"sourceTree" = "SOURCE_ROOT";
+		};
+		"B4321BF3C763F8301B20DEB4" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"path" = "Apps/macOS/ClayMacCommands.swift";
+			"sourceTree" = "SOURCE_ROOT";
+		};
+		"AC9669F38467F60B1B41858E" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"path" = "Apps/macOS/ClayMacLibraryView.swift";
+			"sourceTree" = "SOURCE_ROOT";
+		};
+		"954833ADEB5C9A836B1F4940" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "folder";
+			"path" = "Resources/Fonts";
+			"sourceTree" = "SOURCE_ROOT";
+		};
+		"E0E27618A2D2A8FEBDD49F35" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "folder.assetcatalog";
+			"path" = "Resources/Assets.xcassets";
+			"sourceTree" = "SOURCE_ROOT";
+		};
+		"6327A1005FF0B783151E530B" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "text.xml";
+			"path" = "Resources/PrivacyInfo.xcprivacy";
+			"sourceTree" = "SOURCE_ROOT";
+		};
+		"2C94172D67DA116C7BB32C13" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "text.xcconfig";
+			"path" = "Config/Shared.xcconfig";
+			"sourceTree" = "SOURCE_ROOT";
+		};
+		"C7C27D0891687E6CBD004E40" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "text.plist.xml";
+			"path" = "Config/Info-macOS.plist";
+			"sourceTree" = "SOURCE_ROOT";
+		};
+		"87ACE8FEEB1FCF25B2D3453A" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "text.plist.xml";
+			"path" = "Config/Info-iOS.plist";
+			"sourceTree" = "SOURCE_ROOT";
+		};
+		"7B97648A74733849ED4CF00A" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "text.plist.entitlements";
+			"path" = "Config/Clay-macOS.entitlements";
+			"sourceTree" = "SOURCE_ROOT";
+		};
+		"BCFA14070C8F570C520EF850" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"path" = "Package.swift";
+			"sourceTree" = "SOURCE_ROOT";
+		};
+		"CF21FADD42EAB8F8303A3895" = {
+			"isa" = "XCLocalSwiftPackageReference";
+			"relativePath" = ".";
+		};
+		"5C7C72C521E45929071F2B81" = {
+			"isa" = "PBXFileReference";
+			"explicitFileType" = "wrapper.application";
+			"includeInIndex" = 0;
+			"path" = "Clay.app";
+			"sourceTree" = "BUILT_PRODUCTS_DIR";
+		};
+		"074A0A30130C390BDCE0EF89" = {
+			"isa" = "XCSwiftPackageProductDependency";
+			"package" = "CF21FADD42EAB8F8303A3895";
+			"productName" = "ClayCore";
+		};
+		"5D5FCF7B1A54CA59F88CD290" = {
+			"isa" = "PBXBuildFile";
+			"productRef" = "074A0A30130C390BDCE0EF89";
+		};
+		"076607818F9D45C8C55E4758" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "A3C6F5DD80468C14486B8187";
+		};
+		"0E9857DD1FF3F7DCE063EC49" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "E60984357126E955F813B618";
+		};
+		"802DE90534439D4ABF9F5B15" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "48E75E02339F31719356134E";
+		};
+		"60D57B8CD5C17B9047B75860" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "ED41E70F87778E8616731301";
+		};
+		"DD9F9A64FD449995D0DC2999" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "0257FDB22679E510DF61516D";
+		};
+		"DCEBBE98752C4143A770A41B" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "9F1A68B9A711F104B87640AA";
+		};
+		"953B8582F5E13EB978CBD372" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "F1C45B58B0498A26FC50C1E9";
+		};
+		"C62DC49E1EAD100B20EABF2C" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "4A494323009BC43D497EC3C4";
+		};
+		"BD052ECEA2B942134DE39BBC" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "B4321BF3C763F8301B20DEB4";
+		};
+		"2D7461781FD632B315CEAA0C" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "AC9669F38467F60B1B41858E";
+		};
+		"650B3BC7319809F5E324608B" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "954833ADEB5C9A836B1F4940";
+		};
+		"20D9733676CAEA81AC4F70F3" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "E0E27618A2D2A8FEBDD49F35";
+		};
+		"8A389AE02316CC14F9DF33B1" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "6327A1005FF0B783151E530B";
+		};
+		"043B77441C9E983C9D94A75F" = {
+			"isa" = "PBXShellScriptBuildPhase";
+			"buildActionMask" = 2147483647;
+			"files" = (
+
+			);
+			"name" = "Prepare Clay app icons";
+			"inputPaths" = (
+				"$(SRCROOT)/scripts/prepare_assets.swift",
+				"$(SRCROOT)/Resources/Assets.xcassets/ClayMark.imageset/clay.png",
+			);
+			"outputPaths" = (
+				"$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/mac-16@1x.png",
+				"$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/mac-16@2x.png",
+				"$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/mac-32@1x.png",
+				"$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/mac-32@2x.png",
+				"$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/mac-128@1x.png",
+				"$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/mac-128@2x.png",
+				"$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/mac-256@1x.png",
+				"$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/mac-256@2x.png",
+				"$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/mac-512@1x.png",
+				"$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/mac-512@2x.png",
+				"$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/ios-1024.png",
+			);
+			"runOnlyForDeploymentPostprocessing" = 0;
+			"shellPath" = "/bin/bash";
+			"shellScript" = "set -euo pipefail\nunset SDKROOT\n/usr/bin/xcrun --sdk macosx swift \"$SRCROOT/scripts/prepare_assets.swift\" \"$SRCROOT\"\n";
+		};
+		"EF4E385B728369A0CF3BDF3D" = {
+			"isa" = "PBXSourcesBuildPhase";
+			"buildActionMask" = 2147483647;
+			"files" = (
+				"076607818F9D45C8C55E4758",
+				"0E9857DD1FF3F7DCE063EC49",
+				"802DE90534439D4ABF9F5B15",
+				"60D57B8CD5C17B9047B75860",
+				"DD9F9A64FD449995D0DC2999",
+				"DCEBBE98752C4143A770A41B",
+				"953B8582F5E13EB978CBD372",
+				"C62DC49E1EAD100B20EABF2C",
+				"BD052ECEA2B942134DE39BBC",
+				"2D7461781FD632B315CEAA0C",
+			);
+			"runOnlyForDeploymentPostprocessing" = 0;
+		};
+		"5EBE4AEBC98804FC5EA35508" = {
+			"isa" = "PBXFrameworksBuildPhase";
+			"buildActionMask" = 2147483647;
+			"files" = (
+				"5D5FCF7B1A54CA59F88CD290",
+			);
+			"runOnlyForDeploymentPostprocessing" = 0;
+		};
+		"309C4BE1BA80547D55A32054" = {
+			"isa" = "PBXResourcesBuildPhase";
+			"buildActionMask" = 2147483647;
+			"files" = (
+				"650B3BC7319809F5E324608B",
+				"20D9733676CAEA81AC4F70F3",
+				"8A389AE02316CC14F9DF33B1",
+			);
+			"runOnlyForDeploymentPostprocessing" = 0;
+		};
+		"7E76B6AD04A0222EE767B0DF" = {
+			"isa" = "XCBuildConfiguration";
+			"baseConfigurationReference" = "2C94172D67DA116C7BB32C13";
+			"buildSettings" = {
+				"PRODUCT_NAME" = "Clay";
+				"PRODUCT_MODULE_NAME" = "ClayMac";
+				"INFOPLIST_FILE" = "Config/Info-macOS.plist";
+				"GENERATE_INFOPLIST_FILE" = "NO";
+				"ASSETCATALOG_COMPILER_APPICON_NAME" = "AppIcon";
+				"ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS" = "NO";
+				"ENABLE_USER_SCRIPT_SANDBOXING" = "NO";
+				"SWIFT_EMIT_LOC_STRINGS" = "YES";
+				"SWIFT_STRICT_CONCURRENCY" = "targeted";
+				"LD_RUNPATH_SEARCH_PATHS" = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				"SKIP_INSTALL" = "NO";
+				"SDKROOT" = "macosx";
+				"SUPPORTED_PLATFORMS" = "macosx";
+				"MACOSX_DEPLOYMENT_TARGET" = "14.0";
+				"CODE_SIGN_ENTITLEMENTS" = "Config/Clay-macOS.entitlements";
+				"ENABLE_HARDENED_RUNTIME" = "YES";
+				"COMBINE_HIDPI_IMAGES" = "YES";
+			};
+			"name" = "Debug";
+		};
+		"357B50330AFD741B6040C605" = {
+			"isa" = "XCBuildConfiguration";
+			"baseConfigurationReference" = "2C94172D67DA116C7BB32C13";
+			"buildSettings" = {
+				"PRODUCT_NAME" = "Clay";
+				"PRODUCT_MODULE_NAME" = "ClayMac";
+				"INFOPLIST_FILE" = "Config/Info-macOS.plist";
+				"GENERATE_INFOPLIST_FILE" = "NO";
+				"ASSETCATALOG_COMPILER_APPICON_NAME" = "AppIcon";
+				"ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS" = "NO";
+				"ENABLE_USER_SCRIPT_SANDBOXING" = "NO";
+				"SWIFT_EMIT_LOC_STRINGS" = "YES";
+				"SWIFT_STRICT_CONCURRENCY" = "targeted";
+				"LD_RUNPATH_SEARCH_PATHS" = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				"SKIP_INSTALL" = "NO";
+				"SDKROOT" = "macosx";
+				"SUPPORTED_PLATFORMS" = "macosx";
+				"MACOSX_DEPLOYMENT_TARGET" = "14.0";
+				"CODE_SIGN_ENTITLEMENTS" = "Config/Clay-macOS.entitlements";
+				"ENABLE_HARDENED_RUNTIME" = "YES";
+				"COMBINE_HIDPI_IMAGES" = "YES";
+			};
+			"name" = "Release";
+		};
+		"F762131C3B77F95226B0CCC8" = {
+			"isa" = "XCConfigurationList";
+			"buildConfigurations" = (
+				"7E76B6AD04A0222EE767B0DF",
+				"357B50330AFD741B6040C605",
+			);
+			"defaultConfigurationIsVisible" = 0;
+			"defaultConfigurationName" = "Release";
+		};
+		"2195A216C06BFD5D81F85AD2" = {
+			"isa" = "PBXNativeTarget";
+			"buildConfigurationList" = "F762131C3B77F95226B0CCC8";
+			"buildPhases" = (
+				"043B77441C9E983C9D94A75F",
+				"EF4E385B728369A0CF3BDF3D",
+				"5EBE4AEBC98804FC5EA35508",
+				"309C4BE1BA80547D55A32054",
+			);
+			"buildRules" = (
+
+			);
+			"dependencies" = (
+
+			);
+			"name" = "Clay-macOS";
+			"packageProductDependencies" = (
+				"074A0A30130C390BDCE0EF89",
+			);
+			"productName" = "Clay";
+			"productReference" = "5C7C72C521E45929071F2B81";
+			"productType" = "com.apple.product-type.application";
+		};
+		"8B8D373BA723FCF7841A503C" = {
+			"isa" = "PBXFileReference";
+			"explicitFileType" = "wrapper.application";
+			"includeInIndex" = 0;
+			"path" = "Clay.app";
+			"sourceTree" = "BUILT_PRODUCTS_DIR";
+		};
+		"2B12FAFD60A1DDE3A84783C0" = {
+			"isa" = "XCSwiftPackageProductDependency";
+			"package" = "CF21FADD42EAB8F8303A3895";
+			"productName" = "ClayCore";
+		};
+		"02B4907494A149FD0FAB99AF" = {
+			"isa" = "PBXBuildFile";
+			"productRef" = "2B12FAFD60A1DDE3A84783C0";
+		};
+		"C7CE2831AC8D083375F6BA75" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "A3C6F5DD80468C14486B8187";
+		};
+		"9AF7F88D86C346A1EB9659B4" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "E60984357126E955F813B618";
+		};
+		"A5FA1CA11F0E339EA408C46D" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "48E75E02339F31719356134E";
+		};
+		"9FD514FC97A6E5A1531F1D0B" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "ED41E70F87778E8616731301";
+		};
+		"EA214C0C5C1A2E2AD335D9A8" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "0257FDB22679E510DF61516D";
+		};
+		"7428C36AD95E06C68DE9A132" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "73181EA81B543D44BB797502";
+		};
+		"97623D704B3A60ED4235078D" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "5F93680B43F1CEE53B630CD7";
+		};
+		"9B4403B21EBD06A6DA8A3CC5" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "3E0F52CDD6FA217B2C86F70D";
+		};
+		"344103DB578CEF95AE2727F9" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "954833ADEB5C9A836B1F4940";
+		};
+		"A180F807FEC5A8B06E19C8C9" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "E0E27618A2D2A8FEBDD49F35";
+		};
+		"1815C06B51E1A3D9620E8308" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "6327A1005FF0B783151E530B";
+		};
+		"D5D25294BA42FB02703AE285" = {
+			"isa" = "PBXShellScriptBuildPhase";
+			"buildActionMask" = 2147483647;
+			"files" = (
+
+			);
+			"name" = "Prepare Clay app icons";
+			"inputPaths" = (
+				"$(SRCROOT)/scripts/prepare_assets.swift",
+				"$(SRCROOT)/Resources/Assets.xcassets/ClayMark.imageset/clay.png",
+			);
+			"outputPaths" = (
+				"$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/mac-16@1x.png",
+				"$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/mac-16@2x.png",
+				"$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/mac-32@1x.png",
+				"$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/mac-32@2x.png",
+				"$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/mac-128@1x.png",
+				"$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/mac-128@2x.png",
+				"$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/mac-256@1x.png",
+				"$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/mac-256@2x.png",
+				"$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/mac-512@1x.png",
+				"$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/mac-512@2x.png",
+				"$(SRCROOT)/Resources/Assets.xcassets/AppIcon.appiconset/ios-1024.png",
+			);
+			"runOnlyForDeploymentPostprocessing" = 0;
+			"shellPath" = "/bin/bash";
+			"shellScript" = "set -euo pipefail\nunset SDKROOT\n/usr/bin/xcrun --sdk macosx swift \"$SRCROOT/scripts/prepare_assets.swift\" \"$SRCROOT\"\n";
+		};
+		"72FDBFB6DA8E67781317E5FF" = {
+			"isa" = "PBXSourcesBuildPhase";
+			"buildActionMask" = 2147483647;
+			"files" = (
+				"C7CE2831AC8D083375F6BA75",
+				"9AF7F88D86C346A1EB9659B4",
+				"A5FA1CA11F0E339EA408C46D",
+				"9FD514FC97A6E5A1531F1D0B",
+				"EA214C0C5C1A2E2AD335D9A8",
+				"7428C36AD95E06C68DE9A132",
+				"97623D704B3A60ED4235078D",
+				"9B4403B21EBD06A6DA8A3CC5",
+			);
+			"runOnlyForDeploymentPostprocessing" = 0;
+		};
+		"991FC8C57164937B224838D0" = {
+			"isa" = "PBXFrameworksBuildPhase";
+			"buildActionMask" = 2147483647;
+			"files" = (
+				"02B4907494A149FD0FAB99AF",
+			);
+			"runOnlyForDeploymentPostprocessing" = 0;
+		};
+		"6D0C3F16C78FC0FBEEAD3238" = {
+			"isa" = "PBXResourcesBuildPhase";
+			"buildActionMask" = 2147483647;
+			"files" = (
+				"344103DB578CEF95AE2727F9",
+				"A180F807FEC5A8B06E19C8C9",
+				"1815C06B51E1A3D9620E8308",
+			);
+			"runOnlyForDeploymentPostprocessing" = 0;
+		};
+		"285D30BDA13EBEB2A5635396" = {
+			"isa" = "XCBuildConfiguration";
+			"baseConfigurationReference" = "2C94172D67DA116C7BB32C13";
+			"buildSettings" = {
+				"PRODUCT_NAME" = "Clay";
+				"PRODUCT_MODULE_NAME" = "ClayIOS";
+				"INFOPLIST_FILE" = "Config/Info-iOS.plist";
+				"GENERATE_INFOPLIST_FILE" = "NO";
+				"ASSETCATALOG_COMPILER_APPICON_NAME" = "AppIcon";
+				"ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS" = "NO";
+				"ENABLE_USER_SCRIPT_SANDBOXING" = "NO";
+				"SWIFT_EMIT_LOC_STRINGS" = "YES";
+				"SWIFT_STRICT_CONCURRENCY" = "targeted";
+				"LD_RUNPATH_SEARCH_PATHS" = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				"SKIP_INSTALL" = "NO";
+				"SDKROOT" = "iphoneos";
+				"SUPPORTED_PLATFORMS" = "iphoneos iphonesimulator";
+				"IPHONEOS_DEPLOYMENT_TARGET" = "17.0";
+				"TARGETED_DEVICE_FAMILY" = "1,2";
+				"SUPPORTS_MACCATALYST" = "NO";
+				"SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD" = "NO";
+			};
+			"name" = "Debug";
+		};
+		"96A57F88A3CD01931C53D2C8" = {
+			"isa" = "XCBuildConfiguration";
+			"baseConfigurationReference" = "2C94172D67DA116C7BB32C13";
+			"buildSettings" = {
+				"PRODUCT_NAME" = "Clay";
+				"PRODUCT_MODULE_NAME" = "ClayIOS";
+				"INFOPLIST_FILE" = "Config/Info-iOS.plist";
+				"GENERATE_INFOPLIST_FILE" = "NO";
+				"ASSETCATALOG_COMPILER_APPICON_NAME" = "AppIcon";
+				"ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS" = "NO";
+				"ENABLE_USER_SCRIPT_SANDBOXING" = "NO";
+				"SWIFT_EMIT_LOC_STRINGS" = "YES";
+				"SWIFT_STRICT_CONCURRENCY" = "targeted";
+				"LD_RUNPATH_SEARCH_PATHS" = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				"SKIP_INSTALL" = "NO";
+				"SDKROOT" = "iphoneos";
+				"SUPPORTED_PLATFORMS" = "iphoneos iphonesimulator";
+				"IPHONEOS_DEPLOYMENT_TARGET" = "17.0";
+				"TARGETED_DEVICE_FAMILY" = "1,2";
+				"SUPPORTS_MACCATALYST" = "NO";
+				"SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD" = "NO";
+			};
+			"name" = "Release";
+		};
+		"7085ED9BF9B0E07F710EDD1F" = {
+			"isa" = "XCConfigurationList";
+			"buildConfigurations" = (
+				"285D30BDA13EBEB2A5635396",
+				"96A57F88A3CD01931C53D2C8",
+			);
+			"defaultConfigurationIsVisible" = 0;
+			"defaultConfigurationName" = "Release";
+		};
+		"3B0367E0581B981BE5F22BCD" = {
+			"isa" = "PBXNativeTarget";
+			"buildConfigurationList" = "7085ED9BF9B0E07F710EDD1F";
+			"buildPhases" = (
+				"D5D25294BA42FB02703AE285",
+				"72FDBFB6DA8E67781317E5FF",
+				"991FC8C57164937B224838D0",
+				"6D0C3F16C78FC0FBEEAD3238",
+			);
+			"buildRules" = (
+
+			);
+			"dependencies" = (
+
+			);
+			"name" = "Clay-iOS";
+			"packageProductDependencies" = (
+				"2B12FAFD60A1DDE3A84783C0",
+			);
+			"productName" = "Clay";
+			"productReference" = "8B8D373BA723FCF7841A503C";
+			"productType" = "com.apple.product-type.application";
+		};
+		"615B463D1028E4E24B674CF7" = {
+			"isa" = "PBXGroup";
+			"children" = (
+				"5C7C72C521E45929071F2B81",
+				"8B8D373BA723FCF7841A503C",
+			);
+			"name" = "Products";
+			"sourceTree" = "<group>";
+		};
+		"AC019E2923F944A838FB0A8F" = {
+			"isa" = "PBXGroup";
+			"children" = (
+				"A3C6F5DD80468C14486B8187",
+				"E60984357126E955F813B618",
+				"48E75E02339F31719356134E",
+				"ED41E70F87778E8616731301",
+				"0257FDB22679E510DF61516D",
+			);
+			"name" = "Shared";
+			"sourceTree" = "<group>";
+		};
+		"D6BFE871FAF376D29085F907" = {
+			"isa" = "PBXGroup";
+			"children" = (
+				"9F1A68B9A711F104B87640AA",
+				"F1C45B58B0498A26FC50C1E9",
+				"4A494323009BC43D497EC3C4",
+				"B4321BF3C763F8301B20DEB4",
+				"AC9669F38467F60B1B41858E",
+			);
+			"name" = "macOS";
+			"sourceTree" = "<group>";
+		};
+		"16BCF266F0E04A0BE0BA512F" = {
+			"isa" = "PBXGroup";
+			"children" = (
+				"73181EA81B543D44BB797502",
+				"5F93680B43F1CEE53B630CD7",
+				"3E0F52CDD6FA217B2C86F70D",
+			);
+			"name" = "iOS";
+			"sourceTree" = "<group>";
+		};
+		"D0D2AFD19F5E6A13FC9180E7" = {
+			"isa" = "PBXGroup";
+			"children" = (
+				"954833ADEB5C9A836B1F4940",
+				"E0E27618A2D2A8FEBDD49F35",
+				"6327A1005FF0B783151E530B",
+				"2C94172D67DA116C7BB32C13",
+				"C7C27D0891687E6CBD004E40",
+				"87ACE8FEEB1FCF25B2D3453A",
+				"7B97648A74733849ED4CF00A",
+				"BCFA14070C8F570C520EF850",
+			);
+			"name" = "Resources and configuration";
+			"sourceTree" = "<group>";
+		};
+		"870B3294C0CBD48AF6BBCC1B" = {
+			"isa" = "PBXGroup";
+			"children" = (
+				"AC019E2923F944A838FB0A8F",
+				"D6BFE871FAF376D29085F907",
+				"16BCF266F0E04A0BE0BA512F",
+				"D0D2AFD19F5E6A13FC9180E7",
+				"615B463D1028E4E24B674CF7",
+			);
+			"sourceTree" = "<group>";
+		};
+		"AA60E62D3E7BAEF305ADABEA" = {
+			"isa" = "XCBuildConfiguration";
+			"buildSettings" = {
+				"ALWAYS_SEARCH_USER_PATHS" = "NO";
+				"CLANG_ENABLE_MODULES" = "YES";
+				"CLANG_ENABLE_OBJC_ARC" = "YES";
+				"COPY_PHASE_STRIP" = "NO";
+				"GCC_C_LANGUAGE_STANDARD" = "gnu17";
+				"SWIFT_VERSION" = "5.0";
+				"SWIFT_OPTIMIZATION_LEVEL" = "-Onone";
+				"DEBUG_INFORMATION_FORMAT" = "dwarf";
+				"ENABLE_TESTABILITY" = "YES";
+				"ONLY_ACTIVE_ARCH" = "YES";
+				"SWIFT_ACTIVE_COMPILATION_CONDITIONS" = "DEBUG $(inherited)";
+			};
+			"name" = "Debug";
+		};
+		"3D553B551D2688E2E7A15153" = {
+			"isa" = "XCBuildConfiguration";
+			"buildSettings" = {
+				"ALWAYS_SEARCH_USER_PATHS" = "NO";
+				"CLANG_ENABLE_MODULES" = "YES";
+				"CLANG_ENABLE_OBJC_ARC" = "YES";
+				"COPY_PHASE_STRIP" = "NO";
+				"GCC_C_LANGUAGE_STANDARD" = "gnu17";
+				"SWIFT_VERSION" = "5.0";
+				"SWIFT_OPTIMIZATION_LEVEL" = "-O";
+				"DEBUG_INFORMATION_FORMAT" = "dwarf-with-dsym";
+				"ENABLE_TESTABILITY" = "NO";
+				"ONLY_ACTIVE_ARCH" = "NO";
+				"SWIFT_COMPILATION_MODE" = "wholemodule";
+			};
+			"name" = "Release";
+		};
+		"640DC9EFD529235A8D9E2727" = {
+			"isa" = "XCConfigurationList";
+			"buildConfigurations" = (
+				"AA60E62D3E7BAEF305ADABEA",
+				"3D553B551D2688E2E7A15153",
+			);
+			"defaultConfigurationIsVisible" = 0;
+			"defaultConfigurationName" = "Release";
+		};
+		"98F54143AB4E86B28C3AFEE0" = {
+			"isa" = "PBXProject";
+			"attributes" = {
+				"BuildIndependentTargetsInParallel" = "YES";
+				"LastSwiftUpdateCheck" = "2600";
+				"LastUpgradeCheck" = "2600";
+				"TargetAttributes" = {
+					"2195A216C06BFD5D81F85AD2" = {
+						"CreatedOnToolsVersion" = "26.0";
+						"ProvisioningStyle" = "Automatic";
+					};
+					"3B0367E0581B981BE5F22BCD" = {
+						"CreatedOnToolsVersion" = "26.0";
+						"ProvisioningStyle" = "Automatic";
+					};
+				};
+			};
+			"buildConfigurationList" = "640DC9EFD529235A8D9E2727";
+			"compatibilityVersion" = "Xcode 14.0";
+			"developmentRegion" = "en";
+			"hasScannedForEncodings" = 0;
+			"knownRegions" = (
+				"en",
+				"Base",
+			);
+			"mainGroup" = "870B3294C0CBD48AF6BBCC1B";
+			"packageReferences" = (
+				"CF21FADD42EAB8F8303A3895",
+			);
+			"productRefGroup" = "615B463D1028E4E24B674CF7";
+			"projectDirPath" = "";
+			"projectRoot" = "";
+			"targets" = (
+				"2195A216C06BFD5D81F85AD2",
+				"3B0367E0581B981BE5F22BCD",
+			);
+		};
+	};
+	"rootObject" = "98F54143AB4E86B28C3AFEE0";
+}
