@@ -142,18 +142,18 @@ struct ClayMacLibraryView: View {
 
     private var sidebar: some View {
         VStack(alignment: .leading, spacing: 0) {
-            HStack(spacing: 10) {
+            HStack(spacing: 8) {
                 Image("ClayMark")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 34, height: 34)
+                    .frame(width: 26, height: 26)
                     .accessibilityHidden(true)
                 Text("Clay")
-                    .font(ClayTheme.uiFont(size: 25, weight: .bold))
+                    .font(ClayTheme.uiFont(size: 20, weight: .bold))
             }
             .padding(.horizontal, 20)
-            .padding(.top, 26)
-            .padding(.bottom, 24)
+            .padding(.top, 16)
+            .padding(.bottom, 18)
 
             Text("LIBRARY")
                 .font(ClayTheme.uiFont(size: 10, weight: .semibold))

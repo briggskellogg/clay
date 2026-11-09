@@ -2,7 +2,15 @@
 
 A native writing app for macOS and iPhone, with a deliberate distinction between **Scratchpads** and **Pieces**. Both use the same editor. Moving a document changes its section while keeping its identity and writing intact.
 
-## Delivery status
+## Current release — 0.1.0 (3)
+
+Clay shares the app family's neutral light/dark surfaces, PP Neue Montreal interface type, and PP Neue York writing type. Build 3 tightens the Mac sidebar signature and adds a branded Settings header with the Clay mark, maker byline, and version. Scratchpads/Pieces colors, editor layout, and System/Light/Dark behavior are preserved.
+
+The App Store Connect/TestFlight name is **Clay by Briggs Kellogg**. The bundle ID, installed Clay.app name, and writing location remain unchanged. Both native Debug builds and Release archives passed. Build 3 is installed and visually checked on the Mac, with System appearance selected. TestFlight delivery is in progress.
+
+Release destinations and the source-only Proton scope are recorded in `Release/project-destinations.json`. Runtime writing sync, Windows archives, and scheduled personal-data backups are not configured by this release.
+
+## Previous delivery history
 
 This package contains the first native SwiftUI source implementation, a shared persistence package, an Xcode project with two app targets, tests, and Mac installation / TestFlight upload scripts.
 
@@ -48,9 +56,9 @@ To work in Xcode, open **Clay.xcodeproj**. Select scheme **Clay-macOS** and My M
 
 ## TestFlight
 
-The [App Store Connect record](https://appstoreconnect.apple.com/apps/6832381528/distribution) is **Clay — Scratchpads & Pieces** (app ID `6832381528`), with bundle ID `com.briggskellogg.clay` and iOS/macOS platforms. The installed app is still named **Clay**. Both processed 0.1.0 (1) builds were assigned to the internal Briggs testing group through manual distribution. The appearance update, 0.1.0 (2), also completed processing and is assigned to Briggs on both platforms. See **DISTRIBUTION.md** for the release configuration and future upload steps.
+The [App Store Connect record](https://appstoreconnect.apple.com/apps/6832381528/distribution) is **Clay by Briggs Kellogg** (app ID `6832381528`), with bundle ID `com.briggskellogg.clay` and iOS/macOS platforms. The installed app is still named **Clay**. Both processed 0.1.0 (1) builds were assigned to the internal Briggs testing group through manual distribution. The appearance update, 0.1.0 (2), also completed processing and is assigned to Briggs on both platforms. See **DISTRIBUTION.md** for the release configuration and future upload steps.
 
-The upload scripts use an Apple account already configured in Xcode. No password, API key, team identity, or provisioning profile is bundled here. App Store Connect confirmed the invitation, and the owner subsequently reported successful physical-iPhone installation and launch. The scripts upload an existing archive; app-record setup and the invitation were completed separately in App Store Connect.
+The upload scripts use an Apple account already configured in Xcode. No password, API key, signing key, or provisioning profile is bundled here. The non-secret developer team identifier is recorded in the release destination manifest. App Store Connect confirmed the invitation, and the owner subsequently reported successful physical-iPhone installation and launch. The scripts upload an existing archive; app-record setup and the invitation were completed separately in App Store Connect.
 
 ## Useful commands
 

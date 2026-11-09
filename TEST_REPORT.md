@@ -2,6 +2,14 @@
 
 Updated 2026-11-08 after native Mac and simulator testing and the owner's physical-iPhone installation/launch confirmation. This report distinguishes independently observed checks, owner-reported results, and remaining acceptance work.
 
+## App-family finalization — 0.1.0 (3)
+
+The code review confirmed Clay and Intersect share the six neutral color pairs and the Montreal/Neue York pairing; Bard uses the same typography and restrained neutral chrome. Clay retains its existing red artwork and amber/blue destination colors. Build 3 reduces the Mac sidebar signature and adds branded Settings. No persistence, library migration, cloud syncing, or editor behavior changes are included. Both native Debug builds and Release archives passed. The signed universal Mac archive passed strict code-signature verification; the iOS arm64 archive is prepared for App Store distribution re-signing. All 45 captured build inputs retained identical SHA-256 hashes before and after compilation.
+
+Build 3 is installed at `/Applications/Developer/Clay.app`; the prior installation was preserved and the replacement signature verified. Visual checks confirmed the compact dark sidebar and branded Settings showing version 0.1.0 (3), legible Light appearance, and returning to System following the current OS dark appearance. Final selection is System. The unchanged appearance preference's Dark override and persistence checks are documented under build 2 below. Build 3's iOS Settings sheet has compiled but has not received a new runtime interaction check; physical-phone confirmation still applies only to build 1.
+
+App Store Connect saved the requested **Clay by Briggs Kellogg** name on the existing multiplatform record.
+
 ## Appearance update — 0.1.0 (2)
 
 The update adds a persistent System/Light/Dark setting in Mac Settings and the iPhone library's gear sheet. The choice is local to each device.

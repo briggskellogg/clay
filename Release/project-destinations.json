@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "project": "Clay",
+  "verified_on": "2026-11-08",
+  "github": {
+    "repository": "https://github.com/briggskellogg/clay",
+    "branch": "main",
+    "visibility": "public",
+    "scope": "source_and_release_documentation"
+  },
+  "app_store_connect": {
+    "app_id": "6832381528",
+    "url": "https://appstoreconnect.apple.com/apps/6832381528",
+    "display_name_verification": "saved_in_app_store_connect",
+    "developer_team_id": "24KAG7M42P",
+    "bundle_id": "com.briggskellogg.clay",
+    "schemes": {
+      "ios": "Clay-iOS",
+      "macos": "Clay-macOS"
+    },
+    "testflight_group": "Briggs",
+    "testflight_audience": "internal",
+    "testflight_distribution": "manual",
+    "display_name": "Clay by Briggs Kellogg"
+  },
+  "source_artifact": {
+    "product_name": "Clay",
+    "app_bundle": "Clay.app",
+    "installed_display_name": "Clay",
+    "marketing_version": "0.1.0",
+    "build": "3"
+  },
+  "proton_drive": {
+    "project_folder": "[projects]/clay",
+    "scope": "tracked_source_only",
+    "local_root_resolution": "scripts/sync-proton.py selects the existing unique Proton account containing [projects]",
+    "mirror_manifest": ".clay-sync-manifest.json",
+    "contains_personal_writing": false,
+    "cloud_completion_requires_separate_verification": true
+  },
+  "personal_data_sync": {
+    "icloud": null,
+    "cloudkit": null,
+    "proton_drive": null
+  },
+  "backups": {
+    "windows_destination": null,
+    "automated_backup_schedule": null
+  }
+}

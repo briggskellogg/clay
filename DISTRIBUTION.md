@@ -1,6 +1,10 @@
 # Installing and distributing Clay 0.1
 
-## Current status
+## Current release — 0.1.0 (3)
+
+The shared App Store Connect/TestFlight record was renamed to **Clay by Briggs Kellogg** on November 8, 2026. App ID, bundle ID, tester group, and the installed Clay.app name remain unchanged. Build 3 finalizes the compact Mac sidebar and branded Settings. Both Debug builds and Release archives passed, and the Mac installation and appearance checks passed. TestFlight uploads are in progress.
+
+## Appearance release — 0.1.0 (2)
 
 **0.1.0 (2)** adds the saved System/Light/Dark appearance preference. Source validation, both Debug builds, and both Release archive builds passed. Build 2 is installed at `/Applications/Developer/Clay.app` with its signature verified. Mac Light/Dark switching, Dark → System restoration to OS light, and Dark persistence across quit/relaunch passed; the final preference is System. The iOS simulator showed the new gear and followed an OS dark-mode change in System mode. Opposing Light/Dark overrides passed using temporary launch arguments, which were cleared afterward; live Settings-sheet selection/reset remains pending. Both build 2 uploads succeeded at **5:36 PM America/Phoenix on 2026-11-08**; both completed Apple processing and were assigned to the internal Briggs group. Physical-iPhone installation of build 2 has not yet been confirmed.
 
@@ -21,11 +25,11 @@ The feedback email and beta description were saved; the description identifies t
 | Item | Current value / action |
 | --- | --- |
 | Product | Clay |
-| App Store Connect name | Clay — Scratchpads & Pieces; the installed app name remains Clay |
+| App Store Connect name | Clay by Briggs Kellogg; the installed app name remains Clay |
 | App Store Connect app ID | [`6832381528`](https://appstoreconnect.apple.com/apps/6832381528/distribution) |
 | Primary language / SKU | English (U.S.) / `clay-01` |
 | Marketing version | 0.1.0 |
-| Current build number | 2 — appearance preference update; build 1 is the previous delivered beta |
+| Current build number | 3 — app-family UI finalization; builds 1 and 2 are previous betas |
 | Bundle ID | `com.briggskellogg.clay`, used for the verified signed exports |
 | Platforms | iOS and macOS in one App Store Connect app record |
 | Deployment targets | iOS 17+, macOS 14+ |
@@ -68,7 +72,7 @@ If the bundle identifier needs to change, edit `CLAY_BUNDLE_IDENTIFIER` in `Conf
 
 ## 3. Use the existing App Store Connect record
 
-Use [Clay — Scratchpads & Pieces, app ID 6832381528](https://appstoreconnect.apple.com/apps/6832381528/distribution) for subsequent releases. The record contains both iOS and macOS, bundle ID `com.briggskellogg.clay`, primary language English (U.S.), and SKU `clay-01`. Keep these identities consistent with the Xcode configuration. The installed app's display name remains Clay.
+Use [Clay by Briggs Kellogg, app ID 6832381528](https://appstoreconnect.apple.com/apps/6832381528/distribution) for subsequent releases. The record contains both iOS and macOS, bundle ID `com.briggskellogg.clay`, primary language English (U.S.), and SKU `clay-01`. Keep these identities consistent with the Xcode configuration. The installed app's display name remains Clay.
 
 ## 4. Archive and upload
 

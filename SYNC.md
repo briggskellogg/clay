@@ -2,6 +2,10 @@
 
 The canonical local Git repository is the working source. GitHub keeps its committed history; Proton Drive keeps a verified mirror of tracked source files. Scratchpads, Pieces, personal writing, app libraries, signing credentials, and generated builds are not part of this source mirror. This workflow does not add cross-device writing sync to the app.
 
+The user's November 8, 2026 clarification confirms this existing source-only workflow: Proton Drive, `[projects]/clay`, and the corresponding GitHub repository. The broader cloud-sync discussion does not make personal-writing sync, iCloud integration, Windows backups, or new schedulers part of this release. Those destinations remain unconfigured.
+
+See `Release/project-destinations.json` for the release destination map. Its Proton path is the exact project subfolder; the account-specific local root is resolved by the script and is not stored in this public repository. GitHub was verified as public on November 8, 2026; this workflow does not change its visibility.
+
 After every completed Clay edit:
 
 1. Fetch GitHub and inspect `git status`, the current branch, and incoming/outgoing commits. Reconcile remote changes without discarding local work. Never force-push or reset away another change to make the copies agree.
