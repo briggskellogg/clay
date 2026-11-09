@@ -46,5 +46,18 @@
   "backups": {
     "windows_destination": null,
     "automated_backup_schedule": null
+  },
+  "verified_release": {
+    "source_commit": "f96326364c1907ef181c361f47a5189d9904e674",
+    "version": "0.1.0",
+    "build": "3",
+    "uploaded_at": "2026-11-08 20:41 America/Phoenix",
+    "ios_build_id": "e9664cef-bbe6-4de2-a187-4bb2d53568dd",
+    "macos_build_id": "15597e1a-1301-4203-b1c5-fdfe70b09c1a",
+    "testflight_status": "Testing on both platforms in Briggs",
+    "group_testers": 1,
+    "group_builds": 6,
+    "mac_local_install": "verified",
+    "physical_iphone_build3_install": "not_confirmed"
   }
 }
