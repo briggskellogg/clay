@@ -1,6 +1,10 @@
 # Installing and distributing Clay 0.1
 
-## Current release — 0.1.0 (3)
+## Release candidate — 0.1.0 (4)
+
+Build 4 adds a private selected iCloud Drive folder, offline revision history, conflict copies, durable deletion records, and readable per-device Windows exports. The 38-test core suite, synthetic Store/transport integration, privacy checks, and both Debug builds passed. Final signed archives and TestFlight delivery are pending. A build 4 Mac app is installed, but its actual folder connection and the development-signed relaunch are still being checked. See TEST_REPORT.md for the outstanding live-device verification.
+
+## Delivered release — 0.1.0 (3)
 
 The shared App Store Connect/TestFlight record was renamed to **Clay by Briggs Kellogg** on November 8, 2026. App ID, bundle ID, tester group, and the installed Clay.app name remain unchanged. Build 3 finalizes the compact Mac sidebar and branded Settings. Both Debug builds and Release archives passed, and the Mac installation and appearance checks passed. Both iOS and macOS build 3 uploads succeeded at **8:41 PM America/Phoenix on November 8, 2026**. Both completed Apple processing and are assigned to the internal **Briggs** group, with **Testing** status and 90-day expiry. The group shows **1 Tester / 6 Builds**; no duplicate invitation was sent. Physical-iPhone installation of build 3 has not yet been confirmed.
 
@@ -29,7 +33,7 @@ The feedback email and beta description were saved; the description identifies t
 | App Store Connect app ID | [`6832381528`](https://appstoreconnect.apple.com/apps/6832381528/distribution) |
 | Primary language / SKU | English (U.S.) / `clay-01` |
 | Marketing version | 0.1.0 |
-| Current build number | 3 — app-family UI finalization; builds 1 and 2 are previous betas |
+| Current build number | 4 — private-library sync; builds 1–3 are previous betas |
 | Bundle ID | `com.briggskellogg.clay`, used for the verified signed exports |
 | Platforms | iOS and macOS in one App Store Connect app record |
 | Deployment targets | iOS 17+, macOS 14+ |

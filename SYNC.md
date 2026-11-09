@@ -1,15 +1,17 @@
-# Keeping Clay in sync
+# Keeping Clay source and private writing in sync
 
-The canonical local Git repository is the working source. GitHub keeps its committed history; Proton Drive keeps a verified mirror of tracked source files. Scratchpads, Pieces, personal writing, app libraries, signing credentials, and generated builds are not part of this source mirror. This workflow does not add cross-device writing sync to the app.
+Clay has two separate storage workflows. The canonical Git repository, GitHub, and Proton Drive `[projects]/clay` contain code and release documentation. Private writing and synchronization history belong in the app's local storage and its dedicated personal iCloud Drive folder, outside source repositories and `[projects]`.
 
-The user's November 8, 2026 clarification confirms this existing source-only workflow: Proton Drive, `[projects]/clay`, and the corresponding GitHub repository. The broader cloud-sync discussion does not make personal-writing sync, iCloud integration, Windows backups, or new schedulers part of this release. Those destinations remain unconfigured.
+The owner confirmed the same personal iCloud Drive account on the iPhone, Mac, and Windows PC. Build 4 implements the selected-folder private library; validation, connection, and an end-to-end cloud check remain pending. Build 3's verified TestFlight delivery does not establish those results. `Release/project-destinations.json` records both workflows and their separate verification states without account-specific home paths or credentials.
 
-See `Release/project-destinations.json` for the release destination map. Its Proton path is the exact project subfolder; the account-specific local root is resolved by the script and is not stored in this public repository. GitHub was verified as public on November 8, 2026; this workflow does not change its visibility.
+## Source workflow
+
+GitHub's existing public visibility is preserved. Proton's exact source subfolder remains `[projects]/clay`; the sync script discovers the configured account root locally.
 
 After every completed Clay edit:
 
 1. Fetch GitHub and inspect `git status`, the current branch, and incoming/outgoing commits. Reconcile remote changes without discarding local work. Never force-push or reset away another change to make the copies agree.
-2. Run the checks appropriate to the change, review the diff, and commit the intended source changes. Keep signing files, personal writing, dependencies, and build output out of Git.
+2. Run checks appropriate to the change, including `python3 scripts/validate_source.py` in the Git checkout. Review and stage only the intended source changes, then run `python3 scripts/check-source-privacy.py --staged` before committing. The default privacy check inspects both index bytes and tracked working files; `--staged` checks what Git would commit. It catches known Clay runtime folders, UUID document/record names, and document headers without printing contents. It cannot identify arbitrary private prose. Keep personal writing, libraries, SyncJournal, ClaySync records/exports, signing files, dependencies, and build output outside source control.
 3. Push the committed branch to the corresponding Clay repository and verify the remote commit. A failed push means GitHub is still pending.
 4. Preview the Proton mirror, inspect its report, then apply it:
 
@@ -27,7 +29,7 @@ python3 scripts/sync-proton.py --destination '/absolute/path/to/[projects]/clay'
 python3 scripts/sync-proton.py --destination '/absolute/path/to/[projects]/clay' --apply
 ```
 
-## What the script guarantees
+## Source mirror safeguards
 
 The default is a dry run with no filesystem changes. Apply requires a clean repository with a commit, including no untracked files. Only regular Git-tracked files are eligible. Git internals, build/cache directories, app library/recovery directories, and known signing/credential file types are excluded even if accidentally tracked; inspect the reported exclusions and remove sensitive material from Git separately.
 
@@ -38,3 +40,20 @@ Unexpected destination files, destination edits, removed prior files, unexpected
 A failure during copying can leave some files at the new version while retaining the prior baseline. The script reports failure. A rerun with the same clean source accepts files already matching that source and can finish safely. Keep the source commit unchanged until that interrupted sync is reconciled.
 
 Avoid editing source directly inside the Proton mirror or running multiple syncs concurrently. Bring intentional mirror edits back into the canonical repository, review and commit them, then reconcile the mirror. The script does not perform bidirectional merges, Git pushes, or background monitoring.
+
+## Private writing workflow — build 4
+
+Use the same dedicated **Clay** folder in personal iCloud Drive on each device. On Mac choose it in **Clay → Settings → Private library**; on iPhone use the library's **gear → Private library**. The picker grants access only to the selected folder. Connecting retains the local library and exchanges its history with that folder. Disconnecting retains both local and shared files.
+
+The app saves an immutable local history in `Clay/SyncJournal` before updating its `Clay/Library` Markdown copies. Offline writing therefore does not depend on provider access. While active, Clay checks for shared changes and retries when the folder becomes available. Concurrent content is preserved as conflict copies; deletion records retire the original identity instead of treating a temporarily absent cloud file as a deletion.
+
+| Private path inside the selected folder | Purpose |
+| --- | --- |
+| `ClaySync/Records` | Immutable synchronization records, including writing history and deletions; preserve these for recovery |
+| `ClaySync/Exports/<deviceID>` | A device's readable Markdown copies and current snapshot manifest |
+
+Windows can receive the private folder through iCloud Drive and read the Markdown exports. The manifest identifies the current snapshot; older unlisted exports may remain. These are derived reading copies: editing them does not update Clay. No Windows native application is included. Do not hand-edit synchronization records or place private folders in GitHub/source mirrors.
+
+“Shared folder updated” means local provider access succeeded. It does not prove upload completion or arrival on another device. Record the actual folder connection, a cross-device edit/relaunch, Windows reception, and any restore check separately. These checks remain pending for build 4 until evidence is added to the release report.
+
+Proton personal-data backups are a separate workflow from this source mirror. This release creates no PC backup jobs, destination, retention policy, or schedule. Only a confirmed personal iCloud/PC folder scope may feed an independently verified PC → Proton backup; never include work-Mac folders, whole drives, or all of iCloud Drive. Existing external backup setup has not been verified by this release.

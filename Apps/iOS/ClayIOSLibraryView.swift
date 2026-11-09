@@ -63,7 +63,7 @@ struct ClayIOSLibraryView: View {
         }
         .background(ClayTheme.paper)
         .sheet(isPresented: $isShowingSettings) {
-            ClaySettingsView()
+            ClaySettingsView(store: store)
                 .clayAppearance()
         }
         .fileImporter(

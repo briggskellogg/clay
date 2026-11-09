@@ -2,6 +2,24 @@
 
 Updated 2026-11-08 after native Mac and simulator testing and the owner's physical-iPhone installation/launch confirmation. This report distinguishes independently observed checks, owner-reported results, and remaining acceptance work.
 
+## Private-library update — 0.1.0 (4)
+
+The owner confirmed the same personal iCloud Drive account on iPhone, Mac, and Windows. The app now offers a selected private folder, separate from GitHub and the Proton source mirror. Ordinary Windows Markdown exports are derived reading copies; editing them does not update Clay.
+
+| Check | Result |
+| --- | --- |
+| Core suite | All 38 XCTest methods passed, including 13 immutable-journal cases |
+| Source privacy guard | Seven synthetic checks passed; detects known runtime paths/formats in Git index and tracked working files without logging contents |
+| Actual Store + transport integration | Synthetic two-device checks passed: Unicode and metadata transfer; offline conflict convergence without duplicate growth; deletion across restart; export manifest/content; unavailable provider/outbox recovery; local journal failure blocks publication until retry |
+| Native builds | Both Mac and iOS Simulator Debug passed; final release archives pending |
+| Folder transport | Synthetic bookmark restore/disconnect, coordinated immutable exchange, collision/symlink/source-folder rejection, and stable per-device exports passed |
+| Mac UI | Settings rendered in System/dark with version 0.1.0 (4). A native directory picker is implemented. The actual system dialog left Connect disabled in local and iCloud folders despite correct configuration; the development-signed launch/connection check is pending |
+| Actual private cloud connection | Not yet verified; a dedicated iCloud Drive/Clay folder was created, but no writing was copied through the app |
+| iPhone and Windows receipt | Pending actual device connection/receipt; same-account confirmation is not proof of a transferred edit |
+| TestFlight build 4 | Pending; build 3 remains Testing on both platforms |
+
+The production application does not print document bodies into release logs. Private journals, connection bookmarks, outboxes, and derived exports are excluded from source control and source mirroring. The immutable journal is durable before local projection writes, so recovery can rebuild a local Markdown copy after interruption. Local saving and cloud transfer status are separate.
+
 ## App-family finalization — 0.1.0 (3)
 
 The code review confirmed Clay and Intersect share the six neutral color pairs and the Montreal/Neue York pairing; Bard uses the same typography and restrained neutral chrome. Clay retains its existing red artwork and amber/blue destination colors. Build 3 reduces the Mac sidebar signature and adds branded Settings. No persistence, library migration, cloud syncing, or editor behavior changes are included. Both native Debug builds and Release archives passed. The signed universal Mac archive passed strict code-signature verification; the iOS arm64 archive is prepared for App Store distribution re-signing. All 45 captured build inputs retained identical SHA-256 hashes before and after compilation. The 34 tracked inputs match source commit `f96326364c1907ef181c361f47a5189d9904e674`; the 11 generated icon inputs were unchanged.

@@ -15,7 +15,20 @@ final class ClayStore: ObservableObject {
     @Published var errorMessage: String?
     @Published private(set) var saveStatus = "Loading…"
 
+    @Published private(set) var syncStatus = "Not connected"
+    @Published private(set) var syncDetail = "Cloud delivery is managed by iCloud Drive."
+    @Published private(set) var syncFolderName: String?
+    @Published private(set) var isSyncing = false
+    @Published private(set) var isConnectingLibrary = false
+
     private let repository: LibraryRepository
+    private let journal: LibrarySyncJournal
+    private let syncFolder: ClaySyncFolder
+    private var syncParents: [UUID: Set<UUID>] = [:]
+    private var journalReady = false
+    private var syncTask: Task<Void, Never>?
+    private var syncAgain = false
+    private var syncPollTask: Task<Void, Never>?
     private var loadingTask: Task<Void, Never>?
     private var debounceTask: Task<Void, Never>?
     private var writerTask: Task<Void, Never>?
@@ -29,7 +42,8 @@ final class ClayStore: ObservableObject {
     private var isLoading = true
     private var loadFailed = false
 
-    init(rootURL: URL? = nil) {
+    init(rootURL: URL? = nil, syncDefaults: UserDefaults = .standard) {
+        syncFolder = ClaySyncFolder(defaults: syncDefaults)
         let support = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
             ?? URL(fileURLWithPath: NSHomeDirectory(), isDirectory: true)
                 .appendingPathComponent("Library/Application Support", isDirectory: true)
@@ -37,6 +51,11 @@ final class ClayStore: ObservableObject {
             .appendingPathComponent("Clay", isDirectory: true)
             .appendingPathComponent("Library", isDirectory: true)
         repository = LibraryRepository(rootURL: library)
+        journal = LibrarySyncJournal(rootURL: library.deletingLastPathComponent()
+            .appendingPathComponent("SyncJournal", isDirectory: true))
+        syncFolderName = syncFolder.folderName
+        syncStatus = syncFolder.isConnected ? "Waiting to sync" : "Not connected"
+        syncFolder.onChange = { [weak self] in self?.requestSync() }
         beginLoading()
     }
 
@@ -139,10 +158,20 @@ final class ClayStore: ObservableObject {
             guard let self else { return }
             if let loadingTask = self.loadingTask { await loadingTask.value }
             do {
-                try await self.repository.trash(snapshot)
+                // The immutable deletion record retains the latest full text.
+                // It is durable before the UI removes the document.
+                guard self.journalReady else {
+                    throw NSError(domain: "Clay.Sync", code: 1, userInfo: [NSLocalizedDescriptionKey: "The library is still waiting for recovery. Retry opening it before moving writing to Trash."])
+                }
+                _ = try await self.journal.recordDeletion(
+                    document: snapshot, parents: self.syncParents[id] ?? [])
+                do { try await self.repository.trash(snapshot) }
+                catch { self.report("The deletion is saved in recovery history, but the local Markdown copy could not be moved: \(error.localizedDescription)") }
                 self.documents.removeAll { $0.id == id }
                 self.deletedIDs.insert(id)
+                self.syncParents[id] = nil
                 self.revisions[id] = nil
+                self.requestSync()
                 self.dirtyIDs.remove(id)
                 self.failedRevisions[id] = nil
                 if self.selectedDocumentID == id {
@@ -210,7 +239,7 @@ final class ClayStore: ObservableObject {
             let deletions = Array(trashTasks.values)
             for task in deletions { await task.value }
             if let writer = ensureWriter() { await writer.value }
-            if trashTasks.isEmpty && !hasEligibleWrites && writerTask == nil { break }
+            if !journalReady || (trashTasks.isEmpty && !hasEligibleWrites && writerTask == nil) { break }
         }
         debounceTask?.cancel()
         debounceTask = nil
@@ -235,10 +264,24 @@ final class ClayStore: ObservableObject {
             guard let self else { return }
             do {
                 let result = try await self.repository.load()
+                let initial = try await self.journal.bootstrap(documents: result.documents)
+                let recovered = try await self.materializeConflicts(in: initial)
+                self.journalReady = true
+                self.syncParents = recovered.parents
+                // The journal is durable before each local projection write.
+                // Rebuild after a crash without discarding the old Markdown files.
+                for document in recovered.documents {
+                    do { try await self.repository.save(document) }
+                    catch { self.report("A local Markdown copy needs attention. Its journal revision is safe. \(error.localizedDescription)") }
+                }
+                for document in result.documents where recovered.deletedIDs.contains(document.id) {
+                    do { try await self.repository.trash(document) }
+                    catch { self.report("A retired local copy could not be moved to recovery. \(error.localizedDescription)") }
+                }
                 // Creating and typing are allowed while loading. Existing
                 // memory wins; a late disk snapshot never replaces those edits.
                 let memoryIDs = Set(self.documents.map(\.id))
-                let untouched = result.documents.filter {
+                let untouched = recovered.documents.filter {
                     !memoryIDs.contains($0.id)
                         && !self.deletedIDs.contains($0.id)
                         && !self.pendingTrashIDs.contains($0.id)
@@ -246,8 +289,9 @@ final class ClayStore: ObservableObject {
                 self.documents.append(contentsOf: untouched)
                 for document in untouched { self.revisions[document.id] = 0 }
                 self.loadFailed = false
-                if !result.warnings.isEmpty {
-                    self.report("Some library files could not be opened. Their originals are untouched:\n" + result.warnings.joined(separator: "\n"))
+                let warnings = result.warnings + recovered.warnings
+                if !warnings.isEmpty {
+                    self.report("Some library files need attention. Their originals are untouched:\n" + warnings.joined(separator: "\n"))
                 }
                 if self.selectedDocumentID == nil {
                     self.selectedDocumentID = self.visibleDocuments.first?.id
@@ -260,6 +304,7 @@ final class ClayStore: ObservableObject {
             self.loadingTask = nil
             self.refreshSaveStatus()
             if self.hasEligibleWrites { self.scheduleSave() }
+            self.requestSync()
         }
     }
 
@@ -301,7 +346,7 @@ final class ClayStore: ObservableObject {
 
     private func ensureWriter() -> Task<Void, Never>? {
         if let writerTask { return writerTask }
-        guard !isLoading, hasEligibleWrites else { return nil }
+        guard !isLoading, journalReady, hasEligibleWrites else { return nil }
         let token = UUID()
         writerToken = token
         let task = Task { @MainActor [weak self] in
@@ -330,7 +375,10 @@ final class ClayStore: ObservableObject {
                       let snapshot = document(id: id) else { continue }
                 let sentRevision = revisions[id, default: 0]
                 do {
+                    let revision = try await journal.record(document: snapshot, parents: syncParents[id] ?? [])
+                    syncParents[id] = [revision]
                     try await repository.save(snapshot)
+                    requestSync()
                     if revisions[id] == sentRevision && !pendingTrashIDs.contains(id) {
                         dirtyIDs.remove(id)
                         failedRevisions[id] = nil
@@ -345,6 +393,194 @@ final class ClayStore: ObservableObject {
                 refreshSaveStatus()
             }
         }
+    }
+
+    var isLibraryConnected: Bool { syncFolder.isConnected }
+
+    func connectLibraryFolder(_ url: URL) async {
+        guard !isSyncing, !isConnectingLibrary else { return }
+        isConnectingLibrary = true
+        // Finish or cancel the old connection's scheduled pass before switching.
+        syncTask?.cancel()
+        if let task = syncTask { await task.value }
+        syncTask = nil
+        defer {
+            isConnectingLibrary = false
+            requestSync()
+        }
+        await flush()
+        guard canSyncSavedWriting else {
+            syncStatus = "Local save needs attention"
+            syncDetail = "Retry the local save before connecting the private folder."
+            return
+        }
+        do {
+            try await syncFolder.connect(to: url)
+            syncFolderName = syncFolder.folderName
+            syncStatus = "Waiting to sync"
+            requestSync()
+        } catch {
+            syncStatus = "Connection needs attention"
+            syncDetail = error.localizedDescription
+            report("Couldn’t connect the private library. \(error.localizedDescription)")
+        }
+    }
+
+    func disconnectLibraryFolder() async {
+        guard !isSyncing, !isConnectingLibrary else { return }
+        isConnectingLibrary = true
+        syncTask?.cancel()
+        if let task = syncTask { await task.value }
+        syncTask = nil
+        syncFolder.disconnect()
+        syncFolderName = nil
+        syncStatus = "Not connected"
+        isConnectingLibrary = false
+    }
+
+    private var canSyncSavedWriting: Bool {
+        journalReady && !loadFailed && dirtyIDs.isEmpty && pendingTrashIDs.isEmpty && failedRevisions.isEmpty
+    }
+
+    /// Poll only while active; foreground checks also recover missed presenter
+    /// notifications. Cloud work never blocks a local save or the quit flush.
+    func setSyncActive(_ active: Bool) {
+        syncPollTask?.cancel()
+        syncPollTask = nil
+        guard active else { return }
+        requestSync()
+        syncPollTask = Task { @MainActor [weak self] in
+            while !Task.isCancelled {
+                do { try await Task.sleep(nanoseconds: 20_000_000_000) }
+                catch { return }
+                self?.requestSync()
+            }
+        }
+    }
+
+    func requestSync() {
+        guard journalReady, syncFolder.isConnected, !isConnectingLibrary else { return }
+        if syncTask != nil { syncAgain = true; return }
+        syncTask = Task { @MainActor [weak self] in
+            guard let self else { return }
+            // Coalesce local writes and file-presenter callbacks.
+            do { try await Task.sleep(nanoseconds: 350_000_000) }
+            catch { self.syncTask = nil; return }
+            repeat {
+                self.syncAgain = false
+                await self.runSyncPass()
+            } while self.syncAgain && self.syncFolder.isConnected
+            self.syncTask = nil
+        }
+    }
+
+    private func runSyncPass() async {
+        guard syncFolder.isConnected, journalReady else { return }
+        isSyncing = true
+        syncFolderName = syncFolder.folderName
+        syncStatus = "Updating private library…"
+        defer { isSyncing = false }
+        do {
+            await flush()
+            guard canSyncSavedWriting else {
+                syncStatus = "Local save needs attention"
+                syncDetail = "Retry the local save before synchronizing."
+                return
+            }
+            // Read and validate remote history before publishing our outbox.
+            let incoming = try await syncFolder.exchange(records: [], snapshot: [])
+            // Edits typed during I/O still use their original visible parents.
+            await flush()
+            guard canSyncSavedWriting else {
+                syncStatus = "Local save needs attention"
+                syncDetail = "Retry the local save before synchronizing."
+                return
+            }
+            let captured = revisions
+            let imported = try await journal.merge(records: incoming)
+            let merged = try await materializeConflicts(in: imported)
+            await applySyncedSnapshot(merged, capturedRevisions: captured)
+            let outbound = try await journal.records()
+            let current = try await journal.snapshot()
+            let arrivedDuringUpload = try await syncFolder.exchange(
+                records: outbound, snapshot: current.documents)
+            await flush()
+            guard canSyncSavedWriting else {
+                syncStatus = "Local save needs attention"
+                syncDetail = "Retry the local save before synchronizing."
+                return
+            }
+            let nextCaptured = revisions
+            let next = try await journal.merge(records: arrivedDuringUpload)
+            let final = try await materializeConflicts(in: next)
+            await applySyncedSnapshot(final, capturedRevisions: nextCaptured)
+            if !final.warnings.isEmpty {
+                syncStatus = "Some shared files need attention"
+                syncDetail = "Invalid or incomplete revisions were preserved for recovery. Valid writing remains available."
+            } else {
+                syncStatus = "Shared folder updated"
+                syncDetail = "iCloud Drive manages delivery to your other devices."
+            }
+            // This describes local provider writes, not a remote receipt.
+            syncFolderName = syncFolder.folderName
+        } catch {
+            syncStatus = "Sync paused"
+            syncDetail = error.localizedDescription
+            // Retain the outbox; foreground/presenter/Sync Now will retry.
+            // Avoid repeated modal alerts for a temporarily unavailable provider.
+        }
+    }
+
+    private func materializeConflicts(in snapshot: LibrarySyncSnapshot) async throws -> LibrarySyncSnapshot {
+        var known = Set(snapshot.documents.map(\.id)).union(snapshot.deletedIDs)
+        for conflict in snapshot.conflicts where !known.contains(conflict.revisionID) {
+            var copy = conflict.document
+            copy.id = conflict.revisionID
+            copy.title = copy.displayTitle + " (conflict copy)"
+            _ = try await journal.record(document: copy, parents: [])
+            known.insert(copy.id)
+        }
+        var result = try await journal.snapshot()
+        result.warnings = Array(Set(snapshot.warnings + result.warnings)).sorted()
+        return result
+    }
+
+    private func applySyncedSnapshot(_ snapshot: LibrarySyncSnapshot,
+                                     capturedRevisions: [UUID: UInt64]) async {
+        for document in snapshot.documents {
+            let id = document.id
+            guard !dirtyIDs.contains(id), !pendingTrashIDs.contains(id),
+                  revisions[id] == capturedRevisions[id] else { continue }
+            if let index = documents.firstIndex(where: { $0.id == id }) {
+                guard documents[index] != document else {
+                    syncParents[id] = snapshot.parents[id] ?? []
+                    continue
+                }
+                documents[index] = document
+            } else {
+                documents.append(document)
+            }
+            syncParents[id] = snapshot.parents[id] ?? []
+            revisions[id, default: 0] &+= 1
+            deletedIDs.remove(id)
+            do { try await repository.save(document) }
+            catch { report("The private library revision is safe, but a local Markdown copy needs attention. \(error.localizedDescription)") }
+        }
+        for id in snapshot.deletedIDs {
+            guard !dirtyIDs.contains(id), !pendingTrashIDs.contains(id),
+                  revisions[id] == capturedRevisions[id],
+                  let document = document(id: id) else { continue }
+            documents.removeAll { $0.id == id }
+            deletedIDs.insert(id)
+            syncParents[id] = nil
+            revisions[id] = nil
+            do { try await repository.trash(document) }
+            catch { report("A retired local copy could not be moved to recovery. \(error.localizedDescription)") }
+        }
+        if let selectedDocumentID, document(id: selectedDocumentID) == nil {
+            self.selectedDocumentID = visibleDocuments.first?.id
+        }
+        refreshSaveStatus()
     }
 
     private func refreshSaveStatus() {

@@ -66,6 +66,7 @@ class OpenStepParser:
 
 
 def main():
+    subprocess.run([sys.executable, str(ROOT / "scripts/check-source-privacy.py")], check=True)
     parser = OpenStepParser((ROOT / "Clay.xcodeproj/project.pbxproj").read_text())
     project = parser.parse()
     assert parser.index == len(parser.tokens)

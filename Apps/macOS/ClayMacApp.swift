@@ -3,6 +3,7 @@ import SwiftUI
 @main
 @MainActor
 struct ClayMacApp: App {
+    @Environment(\.scenePhase) private var scenePhase
     @NSApplicationDelegateAdaptor(ClayMacAppDelegate.self) private var appDelegate
     @StateObject private var store: ClayStore
     @StateObject private var actions = ClayMacActions()
@@ -19,6 +20,10 @@ struct ClayMacApp: App {
                 .frame(minWidth: 900, minHeight: 600)
                 .onAppear {
                     appDelegate.configure(store: store, actions: actions)
+                    store.setSyncActive(true)
+                }
+                .onChange(of: scenePhase) { _, phase in
+                    store.setSyncActive(phase == .active)
                 }
         }
         .defaultSize(width: 1180, height: 800)
@@ -29,7 +34,7 @@ struct ClayMacApp: App {
         }
 
         Settings {
-            ClaySettingsView()
+            ClaySettingsView(store: store)
                 .clayAppearance()
         }
     }

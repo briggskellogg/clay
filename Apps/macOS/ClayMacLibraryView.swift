@@ -195,9 +195,9 @@ struct ClayMacLibraryView: View {
             Spacer(minLength: 16)
 
             HStack(spacing: 7) {
-                Image(systemName: "internaldrive")
+                Image(systemName: store.isLibraryConnected ? "icloud" : "internaldrive")
                     .font(.system(size: 12))
-                Text("Stored on this Mac")
+                Text(store.isLibraryConnected ? "Private library connected" : "Stored on this Mac")
                     .font(ClayTheme.uiFont(size: 11, weight: .regular))
             }
             .foregroundStyle(ClayTheme.secondary)

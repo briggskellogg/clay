@@ -14,7 +14,7 @@ import tempfile
 
 
 MANIFEST = ".clay-sync-manifest.json"
-EXCLUDED_PARTS = {".git", ".build", "build", "deriveddata", "xcuserdata", "__pycache__", "library", "backups", "trash"}
+EXCLUDED_PARTS = {".git", ".build", "build", "deriveddata", "xcuserdata", "__pycache__", "library", "backups", "trash", "privatedata", "claysync", "syncjournal"}
 
 
 class SyncError(Exception):

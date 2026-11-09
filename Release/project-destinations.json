@@ -28,7 +28,8 @@
     "app_bundle": "Clay.app",
     "installed_display_name": "Clay",
     "marketing_version": "0.1.0",
-    "build": "3"
+    "build": "4",
+    "status": "implementation_pending_validation_and_delivery"
   },
   "proton_drive": {
     "project_folder": "[projects]/clay",
@@ -39,13 +40,37 @@
     "cloud_completion_requires_separate_verification": true
   },
   "personal_data_sync": {
-    "icloud": null,
+    "icloud": {
+      "mode": "user_selected_personal_icloud_drive_folder",
+      "status": "implementation_pending_validation_and_connection",
+      "recommended_folder": "iCloud Drive/Clay",
+      "verified_destination": null,
+      "account_identifier": null,
+      "owner_confirmed_same_personal_account_on": [
+        "iPhone",
+        "Mac",
+        "Windows PC"
+      ],
+      "private_subfolder": "ClaySync",
+      "records_subfolder": "Records",
+      "readable_exports_subfolder": "Exports/<deviceID>",
+      "exports_are_authoritative": false,
+      "export_edits_import_into_clay": false,
+      "local_journal": "Application Support/Clay/SyncJournal",
+      "runtime_storage_must_be_outside_repositories_and_projects": true,
+      "phone_connection_verified": false,
+      "windows_reception_verified": false,
+      "cross_device_edit_verified": false,
+      "native_windows_app_included": false
+    },
     "cloudkit": null,
     "proton_drive": null
   },
   "backups": {
     "windows_destination": null,
-    "automated_backup_schedule": null
+    "automated_backup_schedule": null,
+    "jobs_created_by_this_release": false,
+    "external_pipeline_verification": "not_inspected"
   },
   "verified_release": {
     "source_commit": "f96326364c1907ef181c361f47a5189d9904e674",
@@ -59,5 +84,18 @@
     "group_builds": 6,
     "mac_local_install": "verified",
     "physical_iphone_build3_install": "not_confirmed"
+  },
+  "pending_release": {
+    "version": "0.1.0",
+    "build": "4",
+    "status": "implementation_pending_validation_and_delivery",
+    "source_commit": null,
+    "last_pushed_commit": "7b360a60c534dd8c975914f939783f17a89a1e04",
+    "source_mirror_status": "pending",
+    "ios_build_id": null,
+    "macos_build_id": null,
+    "testflight_status": "pending",
+    "mac_local_install": "pending",
+    "physical_iphone_install": "pending"
   }
 }

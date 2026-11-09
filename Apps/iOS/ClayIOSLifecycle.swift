@@ -17,7 +17,9 @@ final class ClayIOSLifecycle: ObservableObject {
         switch phase {
         case .active:
             handledInactiveTransition = false
+            store.setSyncActive(true)
         case .inactive, .background:
+            store.setSyncActive(false)
             // The same departure from the foreground normally sends both phases.
             guard !handledInactiveTransition else { return }
             handledInactiveTransition = true

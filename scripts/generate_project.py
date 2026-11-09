@@ -88,7 +88,7 @@ def make_config() -> None:
     write_plist("Config/Info-iOS.plist", {
         **common,
         "LSRequiresIPhoneOS": True,
-        "LSSupportsOpeningDocumentsInPlace": False,
+        "LSSupportsOpeningDocumentsInPlace": True,
         "UILaunchScreen": {},
         "UIApplicationSceneManifest": {"UIApplicationSupportsMultipleScenes": False},
         "UISupportedInterfaceOrientations": ["UIInterfaceOrientationPortrait", "UIInterfaceOrientationLandscapeLeft", "UIInterfaceOrientationLandscapeRight"],
@@ -100,6 +100,7 @@ def make_config() -> None:
     write_plist("Config/Clay-macOS.entitlements", {
         "com.apple.security.app-sandbox": True,
         "com.apple.security.files.user-selected.read-write": True,
+        "com.apple.security.files.bookmarks.app-scope": True,
     })
     write_plist("Resources/PrivacyInfo.xcprivacy", {
         "NSPrivacyTracking": False,
